@@ -24,7 +24,6 @@ public class Item : MonoBehaviour
     {
         if (collider.CompareTag("Player"))
         {
-            Debug.Log("아이템 먹음!");
             if (pool != null)
             {
                 pool.Release(this);

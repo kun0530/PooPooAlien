@@ -7,14 +7,14 @@ public class EnemySpawner : MonoBehaviour
 {
     public Enemy enemyPrefab;
     private IObjectPool<Enemy> poolEnemy;
-    public Transform spawnPosition;
+    public Transform[] spawnPositions;
 
     private float nextCreateTime;
-    private float interval = 1f;
+    private float interval = 5f;
 
     private void Start()
     {
-        nextCreateTime = Time.time + interval;
+        // nextCreateTime = Time.time + interval;
 
         poolEnemy = new ObjectPool<Enemy>(
             CreatePooledItem,
@@ -34,16 +34,19 @@ public class EnemySpawner : MonoBehaviour
     {
         if (nextCreateTime < Time.time)
         {
-            CreateEnemy();
+            foreach (var spawnPosition in spawnPositions)
+            {
+                CreateEnemy(spawnPosition.position);
+            }
 
             nextCreateTime = Time.time + interval;
         }
     }
 
-    private void CreateEnemy()
+    private void CreateEnemy(Vector3 pos)
     {
         var newBullet = poolEnemy.Get();
-        newBullet.transform.position = spawnPosition.position;
+        newBullet.transform.position = pos;
     }
 
     private Enemy CreatePooledItem()

@@ -12,5 +12,7 @@ public class PlayerHealth : LivingEntity
     protected override void OnDie()
     {
         base.OnDie();
+        gameObject.SetActive(false);
+        Time.timeScale = 0f;
     }
 }

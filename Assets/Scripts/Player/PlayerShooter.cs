@@ -10,7 +10,7 @@ public class PlayerShooter : MonoBehaviour
     public Transform firePosition;
 
     private float nextCreateTime;
-    private float interval = 0.5f;
+    private float interval = 0.1f;
 
     
 
