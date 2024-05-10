@@ -6,6 +6,7 @@ using UnityEngine.Pool;
 public class Bullet : MonoBehaviour
 {
     private float speed = 10f;
+    private float atk = 50f;
     public IObjectPool<Bullet> pool;
 
     private void Update()
@@ -15,7 +16,16 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.CompareTag("Wall") && pool != null)
+        if (collider.CompareTag("Enemy"))
+        {
+            var living = collider.GetComponent<LivingEntity>();
+            living.OnDamage(atk);
+            if (pool != null)
+            {
+                pool.Release(this);
+            }
+        }
+        else if (collider.CompareTag("Wall") && pool != null)
         {
             pool.Release(this);
         }
