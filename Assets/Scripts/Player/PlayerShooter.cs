@@ -42,17 +42,17 @@ public class PlayerShooter : MonoBehaviour
         }
     }
 
+    private void CreateBullet()
+    {
+        var newBullet = poolBullet.Get();
+        newBullet.transform.position = firePosition.position;
+    }
+
     private Bullet CreatePooledItem()
     {
         var bullet = Instantiate(bulletPrefab);
         bullet.pool = poolBullet;
         return bullet;
-    }
-
-    private void CreateBullet()
-    {
-        var newBullet = poolBullet.Get();
-        newBullet.transform.position = firePosition.position;
     }
 
     private void OnTakeFromPool(Bullet bullet)
