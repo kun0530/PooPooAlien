@@ -3,23 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class Enemy : LivingEntity
+public class Item : MonoBehaviour
 {
+    public IObjectPool<Item> pool;
+
     private float speed = 3f;
-    private float atk = 50f;
     private Vector3 direction;
-
-    public IObjectPool<Enemy> pool;
-
-    public GameManager gameManager;
 
     private void Start()
     {
         direction = -transform.forward;
-        gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
     }
 
-    private void Update()
+    void Update()
     {
         transform.position += direction * speed * Time.deltaTime;
     }
@@ -28,19 +24,13 @@ public class Enemy : LivingEntity
     {
         if (collider.CompareTag("Player"))
         {
-            collider.GetComponent<LivingEntity>().OnDamage(atk);
+            Debug.Log("아이템 먹음!");
+            if (pool != null)
+            {
+                pool.Release(this);
+            }
         }
         else if (collider.CompareTag("Wall") && pool != null)
-        {
-            pool.Release(this);
-        }
-    }
-
-    protected override void OnDie()
-    {
-        base.OnDie();
-        gameManager.SpawnItem(transform.position);
-        if (pool != null)
         {
             pool.Release(this);
         }
