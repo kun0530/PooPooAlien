@@ -3,20 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class Enemy : LivingEntity
+public enum MonsterType
 {
+    None = -1,
+    Normal,
+    Physic,
+    Speed,
+    Reaf,
+    Projectile,
+    Count
+};
+
+public class Monster : LivingEntity
+{
+    public MonsterType monseterType = MonsterType.None;
+
     private float speed = 3f;
     private float atk = 50f;
     private Vector3 direction;
 
-    public IObjectPool<Enemy> pool;
+    public IObjectPool<Monster> pool;
 
-    public GameManager gameManager;
+    public ItemSpawner itemSpawner;
 
     private void Start()
     {
         direction = -transform.forward;
-        gameManager = GameObject.FindWithTag("GameManager").GetComponent<GameManager>();
     }
 
     private void Update()
@@ -39,7 +51,7 @@ public class Enemy : LivingEntity
     protected override void OnDie()
     {
         base.OnDie();
-        gameManager.SpawnItem(transform.position);
+        itemSpawner.CreateItem(transform.position);
         if (pool != null)
         {
             pool.Release(this);

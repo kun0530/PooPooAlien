@@ -526,7 +526,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4c8310bda56f40d49b067ad77e8dbc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemSpawner: {fileID: 1439948161}
+  enemySpawner: {fileID: 1911654222}
 --- !u!4 &1556322663
 Transform:
   m_ObjectHideFlags: 0
@@ -864,7 +864,7 @@ GameObject:
   - component: {fileID: 1911654223}
   - component: {fileID: 1911654222}
   m_Layer: 0
-  m_Name: EnemySpawner
+  m_Name: MonsterSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -882,13 +882,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fbb3cd1e39b149f290b47831d4f1ef0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 6262557242238258180, guid: 5f2053f3c23cc4c2dacc00989a3ebdaa, type: 3}
+  enemyPrefabs:
+  - {fileID: 6262557242238258180, guid: eded61ea48c684923b539f221ef4952d, type: 3}
+  - {fileID: 6262557242238258180, guid: 5f2053f3c23cc4c2dacc00989a3ebdaa, type: 3}
+  - {fileID: 6262557242238258180, guid: 495a0078dae9a42b6a8486cad1bacb4e, type: 3}
+  - {fileID: 6262557242238258180, guid: 549dc6d8445544f4dbf3410b0ecda033, type: 3}
+  - {fileID: 6262557242238258180, guid: 403b58f36933e44adb429f8edd2090fa, type: 3}
   spawnPositions:
   - {fileID: 744377577}
   - {fileID: 1568816593}
   - {fileID: 1585571200}
   - {fileID: 282472629}
   - {fileID: 1660654173}
+  itemSpawner: {fileID: 1439948161}
 --- !u!4 &1911654223
 Transform:
   m_ObjectHideFlags: 0
@@ -923,7 +929,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6156445823953395454, guid: fe12744b0eba043e1a8b28079f4c978f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 24.49
       objectReference: {fileID: 0}
     - target: {fileID: 6156445823953395454, guid: fe12744b0eba043e1a8b28079f4c978f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -931,7 +937,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6156445823953395454, guid: fe12744b0eba043e1a8b28079f4c978f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 1.08
       objectReference: {fileID: 0}
     - target: {fileID: 6156445823953395454, guid: fe12744b0eba043e1a8b28079f4c978f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -973,7 +979,7 @@ SceneRoots:
   - {fileID: 1300781440}
   - {fileID: 1784124091}
   - {fileID: 678577288}
-  - {fileID: 1911654223}
   - {fileID: 9217261414646805774}
   - {fileID: 1439948162}
+  - {fileID: 1911654223}
   - {fileID: 1556322663}
