@@ -3,8 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
+public enum ItemType
+{
+    None = -1,
+    Heal,
+    PowerUp,
+    Coin,
+    Weapon,
+    Booster,
+    Count
+}
+
 public class Item : MonoBehaviour
 {
+    public ItemType itemType = ItemType.None;
+
     public IObjectPool<Item> pool;
 
     private float speed = 3f;

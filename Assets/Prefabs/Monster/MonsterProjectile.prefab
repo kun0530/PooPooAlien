@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 072543117ee954afe878449f309367ea, type: 2}
+  - {fileID: 2100000, guid: 12d76fbaf89174f6ca6ab2d5769290a1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 6262557242238258180}
   - component: {fileID: -8999419970643212290}
   m_Layer: 0
-  m_Name: EnemyPhysic
+  m_Name: MonsterProjectile
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

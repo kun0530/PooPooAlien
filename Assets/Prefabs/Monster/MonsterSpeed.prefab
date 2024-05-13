@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 868358c029c7747cf87bc114e096f5dc, type: 2}
+  - {fileID: 2100000, guid: 37c3f39174ae549069f5acd7e83db91a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 6262557242238258180}
   - component: {fileID: -8999419970643212290}
   m_Layer: 0
-  m_Name: EnemyNormal
+  m_Name: MonsterSpeed
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eba65f95365545279c990538f0ea529, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemyType: -1
   gameManager: {fileID: 0}
 --- !u!54 &-8999419970643212290
 Rigidbody:

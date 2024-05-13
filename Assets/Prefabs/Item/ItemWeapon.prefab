@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3881793953242129864}
   - component: {fileID: 6754839175628524019}
   m_Layer: 0
-  m_Name: Item
+  m_Name: ItemWeapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5003cc4fccca741ef87aaaa781e2e102, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemType: -1
 --- !u!136 &6754839175628524019
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -130,7 +131,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6548cffc315014ee88bf56d62a27350f, type: 2}
+  - {fileID: 2100000, guid: eadf0f054c1324da88b975a9c6bff29a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

@@ -1,4 +1,4 @@
-Id,Name,Type,Hp,Atk
-Mon_Normal,일반 몬스터,0,1000,1
-Mon_Physic,맷집형 몬스터,1,2000,1
-Mon_Speed,민첩형 몬스터,2,1400,1
+Id,Name,Type,Hp,Atk,ItemDropId
+Mon_Normal,일반 몬스터,0,1000,1,3001
+Mon_Physic,맷집형 몬스터,1,2000,1,3002
+Mon_Speed,민첩형 몬스터,2,1400,1,3003

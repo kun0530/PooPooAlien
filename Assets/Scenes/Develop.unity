@@ -481,7 +481,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d1995fec2d394866b8ea74761eccc1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemPrefab: {fileID: 3881793953242129864, guid: dda9dc92af46b4b2e978d0fe28b2886b, type: 3}
+  itemPrefabs:
+  - {fileID: 3881793953242129864, guid: dda9dc92af46b4b2e978d0fe28b2886b, type: 3}
+  - {fileID: 3881793953242129864, guid: 6d4157f0f983a4501bea37667a1cbc61, type: 3}
+  - {fileID: 3881793953242129864, guid: 7059107fd3eb548b0af2f38e3afcf568, type: 3}
+  - {fileID: 3881793953242129864, guid: 24c3ae3df376b4aa9b3e3d6e527d6362, type: 3}
 --- !u!4 &1439948162
 Transform:
   m_ObjectHideFlags: 0
@@ -882,7 +886,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fbb3cd1e39b149f290b47831d4f1ef0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefabs:
+  monsterPrefabs:
   - {fileID: 6262557242238258180, guid: eded61ea48c684923b539f221ef4952d, type: 3}
   - {fileID: 6262557242238258180, guid: 5f2053f3c23cc4c2dacc00989a3ebdaa, type: 3}
   - {fileID: 6262557242238258180, guid: 495a0078dae9a42b6a8486cad1bacb4e, type: 3}
@@ -929,7 +933,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6156445823953395454, guid: fe12744b0eba043e1a8b28079f4c978f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 24.49
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6156445823953395454, guid: fe12744b0eba043e1a8b28079f4c978f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -937,7 +941,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6156445823953395454, guid: fe12744b0eba043e1a8b28079f4c978f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.08
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6156445823953395454, guid: fe12744b0eba043e1a8b28079f4c978f, type: 3}
       propertyPath: m_LocalRotation.w

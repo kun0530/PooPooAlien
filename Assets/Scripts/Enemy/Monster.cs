@@ -16,6 +16,7 @@ public enum MonsterType
 
 public class Monster : LivingEntity
 {
+    public MonsterData monsterData;
     public MonsterType monseterType = MonsterType.None;
 
     private float speed = 3f;
@@ -51,7 +52,21 @@ public class Monster : LivingEntity
     protected override void OnDie()
     {
         base.OnDie();
-        itemSpawner.CreateItem(transform.position);
+        var itemDropData = DataTableManager.Get<ItemDropTable>(DataTableIds.ItemDrop).Get(monsterData.ItemDropId);
+        var randomPick = UnityEngine.Random.Range(0f, 1f);
+        if (itemDropData.DropChance >= randomPick)
+        {
+            var itemDropChances = itemDropData.itemDropChances;
+            var itemWeights = new List<float>();
+            foreach (var itemDropChance in itemDropChances)
+            {
+                itemWeights.Add(itemDropChance.itemChance);
+            }
+            var dropItemId = itemDropChances[Utils.WeightedRandomPick(itemWeights)].itemId;
+            var dropItemData = DataTableManager.Get<ItemTable>(DataTableIds.Item).Get(dropItemId);
+            var dropItemType = (ItemType)dropItemData.ItemType;
+            itemSpawner.CreateItem(dropItemType, transform.position);
+        }
         if (pool != null)
         {
             pool.Release(this);

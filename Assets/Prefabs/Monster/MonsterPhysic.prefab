@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 089d99e68fb6f4f588718db4ef671abb, type: 2}
+  - {fileID: 2100000, guid: 072543117ee954afe878449f309367ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 6262557242238258180}
   - component: {fileID: -8999419970643212290}
   m_Layer: 0
-  m_Name: EnemyReaf
+  m_Name: MonsterPhysic
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

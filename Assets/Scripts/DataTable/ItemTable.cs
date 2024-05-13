@@ -1,35 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using CsvHelper;
-using System.IO;
 using System.Globalization;
+using System.IO;
+using CsvHelper;
+using UnityEngine;
 
-public class MonsterData
+public class ItemData
 {
-    public string Id { get; set; }
-    public string Name { get; set; }
-    public int Type { get; set; }
-    public int Hp { get; set; }
-    public int Atk { get; set; }
-    public int ItemDropId { get; set; }
+    public int Id { get; set; }
+    public int ItemType { get; set; }
+    public int Value { get; set; }
 
     public override string ToString()
     {
-        return $"{Id}: {Name} / {Hp} / {Atk}";
+        return $"{Id}: {(ItemType)ItemType} / {Value}";
     }
 }
 
-public class MonsterTable : DataTable
+public class ItemTable : DataTable
 {
+    private Dictionary<int, ItemData> table = new Dictionary<int, ItemData>();
 
-    private Dictionary<string, MonsterData> table = new Dictionary<string, MonsterData>();
-
-    public MonsterData Get(string id)
+    public ItemData Get(int id)
     {
         if (!table.ContainsKey(id))
             return null;
-
+        
         return table[id];
     }
 
@@ -42,7 +38,7 @@ public class MonsterTable : DataTable
         using (var reader = new StringReader(textAsset.text))
         using (var csvReader = new CsvReader(reader, CultureInfo.InvariantCulture))
         {
-            var records = csvReader.GetRecords<MonsterData>();
+            var records = csvReader.GetRecords<ItemData>();
             foreach (var record in records)
             {
                 table.Add(record.Id, record);
