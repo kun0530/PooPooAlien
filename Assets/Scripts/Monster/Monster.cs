@@ -16,11 +16,26 @@ public enum MonsterType
 
 public class Monster : LivingEntity
 {
-    public MonsterData monsterData;
+    private MonsterData data;
+    public MonsterData Data{
+        get { return data; }
+        set {
+            data = value;
+            startHealth = data.Hp;
+            atk = data.Atk;
+            def = data.Def;
+            vSpeed = data.VerticalSpd;
+            hSpeed = data.HorizontalSpd;
+            direction = new Vector3(hSpeed, 0, -vSpeed);
+        }
+    }
     public MonsterType monseterType = MonsterType.None;
 
-    private float speed = 3f;
-    private float atk = 50f;
+    private float atk;
+    private float def;
+
+    private float vSpeed;
+    private float hSpeed;
     private Vector3 direction;
 
     public IObjectPool<Monster> pool;
@@ -31,12 +46,12 @@ public class Monster : LivingEntity
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 
-        direction = -transform.forward;
+        // direction = new Vector3(1, 0, -1);
     }
 
     private void Update()
     {
-        transform.position += direction * speed * Time.deltaTime;
+        transform.position += direction * Time.deltaTime;
     }
 
     private void OnTriggerEnter(Collider collider)
@@ -55,8 +70,8 @@ public class Monster : LivingEntity
     {
         base.OnDie();
 
-        gameManager.AddScore(monsterData.Score);
-        gameManager.AddKillPoint(monsterData.KillPoint);
+        gameManager.AddScore(Data.Score);
+        gameManager.AddKillPoint(Data.KillPoint);
 
         DropItem();
 
@@ -68,7 +83,7 @@ public class Monster : LivingEntity
 
     private void DropItem()
     {
-        var itemDropData = DataTableManager.Get<ItemDropTable>(DataTableIds.ItemDrop).Get(monsterData.ItemDropId);
+        var itemDropData = DataTableManager.Get<ItemDropTable>(DataTableIds.ItemDrop).Get(Data.ItemDropId);
         var randomPick = UnityEngine.Random.Range(0f, 1f);
         if (itemDropData.DropChance < randomPick)
             return;

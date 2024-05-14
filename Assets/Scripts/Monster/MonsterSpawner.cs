@@ -69,7 +69,7 @@ public class MonsterSpawner : MonoBehaviour
     private void CreateEnemy(MonsterData data, Vector3 pos)
     {
         var newEnemy = poolEnemies[(MonsterType)data.Type].Get();
-        newEnemy.monsterData = data;
+        newEnemy.Data = data;
         newEnemy.transform.position = pos;
     }
 

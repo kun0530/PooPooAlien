@@ -13,8 +13,8 @@ public class MonsterData
     public int Hp { get; set; }
     public int Atk { get; set; }
     public int Def { get; set; }
-    public int VerticalSpd  { get; set; }
-    public int HorizontalSpd  { get; set; }
+    public float VerticalSpd  { get; set; }
+    public float HorizontalSpd  { get; set; }
     public int Score  { get; set; }
     public int KillPoint  { get; set; }
     public int ItemDropId { get; set; }
