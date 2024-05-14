@@ -22,6 +22,7 @@ public class Monster : LivingEntity
         set {
             data = value;
             startHealth = data.Hp;
+            currentHealth = startHealth;
             atk = data.Atk;
             def = data.Def;
             vSpeed = data.VerticalSpd;
@@ -52,6 +53,7 @@ public class Monster : LivingEntity
     private void Update()
     {
         transform.position += direction * Time.deltaTime;
+        transform.LookAt(transform.position + direction);
     }
 
     private void OnTriggerEnter(Collider collider)
@@ -64,6 +66,13 @@ public class Monster : LivingEntity
         {
             pool.Release(this);
         }
+    }
+
+    public override void OnDamage(float damage)
+    {
+        damage -= def;
+        if (damage > 0)
+            base.OnDamage(damage);
     }
 
     protected override void OnDie()

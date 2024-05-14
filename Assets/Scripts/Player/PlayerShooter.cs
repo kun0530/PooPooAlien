@@ -12,10 +12,12 @@ public class PlayerShooter : MonoBehaviour
     private float nextCreateTime;
     private float interval = 0.1f;
 
-    
+    public TempPlayerData playerData; // 테스트
 
     private void Start()
     {
+        interval = playerData.bulletInterval; // 테스트
+
         nextCreateTime = Time.time + interval;
 
         poolBullet = new ObjectPool<Bullet>(

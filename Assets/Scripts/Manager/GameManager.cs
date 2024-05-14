@@ -3,8 +3,19 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+public enum GameStatus
+{
+    Running,
+    Pause,
+    GameOver,
+    GameClear
+}
+
 public class GameManager : MonoBehaviour
 {
+    public GameStatus gameStatus { get; set; }
+    public KillPointData killPointData;
+
     public MonsterSpawner monsterSpawner;
     public ItemSpawner itemSpawner;
 
@@ -27,40 +38,73 @@ public class GameManager : MonoBehaviour
             textScore.text = string.Format(formatScore, currentScore);
         }
     }
-    private int currentKillpoint;
-    public int CurrentKillPoint {
-        get { return currentKillpoint; }
+
+    public float targetKillPoint { get; private set; }
+    public float nextKillPoint { get; private set; }
+    private float currentKillPoint;
+    public float CurrentKillPoint {
+        get { return currentKillPoint; }
         private set
         {
-            currentKillpoint = value;
-            textKillPoint.text = string.Format(formatKillPoint, currentKillpoint);
+            currentKillPoint = value;
+            textKillPoint.text = string.Format(formatKillPoint, currentKillPoint);
         }
-    }
-
-    private void Start()
-    {
-        StageId = Variables.stageId;
-        SectionId = 1;
-
-        CurrentScore = 0;
-        CurrentKillPoint = 0;
     }
 
     public TextMeshProUGUI textScore;
     private string formatScore = "Score: {0}";
     public TextMeshProUGUI textKillPoint;
     private string formatKillPoint = "KillPoint: {0}";
+    public TextMeshProUGUI textGameClear;
+
+    private void Start()
+    {
+        gameStatus = GameStatus.Running;
+        textGameClear.enabled = false;
+
+        StageId = Variables.stageId;
+        SectionId = 1;
+
+        CurrentScore = 0;
+        CurrentKillPoint = 0;
+        targetKillPoint = 100; // 테스트
+
+        nextKillPoint = targetKillPoint * killPointData.killPointBoundaries[0];
+    }
 
     private void Update()
     {
+        if (gameStatus != GameStatus.Running)
+            return;
+
+        if (currentKillPoint >= nextKillPoint)
+        {
+            if (SectionId < killPointData.killPointBoundaries.Count)
+            {
+                nextKillPoint = targetKillPoint * killPointData.killPointBoundaries[SectionId];
+                SectionId++;
+            }
+            else if (SectionId == killPointData.killPointBoundaries.Count)
+            {
+                nextKillPoint = targetKillPoint;
+                SectionId++;
+            }
+            else
+            {
+                gameStatus = GameStatus.GameClear;
+                textGameClear.enabled = true;
+                Time.timeScale = 0;
+            }
+        }
+
         // 테스트 코드
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            SectionId++;
-            if (SectionId > 3)
-            {
-                SectionId = 1;
-            }
+            AddKillPoint(10);
+        }
+        if (Input.GetKeyDown(KeyCode.RightShift))
+        {
+            AddKillPoint(1);
         }
     }
 

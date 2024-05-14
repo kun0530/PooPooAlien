@@ -9,6 +9,16 @@ public class Bullet : MonoBehaviour
     private float atk = 50f;
     public IObjectPool<Bullet> pool;
 
+    // 테스트
+    public TempPlayerData playerData;
+
+    private void Start()
+    {
+        speed = playerData.bulletSpeed;
+        atk = playerData.bulletAtk;
+    }
+    // 테스트
+
     private void Update()
     {
         transform.position += transform.forward * speed * Time.deltaTime;

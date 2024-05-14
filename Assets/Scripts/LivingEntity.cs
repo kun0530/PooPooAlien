@@ -5,7 +5,7 @@ using UnityEngine;
 public class LivingEntity : MonoBehaviour
 {
     protected float startHealth = 100f;
-    public float currentHealth { get; private set; }
+    public float currentHealth { get; protected set; }
     public bool isDead { get; private set; }
     // public event Action onDeath; 사망시 발동할 이벤트
 
