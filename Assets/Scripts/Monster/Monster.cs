@@ -25,10 +25,12 @@ public class Monster : LivingEntity
 
     public IObjectPool<Monster> pool;
 
-    public ItemSpawner itemSpawner;
+    public GameManager gameManager;
 
     private void Start()
     {
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+
         direction = -transform.forward;
     }
 
@@ -52,24 +54,34 @@ public class Monster : LivingEntity
     protected override void OnDie()
     {
         base.OnDie();
-        var itemDropData = DataTableManager.Get<ItemDropTable>(DataTableIds.ItemDrop).Get(monsterData.ItemDropId);
-        var randomPick = UnityEngine.Random.Range(0f, 1f);
-        if (itemDropData.DropChance >= randomPick)
-        {
-            var itemDropChances = itemDropData.itemDropChances;
-            var itemWeights = new List<float>();
-            foreach (var itemDropChance in itemDropChances)
-            {
-                itemWeights.Add(itemDropChance.itemChance);
-            }
-            var dropItemId = itemDropChances[Utils.WeightedRandomPick(itemWeights)].itemId;
-            var dropItemData = DataTableManager.Get<ItemTable>(DataTableIds.Item).Get(dropItemId);
-            var dropItemType = (ItemType)dropItemData.ItemType;
-            itemSpawner.CreateItem(dropItemType, transform.position);
-        }
+
+        gameManager.AddScore(monsterData.Score);
+        gameManager.AddKillPoint(monsterData.KillPoint);
+
+        DropItem();
+
         if (pool != null)
         {
             pool.Release(this);
         }
+    }
+
+    private void DropItem()
+    {
+        var itemDropData = DataTableManager.Get<ItemDropTable>(DataTableIds.ItemDrop).Get(monsterData.ItemDropId);
+        var randomPick = UnityEngine.Random.Range(0f, 1f);
+        if (itemDropData.DropChance < randomPick)
+            return;
+
+        var itemDropChances = itemDropData.itemDropChances;
+        var itemWeights = new List<float>();
+        foreach (var itemDropChance in itemDropChances)
+        {
+            itemWeights.Add(itemDropChance.itemChance);
+        }
+        var dropItemId = itemDropChances[Utils.WeightedRandomPick(itemWeights)].itemId;
+        var dropItemData = DataTableManager.Get<ItemTable>(DataTableIds.Item).Get(dropItemId);
+        var dropItemType = (ItemType)dropItemData.ItemType;
+        gameManager.itemSpawner.CreateItem(dropItemType, transform.position);
     }
 }

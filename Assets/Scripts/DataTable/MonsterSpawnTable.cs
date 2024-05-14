@@ -10,15 +10,15 @@ public class MonsterSpawnData
     public int StageId { get; set; }
     public int SectionId { get; set; }
 
-    public string Lane1 { get; set; }
-    public string Lane2 { get; set; }
-    public string Lane3 { get; set; }
-    public string Lane4 { get; set; }
-    public string Lane5 { get; set; }
+    public int Lane1 { get; set; }
+    public int Lane2 { get; set; }
+    public int Lane3 { get; set; }
+    public int Lane4 { get; set; }
+    public int Lane5 { get; set; }
 
-    public List<string> GetLaneData()
+    public List<int> GetLaneData()
     {
-        return new List<string>() { Lane1, Lane2, Lane3, Lane4, Lane5 };
+        return new List<int>() { Lane1, Lane2, Lane3, Lane4, Lane5 };
     }
 
     public override string ToString()
@@ -29,9 +29,9 @@ public class MonsterSpawnData
 
 public class MonsterSpawnTable : DataTable
 {
-    private Dictionary<(int, int), List<List<string>>> table = new Dictionary<(int, int), List<List<string>>>();
+    private Dictionary<(int, int), List<List<int>>> table = new Dictionary<(int, int), List<List<int>>>();
 
-    public List<List<string>> Get((int, int) key)
+    public List<List<int>> Get((int, int) key)
     {
         if (!table.ContainsKey(key))
             return null;
@@ -39,7 +39,7 @@ public class MonsterSpawnTable : DataTable
         return table[key];
     }
 
-    public List<List<string>> Get(int stageId, int sectionId)
+    public List<List<int>> Get(int stageId, int sectionId)
     {
         return Get((stageId, sectionId));
     }
@@ -65,7 +65,7 @@ public class MonsterSpawnTable : DataTable
                 }
                 else
                 {
-                    var monsterList = new List<List<string>>();
+                    var monsterList = new List<List<int>>();
                     monsterList.Add(value);
                     table.Add(key, monsterList);
                 }

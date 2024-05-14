@@ -7,11 +7,16 @@ using System.Globalization;
 
 public class MonsterData
 {
-    public string Id { get; set; }
+    public int Id { get; set; }
     public string Name { get; set; }
     public int Type { get; set; }
     public int Hp { get; set; }
     public int Atk { get; set; }
+    public int Def { get; set; }
+    public int VerticalSpd  { get; set; }
+    public int HorizontalSpd  { get; set; }
+    public int Score  { get; set; }
+    public int KillPoint  { get; set; }
     public int ItemDropId { get; set; }
 
     public override string ToString()
@@ -23,9 +28,9 @@ public class MonsterData
 public class MonsterTable : DataTable
 {
 
-    private Dictionary<string, MonsterData> table = new Dictionary<string, MonsterData>();
+    private Dictionary<int, MonsterData> table = new Dictionary<int, MonsterData>();
 
-    public MonsterData Get(string id)
+    public MonsterData Get(int id)
     {
         if (!table.ContainsKey(id))
             return null;

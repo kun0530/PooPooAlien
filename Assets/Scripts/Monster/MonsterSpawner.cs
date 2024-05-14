@@ -9,15 +9,13 @@ public class MonsterSpawner : MonoBehaviour
     public Monster[] monsterPrefabs;
     private Dictionary<MonsterType, IObjectPool<Monster>> poolEnemies = new Dictionary<MonsterType, IObjectPool<Monster>>();
     // private IObjectPool<Enemy> poolEnemy;
-    private List<List<string>> monsterSpawnGroups;
+    private List<List<int>> monsterSpawnGroups;
     private int currentMosterSpawnGroupIndex = 0;
     private MonsterTable monsterTable;
     public Transform[] spawnPositions;
 
     private float nextCreateTime;
     private float interval = 5f;
-
-    public ItemSpawner itemSpawner;
 
     private void Start()
     {
@@ -27,15 +25,14 @@ public class MonsterSpawner : MonoBehaviour
         for (int i = 0; i < (int)MonsterType.Count; i++)
         {
             int index = i;
-            var enemyType = (MonsterType)index;
+            var monsterType = (MonsterType)index;
 
             IObjectPool<Monster> poolEnemy = new ObjectPool<Monster>(
                 () => {
-                    var enemy = Instantiate(monsterPrefabs[index]);
-                    enemy.monseterType = enemyType;
-                    enemy.pool = poolEnemies[enemyType];
-                    enemy.itemSpawner = itemSpawner;
-                    return enemy;
+                    var monster = Instantiate(monsterPrefabs[index]);
+                    monster.monseterType = monsterType;
+                    monster.pool = poolEnemies[monsterType];
+                    return monster;
                 },
                 OnTakeFromPool,
                 OnReturnToPool,
@@ -43,7 +40,7 @@ public class MonsterSpawner : MonoBehaviour
                 true, 10, 100
             );
 
-            poolEnemies.Add(enemyType, poolEnemy);
+            poolEnemies.Add(monsterType, poolEnemy);
         }
 
         monsterTable = DataTableManager.Get<MonsterTable>(DataTableIds.Monster);

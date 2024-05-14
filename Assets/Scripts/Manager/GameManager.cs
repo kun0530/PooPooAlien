@@ -1,25 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public MonsterSpawner enemySpawner;
+    public MonsterSpawner monsterSpawner;
+    public ItemSpawner itemSpawner;
 
-    private (int stageId, int sectionId) monsterSpawnKey;
-    public (int stageId, int sectionId) MonsterSpawnKey {
-        get { return monsterSpawnKey; }
+    public int StageId { get; set; }
+    private int sectionId;
+    public int SectionId {
+        get { return sectionId; }
         set {
-            monsterSpawnKey = value;
-            enemySpawner.ChangeMonsterSpawnGroup(monsterSpawnKey);
+            sectionId = value;
+            monsterSpawner.ChangeMonsterSpawnGroup(StageId, sectionId);
         }
     }
 
+    public int CurrentScore { get; private set; }
+    public int CurrentKillPoint { get; private set; }
+
     private void Start()
     {
-        // 테스트 코드
-        MonsterSpawnKey = (1, 1);
+        StageId = Variables.stageId;
+        SectionId = 1;
     }
 
     private void Update()
@@ -27,12 +31,23 @@ public class GameManager : MonoBehaviour
         // 테스트 코드
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            monsterSpawnKey.sectionId++;
-            if (monsterSpawnKey.sectionId > 3)
+            SectionId++;
+            if (SectionId > 3)
             {
-                monsterSpawnKey.sectionId = 1;
+                SectionId = 1;
             }
-            MonsterSpawnKey = (1, monsterSpawnKey.sectionId);
         }
+    }
+
+    public void AddScore(int score)
+    {
+        CurrentScore += score;
+        // UI 갱신
+    }
+
+    public void AddKillPoint(int point)
+    {
+        CurrentKillPoint += point;
+        // UI 갱신
     }
 }

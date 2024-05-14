@@ -530,7 +530,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4c8310bda56f40d49b067ad77e8dbc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemySpawner: {fileID: 1911654222}
+  monsterSpawner: {fileID: 1911654222}
+  itemSpawner: {fileID: 1439948161}
 --- !u!4 &1556322663
 Transform:
   m_ObjectHideFlags: 0
