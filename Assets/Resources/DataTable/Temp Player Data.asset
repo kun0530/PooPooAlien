@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: Temp Player Data
   m_EditorClassIdentifier: Assembly-CSharp::TempPlayerData
-  playerHealth: 1
-  bulletAtk: 10000
-  bulletSpeed: 1
-  bulletInterval: 0.5
+  playerHealth: 50
+  bulletAtk: 100
+  bulletSpeed: 5
+  bulletInterval: 0.1
