@@ -16,7 +16,8 @@ public enum ItemType
 
 public class Item : MonoBehaviour
 {
-    public ItemType itemType = ItemType.None;
+    public ItemType itemType { get; set; }
+    public ItemData data { get; set; }
 
     public IObjectPool<Item> pool;
 
@@ -25,7 +26,7 @@ public class Item : MonoBehaviour
 
     private void Start()
     {
-        direction = -transform.forward;
+        direction = new Vector3(0, 0, -1);
     }
 
     void Update()
@@ -37,6 +38,7 @@ public class Item : MonoBehaviour
     {
         if (collider.CompareTag("Player"))
         {
+            ApplyItemEffect(collider);
             if (pool != null)
             {
                 pool.Release(this);
@@ -46,5 +48,9 @@ public class Item : MonoBehaviour
         {
             pool.Release(this);
         }
+    }
+
+    protected virtual void ApplyItemEffect(Collider player)
+    {
     }
 }

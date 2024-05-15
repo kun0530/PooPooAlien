@@ -33,9 +33,10 @@ public class ItemSpawner : MonoBehaviour
         }
     }
 
-    public void CreateItem(ItemType type, Vector3 pos)
+    public void CreateItem(ItemData data, Vector3 pos)
     {
-        var newItem = poolItems[type].Get();
+        var newItem = poolItems[(ItemType)data.ItemType].Get();
+        newItem.data = data;
         newItem.transform.position = pos;
     }
 

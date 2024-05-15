@@ -15,7 +15,7 @@ public class MonsterSpawner : MonoBehaviour
     public Transform[] spawnPositions;
 
     private float nextCreateTime;
-    private float interval = 5f;
+    private float interval = 2.3f;
 
     private void Start()
     {
@@ -50,11 +50,11 @@ public class MonsterSpawner : MonoBehaviour
     {
         if (nextCreateTime < Time.time)
         {
-            var monsterSpawnGroup = monsterSpawnGroups[currentMosterSpawnGroupIndex++];
             if (currentMosterSpawnGroupIndex >= monsterSpawnGroups.Count)
             {
                 currentMosterSpawnGroupIndex = 0;
             }
+            var monsterSpawnGroup = monsterSpawnGroups[currentMosterSpawnGroupIndex++];
 
             for (int i = 0; i < 5; i++)
             {

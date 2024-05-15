@@ -40,4 +40,9 @@ public class Bullet : MonoBehaviour
             pool.Release(this);
         }
     }
+
+    public void SetAtk(float atk)
+    {
+        this.atk = atk;
+    }
 }

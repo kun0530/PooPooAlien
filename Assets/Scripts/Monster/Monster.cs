@@ -93,19 +93,13 @@ public class Monster : LivingEntity
     private void DropItem()
     {
         var itemDropData = DataTableManager.Get<ItemDropTable>(DataTableIds.ItemDrop).Get(Data.ItemDropId);
-        var randomPick = UnityEngine.Random.Range(0f, 1f);
+
+        var randomPick = Random.Range(0f, 1f);
         if (itemDropData.DropChance < randomPick)
             return;
 
-        var itemDropChances = itemDropData.itemDropChances;
-        var itemWeights = new List<float>();
-        foreach (var itemDropChance in itemDropChances)
-        {
-            itemWeights.Add(itemDropChance.itemChance);
-        }
-        var dropItemId = itemDropChances[Utils.WeightedRandomPick(itemWeights)].itemId;
-        var dropItemData = DataTableManager.Get<ItemTable>(DataTableIds.Item).Get(dropItemId);
-        var dropItemType = (ItemType)dropItemData.ItemType;
-        gameManager.itemSpawner.CreateItem(dropItemType, transform.position);
+        var itemId = Utils.WeightedRandomPick(itemDropData.itemDropChances);
+        var itemData = DataTableManager.Get<ItemTable>(DataTableIds.Item).Get(itemId);
+        gameManager.itemSpawner.CreateItem(itemData, transform.position);
     }
 }

@@ -27,4 +27,10 @@ public class PlayerHealth : LivingEntity
         gameObject.SetActive(false);
         Time.timeScale = 0f;
     }
+
+    public void RestoreHealth(float hp)
+    {
+        currentHealth += hp;
+        textPlayerHealth.text = $"HP: {currentHealth}"; // 테스트
+    }
 }

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Kill Point Data
   m_EditorClassIdentifier: 
   killPointBoundaries:
-  - 0.3
-  - 0.6
+  - 0.25
+  - 0.5
