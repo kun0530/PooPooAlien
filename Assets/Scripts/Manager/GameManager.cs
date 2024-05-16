@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public enum GameStatus
@@ -20,6 +21,12 @@ public class GameManager : MonoBehaviour
     public ItemSpawner itemSpawner;
 
     public PlayerMovement playerMovement;
+
+    private float currentGameTimer;
+    private float nextGameTime;
+    private readonly float gameTimeLimit = 600f;
+
+    public StageUiManager uiManager;
 
     public int StageId { get; set; }
     private int sectionId;
@@ -41,6 +48,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public Slider killPointSlider;
     public float targetKillPoint { get; private set; }
     public float nextKillPoint { get; private set; }
     private float currentKillPoint;
@@ -50,11 +58,12 @@ public class GameManager : MonoBehaviour
         {
             currentKillPoint = value;
             textKillPoint.text = string.Format(formatKillPoint, currentKillPoint);
+            killPointSlider.value = currentKillPoint;
         }
     }
 
     public TextMeshProUGUI textScore;
-    private string formatScore = "Score: {0}";
+    private string formatScore = "{0}";
     public TextMeshProUGUI textKillPoint;
     private string formatKillPoint = "KillPoint: {0}";
     public TextMeshProUGUI textGameClear;
@@ -64,6 +73,10 @@ public class GameManager : MonoBehaviour
         gameStatus = GameStatus.Running;
         textGameClear.enabled = false;
 
+        currentGameTimer = gameTimeLimit;
+        nextGameTime = currentGameTimer - 1f;
+        uiManager.SetGameTimer(currentGameTimer);
+
         StageId = Variables.stageId;
         SectionId = 1;
 
@@ -72,12 +85,16 @@ public class GameManager : MonoBehaviour
         targetKillPoint = 100; // 테스트
 
         nextKillPoint = targetKillPoint * killPointData.killPointBoundaries[0];
+        killPointSlider.minValue = 0;
+        killPointSlider.maxValue = targetKillPoint;
     }
 
     private void Update()
     {
         if (gameStatus != GameStatus.Running)
             return;
+
+        CalculateGameTime();
 
         if (currentKillPoint >= nextKillPoint)
         {
@@ -100,6 +117,22 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             GameClear();
+        }
+    }
+
+    private void CalculateGameTime()
+    {
+        currentGameTimer -= Time.deltaTime;
+
+        if (currentGameTimer <= nextGameTime)
+        {
+            uiManager.SetGameTimer(nextGameTime);
+            nextGameTime--;
+        }
+
+        if (nextGameTime < 0)
+        {
+            // time out!
         }
     }
 
