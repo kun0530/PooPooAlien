@@ -210,7 +210,8 @@ MonoBehaviour:
   - {fileID: 3889568449030755474}
   - {fileID: 4287694962381119295}
   - {fileID: 1028709801728744525}
-  playerData: {fileID: 11400000, guid: 7e2c4e66231ac459ba2bca2dcdbfa130, type: 2}
+  lazorLineRenderer: {fileID: 0}
+  playerData: {fileID: 11400000, guid: 29f703a9dec1048aaa322f4ba23f9e6e, type: 2}
 --- !u!114 &7274667582119908993
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,7 +224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffe3082b97ad34fd8b22107e505b26f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: 7e2c4e66231ac459ba2bca2dcdbfa130, type: 2}
+  playerData: {fileID: 11400000, guid: 29f703a9dec1048aaa322f4ba23f9e6e, type: 2}
   textPlayerHealth: {fileID: 0}
 --- !u!1 &1891267022542505070
 GameObject:

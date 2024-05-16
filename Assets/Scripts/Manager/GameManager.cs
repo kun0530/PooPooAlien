@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
     public MonsterSpawner monsterSpawner;
     public ItemSpawner itemSpawner;
 
+    public PlayerMovement playerMovement;
+
     public int StageId { get; set; }
     private int sectionId;
     public int SectionId {
@@ -91,20 +93,13 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                gameStatus = GameStatus.GameClear;
-                textGameClear.enabled = true;
-                Time.timeScale = 0;
+                GameClear();
             }
         }
 
-        // 테스트 코드
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            AddKillPoint(10);
-        }
-        if (Input.GetKeyDown(KeyCode.RightShift))
-        {
-            AddKillPoint(1);
+            GameClear();
         }
     }
 
@@ -116,5 +111,13 @@ public class GameManager : MonoBehaviour
     public void AddKillPoint(int point)
     {
         CurrentKillPoint += point;
+    }
+
+    private void GameClear()
+    {
+        playerMovement.enabled = false;
+        gameStatus = GameStatus.GameClear;
+        textGameClear.enabled = true;
+        Time.timeScale = 0;
     }
 }
