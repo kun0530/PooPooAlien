@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 217859408387449120}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: tentacle_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 217859408387449122}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: tentacle_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,7 +72,7 @@ GameObject:
   m_Component:
   - component: {fileID: 217859408387449124}
   - component: {fileID: 217859408376246284}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: OctopusA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -163,7 +163,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 217859408387449126}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -195,7 +195,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 217859408387449128}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -227,7 +227,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 217859408387449130}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: head_end
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -258,7 +258,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 217859408387449132}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -298,7 +298,7 @@ GameObject:
   - component: {fileID: 3377539463443500135}
   - component: {fileID: 7971591340442628035}
   - component: {fileID: -7663517779026730170}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MonsterPhysic
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -414,7 +414,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 217859408387449148}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: tentacle_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -445,7 +445,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 217859408387449150}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: tentacle_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}

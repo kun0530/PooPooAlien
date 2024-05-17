@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
+
 
 public enum GameStatus
 {
@@ -57,15 +59,12 @@ public class GameManager : MonoBehaviour
         private set
         {
             currentKillPoint = value;
-            textKillPoint.text = string.Format(formatKillPoint, currentKillPoint);
             killPointSlider.value = currentKillPoint;
         }
     }
 
     public TextMeshProUGUI textScore;
     private string formatScore = "{0}";
-    public TextMeshProUGUI textKillPoint;
-    private string formatKillPoint = "KillPoint: {0}";
     public TextMeshProUGUI textGameClear;
 
     private void Start()
@@ -144,6 +143,13 @@ public class GameManager : MonoBehaviour
     public void AddKillPoint(int point)
     {
         CurrentKillPoint += point;
+    }
+
+    public void RestartGame()
+    {
+        Time.timeScale = 1f;
+        gameStatus = GameStatus.Running;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     private void GameClear()

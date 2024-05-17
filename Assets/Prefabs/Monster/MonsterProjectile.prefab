@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1204054498601224709}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1204054498601224711}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: leg9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1204054498601224713}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: leg8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -104,7 +104,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1204054498601224715}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: leg7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,7 +136,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1204054498601224717}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: leg6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +167,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1204054498601224719}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: leg5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -199,7 +199,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1204054498601224721}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: leg4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,7 +230,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1204054498601224723}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: leg3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +262,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1204054498601224725}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: leg2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -293,7 +293,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1204054498601224727}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: leg10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -324,7 +324,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1204054498601224729}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: leg1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -357,7 +357,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1204054498601224731}
   - component: {fileID: 1204054498604047167}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cute_Starfish_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -457,7 +457,7 @@ GameObject:
   - component: {fileID: 644016335688021887}
   - component: {fileID: -5796008273839993221}
   - component: {fileID: 5785550201334587532}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MonsterProjectile
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -573,7 +573,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1204054498601224735}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: center
   m_TagString: Untagged
   m_Icon: {fileID: 0}

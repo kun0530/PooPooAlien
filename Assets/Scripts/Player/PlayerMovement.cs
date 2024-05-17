@@ -34,7 +34,8 @@ public class PlayerMovement : MonoBehaviour
         if (!isMoving && Input.GetMouseButtonDown(0))
         {
             var cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(cameraRay, out RaycastHit hitInfo))
+            int layerMask = 1 << LayerMask.NameToLayer("Player");
+            if (Physics.Raycast(cameraRay, out RaycastHit hitInfo, layerMask))
             {
                 if (hitInfo.collider.gameObject == gameObject)
                 {

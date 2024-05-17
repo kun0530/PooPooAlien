@@ -20,6 +20,7 @@ public class PlayerShooter : MonoBehaviour
     private ShootingMode shootingMode;
     public List<Transform> fireDirections;
     public LineRenderer lazorLineRenderer;
+    public GameObject lazorBox;
 
     private float nextCreateTime;
     private float interval = 0.1f;
@@ -31,6 +32,8 @@ public class PlayerShooter : MonoBehaviour
     {
         lazorLineRenderer.enabled = false;
         lazorLineRenderer.positionCount = 2;
+
+        lazorBox.SetActive(false);
     }
 
     private void Start()
@@ -62,81 +65,110 @@ public class PlayerShooter : MonoBehaviour
         {
             shootingMode = ShootingMode.Focus;
             lazorLineRenderer.enabled = false;
+            lazorBox.SetActive(false);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             shootingMode = ShootingMode.Spread;
             lazorLineRenderer.enabled = false;
+            lazorBox.SetActive(false);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             shootingMode = ShootingMode.Lazor;
             lazorLineRenderer.enabled = true;
+            lazorBox.SetActive(true);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            shootingMode = ShootingMode.Penet;
+            lazorLineRenderer.enabled = true;
+            lazorBox.SetActive(true);
         }
 
-        if (shootingMode == ShootingMode.Lazor)
+        switch (shootingMode)
         {
-            var fireDistance = 100f;
-            var hitPoint = Vector3.zero;
-            var ray = new Ray(firePosition.position, firePosition.forward);
-
-            if (Physics.Raycast(ray, out RaycastHit hitInfo, fireDistance))
-            {
-                hitPoint = hitInfo.point;
-            }
-            else
-            {
-                hitPoint = firePosition.position + firePosition.forward * fireDistance;
-            }
-
-            lazorLineRenderer.SetPosition(0, firePosition.position);
-            lazorLineRenderer.SetPosition(1, hitPoint);
-        }
-
-        if (nextCreateTime < Time.time)
-        {
-            switch (shootingMode)
-            {
-                case ShootingMode.Focus:
-                    CreateFocusBullet();
-                    break;
-                case ShootingMode.Spread:
-                    CreateSpreadBullet();
-                    break;
-                case ShootingMode.Lazor:
-                    CreateLazorBullet();
-                    break;
-                case ShootingMode.Penet:
-                    break;
-            }
-
-            
-
-            nextCreateTime = Time.time + interval;
+            case ShootingMode.Focus:
+                CreateFocusBullet();
+                break;
+            case ShootingMode.Spread:
+                CreateSpreadBullet();
+                break;
+            case ShootingMode.Lazor:
+                LazorAttack();
+                break;
+            case ShootingMode.Penet:
+                PenetAttack();
+                break;
         }
     }
 
     private void CreateFocusBullet()
     {
-        var newBullet = poolBullet.Get();
-        newBullet.transform.position = firePosition.position;
-        newBullet.transform.LookAt(fireDirections[0].position);
-        newBullet.SetAtk(atk);
+        if (nextCreateTime < Time.time)
+        {
+            var newBullet = poolBullet.Get();
+            newBullet.transform.position = firePosition.position;
+            newBullet.transform.LookAt(fireDirections[0].position);
+            newBullet.SetAtk(atk);
+
+            nextCreateTime = Time.time + interval;
+        }
     }
 
     private void CreateSpreadBullet()
     {
-        foreach (var dir in fireDirections)
+        if (nextCreateTime < Time.time)
         {
-            var newBullet = poolBullet.Get();
-            newBullet.transform.position = firePosition.position;
-            newBullet.transform.LookAt(dir.position);
-            newBullet.SetAtk(atk);
+            foreach (var dir in fireDirections)
+            {
+                var newBullet = poolBullet.Get();
+                newBullet.transform.position = firePosition.position;
+                newBullet.transform.LookAt(dir.position);
+                newBullet.SetAtk(atk);
+            }
+
+            nextCreateTime = Time.time + interval;
         }
     }
 
-    private void CreateLazorBullet()
+    private void LazorAttack()
     {
+        var fireDistance = 100f;
+        var hitPoint = Vector3.zero;
+        var ray = new Ray(firePosition.position, firePosition.forward);
+
+        int layerMask = 1 << LayerMask.NameToLayer("Monster");
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, fireDistance, layerMask))
+        {
+            hitPoint = hitInfo.point;
+        }
+        else
+        {
+            hitPoint = firePosition.position + firePosition.forward * fireDistance;
+        }
+
+        lazorLineRenderer.SetPosition(0, firePosition.position);
+        lazorLineRenderer.SetPosition(1, hitPoint);
+    }
+
+    private void PenetAttack()
+    {
+        if (lazorBox.activeInHierarchy)
+            lazorBox.SetActive(false);
+
+        var fireDistance = 100f;
+        var hitPoint = firePosition.position + firePosition.forward * fireDistance;
+
+        lazorLineRenderer.SetPosition(0, firePosition.position);
+        lazorLineRenderer.SetPosition(1, hitPoint);
+
+        if (nextCreateTime < Time.time)
+        {
+            lazorBox.SetActive(true);
+
+            nextCreateTime = Time.time + interval;
+        }
     }
 
     private Bullet CreatePooledItem()

@@ -6,17 +6,23 @@ using UnityEngine;
 public class PlayerHealth : LivingEntity
 {
     public TempPlayerData playerData; // 테스트
-    public TextMeshProUGUI textPlayerHealth; // 테스트
+    public GameManager gameManager;
 
     public float invincibleduration = 1f;
     private float invincibleTimer;
     private bool isInvincible;
+    private float CurrentHealth {
+        get { return currentHealth; }
+        set {
+            currentHealth = value;
+            gameManager.uiManager.SetPlayerHealth((int)currentHealth);
+        }
+    }
 
     private void Start()
     {
         startHealth = playerData.playerHealth;
-        currentHealth = startHealth;
-        textPlayerHealth.text = $"HP: {currentHealth}"; // 테스트
+        CurrentHealth = startHealth;
 
         invincibleTimer = 0f;
         isInvincible = false;
@@ -43,11 +49,14 @@ public class PlayerHealth : LivingEntity
         if (isInvincible)
             return;
 
-        base.OnDamage(damage);
-        textPlayerHealth.text = $"HP: {currentHealth}"; // 테스트
-        isInvincible = true;
+        CurrentHealth -= damage;
 
-        Logger.Log("Damage!");
+        if (!isDead && CurrentHealth <= 0)
+        {
+            CurrentHealth = 0;
+            OnDie();
+        }
+        isInvincible = true;
     }
 
     protected override void OnDie()
@@ -60,6 +69,5 @@ public class PlayerHealth : LivingEntity
     public void RestoreHealth(float hp)
     {
         currentHealth += hp;
-        textPlayerHealth.text = $"HP: {currentHealth}"; // 테스트
     }
 }

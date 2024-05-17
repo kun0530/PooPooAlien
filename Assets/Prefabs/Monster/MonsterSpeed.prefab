@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8418656659574094848}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: line2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8418656659574094850}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: line3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73,7 +73,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8418656659574094852}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: center
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -106,7 +106,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8418656659574094854}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: line1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8418656659574094856}
   - component: {fileID: 8418656659562622244}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Puffe_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,7 +230,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8418656659574094858}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: root
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -262,7 +262,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8418656659574094860}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: line4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -297,7 +297,7 @@ GameObject:
   - component: {fileID: -4678661405458760077}
   - component: {fileID: -3279668175118327390}
   - component: {fileID: -2960196673065297026}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: MonsterSpeed
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -413,7 +413,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8418656659574094868}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: spine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -445,7 +445,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8418656659574094870}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: tial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
