@@ -68,6 +68,6 @@ public class PlayerHealth : LivingEntity
 
     public void RestoreHealth(float hp)
     {
-        currentHealth += hp;
+        CurrentHealth += hp;
     }
 }
