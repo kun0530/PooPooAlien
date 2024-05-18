@@ -8,6 +8,10 @@ public static class DataTableManager
 
     static DataTableManager()
     {
+        EnhanceTable enhanceTable = new EnhanceTable();
+        enhanceTable.Load(DataTableIds.Enhance);
+        tables.Add(DataTableIds.Enhance, enhanceTable);
+
         MonsterTable monsterTable = new MonsterTable();
         monsterTable.Load(DataTableIds.Monster);
         tables.Add(DataTableIds.Monster, monsterTable);

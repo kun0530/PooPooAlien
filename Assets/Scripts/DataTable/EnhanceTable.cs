@@ -1,0 +1,67 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using CsvHelper;
+using UnityEngine;
+
+public enum PlayerStat
+{
+    MaxHP,
+    StartHP,
+    BasicAttack,
+    FocusAttack,
+    SpreadAttack,
+    LazorAttack,
+    PenetAttack,
+    PowerUpDamage,
+    BoosterSpeed,
+    BoosterDuration,
+    Count
+}
+
+public class EnhanceData
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public int Stat { get; set; }
+    public int MaxLevel { get; set; }
+    public int StatIncrease { get; set; }
+    public float RequiredGold { get; set; }
+    public float RequiredGoldIncrease { get; set; }
+
+    public override string ToString()
+    {
+        return $"{Id}: {Name} / {Stat} / {MaxLevel} / {StatIncrease} / {RequiredGold} / {RequiredGoldIncrease}";
+    }
+}
+
+public class EnhanceTable : DataTable
+{
+    private Dictionary<PlayerStat, EnhanceData> table = new Dictionary<PlayerStat, EnhanceData>();
+
+    public EnhanceData Get(PlayerStat id)
+    {
+        if (!table.ContainsKey(id))
+            return null;
+        
+        return table[id];
+    }
+
+    public override void Load(string path)
+    {
+        path = string.Format(FormatPath, path);
+
+        var textAsset = Resources.Load<TextAsset>(path);
+
+        using (var reader = new StringReader(textAsset.text))
+        using (var csvReader = new CsvReader(reader, CultureInfo.InvariantCulture))
+        {
+            var records = csvReader.GetRecords<EnhanceData>();
+            foreach (var record in records)
+            {
+                table.Add((PlayerStat)record.Stat, record);
+            }
+        }
+    }
+}

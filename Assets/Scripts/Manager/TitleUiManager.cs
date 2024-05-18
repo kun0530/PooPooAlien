@@ -30,8 +30,7 @@ public class TitleUiManager : MonoBehaviour
         isCameraMoving = false;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (isCameraMoving)
         {
@@ -52,10 +51,10 @@ public class TitleUiManager : MonoBehaviour
 
             isCameraMoving = true;
         }
-    }
 
-    public void TestClick()
-    {
-        Logger.Log("Click");
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            SaveLoadSystem.Save(Variables.SaveData);
+        }
     }
 }
