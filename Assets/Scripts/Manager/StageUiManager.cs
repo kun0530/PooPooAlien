@@ -7,8 +7,6 @@ using System.Numerics;
 
 public class StageUiManager : MonoBehaviour
 {
-    public RectTransform safeArea;
-
     public TextMeshProUGUI textGameTimer;
     public List<Image> heartImages;
 
@@ -16,18 +14,6 @@ public class StageUiManager : MonoBehaviour
 
     private void Start()
     {
-        var minAnchor = Screen.safeArea.min;
-        var maxAnchor = Screen.safeArea.max;
-
-        minAnchor.x /= Screen.width;
-        minAnchor.y /= Screen.height;
-
-        maxAnchor.x /= Screen.width;
-        maxAnchor.y /= Screen.height;
-
-        safeArea.anchorMin = minAnchor;
-        safeArea.anchorMax = maxAnchor;
-
         pausePanel.SetActive(false);
     }
 

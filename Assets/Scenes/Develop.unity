@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 5680742}
   - component: {fileID: 5680744}
   - component: {fileID: 5680743}
+  - component: {fileID: 5680745}
   m_Layer: 5
   m_Name: SafeArea
   m_TagString: Untagged
@@ -203,6 +204,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5680741}
   m_CullTransparentMesh: 1
+--- !u!114 &5680745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5680741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15a1522bddf4f4a3d9736dab0f741652, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &52814060
 GameObject:
   m_ObjectHideFlags: 0
@@ -2285,7 +2298,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd09c887382ff41d9a5e46f43f872cc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  safeArea: {fileID: 5680742}
   textGameTimer: {fileID: 1631921941}
   heartImages:
   - {fileID: 1727240285}
