@@ -11,3 +11,9 @@ public static class DataTableIds
     public static readonly string Enhance = "EnhanceTable";
 
 }
+
+public static class SceneIds
+{
+    public static readonly string Title = "Title";
+    public static readonly string Develop = "Develop";
+}

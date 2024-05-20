@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -81,25 +82,11 @@ public class Monster : LivingEntity
 
         gameManager.AddScore(Data.Score);
         gameManager.AddKillPoint(Data.KillPoint);
-
-        DropItem();
+        gameManager.itemSpawner.DropItem(Data.ItemDropId, transform.position);
 
         if (pool != null)
         {
             pool.Release(this);
         }
-    }
-
-    private void DropItem()
-    {
-        var itemDropData = DataTableManager.Get<ItemDropTable>(DataTableIds.ItemDrop).Get(Data.ItemDropId);
-
-        var randomPick = Random.Range(0f, 1f);
-        if (itemDropData.DropChance < randomPick)
-            return;
-
-        var itemId = Utils.WeightedRandomPick(itemDropData.itemDropChances);
-        var itemData = DataTableManager.Get<ItemTable>(DataTableIds.Item).Get(itemId);
-        gameManager.itemSpawner.CreateItem(itemData, transform.position);
     }
 }

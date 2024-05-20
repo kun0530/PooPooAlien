@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Pool;
+using UnityEngine.UIElements;
 
 public class MonsterSpawner : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class MonsterSpawner : MonoBehaviour
     private MonsterTable monsterTable;
     public Transform[] spawnPositions;
 
+    private GameManager gameManager;
+
     private float nextCreateTime;
     private float interval = 2.3f;
 
@@ -21,6 +24,8 @@ public class MonsterSpawner : MonoBehaviour
     {
         // 시작 몬스터 스폰 처리
         // nextCreateTime = Time.time + interval;
+
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 
         for (int i = 0; i < (int)MonsterType.Count; i++)
         {
@@ -68,9 +73,22 @@ public class MonsterSpawner : MonoBehaviour
 
     private void CreateEnemy(MonsterData data, Vector3 pos)
     {
+        if (data.Hp <= 0)
+        {
+            DropItem(data, pos);
+            return;
+        }
+
         var newEnemy = poolEnemies[(MonsterType)data.Type].Get();
         newEnemy.Data = data;
         newEnemy.transform.position = pos;
+    }
+
+    private void DropItem(MonsterData data, Vector3 pos)
+    {
+        gameManager.AddScore(data.Score);
+        gameManager.AddKillPoint(data.KillPoint);
+        gameManager.itemSpawner.DropItem(data.ItemDropId, pos);
     }
 
     // private Enemy CreatePooledItem()

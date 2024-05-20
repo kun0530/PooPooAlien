@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -22,14 +23,29 @@ public class PlayerShooter : MonoBehaviour
     public LineRenderer lazorLineRenderer;
     public GameObject lazorBox;
 
-    private float nextCreateTime;
-    private float interval = 0.1f;
+    public DevelopPlayerData testPlayerData;
 
-    public TempPlayerData playerData; // 테스트
-    public float atk { get; set; }
+    private float nextCreateTime;
+    public float interval = 0.2f;
+
+    public float BasicAttack { get; private set; }
+    private float itemAttack;
+    public float ItemAttack {
+        get { return itemAttack; }
+        set {
+            itemAttack = value;
+            FinalAttack = BasicAttack + ItemAttack;
+        }
+    }
+    public float FinalAttack { get; private set; }
 
     private void Awake()
     {
+        var basicAttackLevel = Variables.SaveData.EnhanceStatData[PlayerStat.BasicAttack];
+        var basicAttackData = DataTableManager.Get<EnhanceTable>(DataTableIds.Enhance).Get(PlayerStat.BasicAttack);
+        BasicAttack = basicAttackData.StatIncrease * (basicAttackLevel - 1); // basic stat 적용해야함...
+        FinalAttack = BasicAttack;
+
         lazorLineRenderer.enabled = false;
         lazorLineRenderer.positionCount = 2;
 
@@ -38,9 +54,6 @@ public class PlayerShooter : MonoBehaviour
 
     private void Start()
     {
-        interval = playerData.bulletInterval; // 테스트
-        atk = playerData.bulletAtk; // 테스트
-
         shootingMode = ShootingMode.Focus;
 
         nextCreateTime = Time.time + interval;
@@ -57,6 +70,8 @@ public class PlayerShooter : MonoBehaviour
         {
             CreatePooledItem().gameObject.SetActive(false);
         }
+
+        ApplyTestData();
     }
 
     private void Update()
@@ -110,7 +125,7 @@ public class PlayerShooter : MonoBehaviour
             var newBullet = poolBullet.Get();
             newBullet.transform.position = firePosition.position;
             newBullet.transform.LookAt(fireDirections[0].position);
-            newBullet.SetAtk(atk);
+            newBullet.SetAtk(FinalAttack);
 
             nextCreateTime = Time.time + interval;
         }
@@ -125,7 +140,7 @@ public class PlayerShooter : MonoBehaviour
                 var newBullet = poolBullet.Get();
                 newBullet.transform.position = firePosition.position;
                 newBullet.transform.LookAt(dir.position);
-                newBullet.SetAtk(atk);
+                newBullet.SetAtk(FinalAttack);
             }
 
             nextCreateTime = Time.time + interval;
@@ -191,5 +206,12 @@ public class PlayerShooter : MonoBehaviour
     private void OnDestroyPoolObject(Bullet bullet)
     {
         Destroy(bullet);
+    }
+
+    [Conditional("DEVELOP_TEST")]
+    public void ApplyTestData()
+    {
+        Logger.Log("Player Shooter: 테스트용 데이터 적용 중");
+        BasicAttack = testPlayerData.basicAttack;
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerHealth : LivingEntity
 {
-    public TempPlayerData playerData; // 테스트
+    public DevelopPlayerData playerData; // 테스트
     public GameManager gameManager;
 
     public float invincibleduration = 1f;
@@ -21,7 +21,7 @@ public class PlayerHealth : LivingEntity
 
     private void Start()
     {
-        startHealth = playerData.playerHealth;
+        startHealth = 5;
         CurrentHealth = startHealth;
 
         invincibleTimer = 0f;

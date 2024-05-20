@@ -5,12 +5,15 @@ using UnityEngine.Pool;
 
 public class ItemSpawner : MonoBehaviour
 {
+    private GameManager gameManager;
     public Item[] itemPrefabs;
     private Dictionary<ItemType, IObjectPool<Item>> poolItems = new Dictionary<ItemType,IObjectPool<Item>>();
     // private IObjectPool<Item> poolItem;
 
     private void Start()
     {
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+
         for (int i = 0; i < (int)ItemType.Count; i++)
         {
             int index = i;
@@ -60,5 +63,18 @@ public class ItemSpawner : MonoBehaviour
     private void OnDestroyPoolObject(Item item)
     {
         Destroy(item);
+    }
+
+    public void DropItem(int itemDropId, Vector3 pos)
+    {
+        var itemDropData = DataTableManager.Get<ItemDropTable>(DataTableIds.ItemDrop).Get(itemDropId);
+
+        var randomPick = Random.Range(0f, 1f);
+        if (itemDropData.DropChance < randomPick)
+            return;
+
+        var itemId = Utils.WeightedRandomPick(itemDropData.itemDropChances);
+        var itemData = DataTableManager.Get<ItemTable>(DataTableIds.Item).Get(itemId);
+        CreateItem(itemData, pos);
     }
 }

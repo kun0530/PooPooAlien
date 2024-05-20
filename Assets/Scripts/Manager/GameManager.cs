@@ -145,6 +145,11 @@ public class GameManager : MonoBehaviour
         CurrentKillPoint += point;
     }
 
+    public void GoToTitle()
+    {
+        SceneManager.LoadScene(SceneIds.Title);
+    }
+
     public void RestartGame()
     {
         Time.timeScale = 1f;

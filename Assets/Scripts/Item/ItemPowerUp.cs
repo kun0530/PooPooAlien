@@ -10,6 +10,6 @@ public class ItemPowerUp : Item
         if (playerShooter == null)
             return;
 
-        playerShooter.atk += data.Value;
+        playerShooter.ItemAttack += data.Value;
     }
 }

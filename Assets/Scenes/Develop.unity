@@ -5790,6 +5790,34 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8365925929454220151, guid: a802c0eb193c1414fa46c7f43e25bc9d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8365925929454220151, guid: a802c0eb193c1414fa46c7f43e25bc9d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8365925929454220151, guid: a802c0eb193c1414fa46c7f43e25bc9d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1556322662}
+    - target: {fileID: 8365925929454220151, guid: a802c0eb193c1414fa46c7f43e25bc9d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8365925929454220151, guid: a802c0eb193c1414fa46c7f43e25bc9d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GoToTitle
+      objectReference: {fileID: 0}
+    - target: {fileID: 8365925929454220151, guid: a802c0eb193c1414fa46c7f43e25bc9d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: GameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8365925929454220151, guid: a802c0eb193c1414fa46c7f43e25bc9d, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5812,6 +5840,10 @@ PrefabInstance:
       propertyPath: lazorBox
       value: 
       objectReference: {fileID: 1825447223}
+    - target: {fileID: 1249845438989900063, guid: fcf7a741257814e939ad409aac33107f, type: 3}
+      propertyPath: testPlayerData
+      value: 
+      objectReference: {fileID: 11400000, guid: 29f703a9dec1048aaa322f4ba23f9e6e, type: 2}
     - target: {fileID: 1249845438989900063, guid: fcf7a741257814e939ad409aac33107f, type: 3}
       propertyPath: lazorLineRenderer
       value: 

@@ -26,7 +26,8 @@ public class EnhanceData
     public string Name { get; set; }
     public int Stat { get; set; }
     public int MaxLevel { get; set; }
-    public int StatIncrease { get; set; }
+    public float BasicStat { get; set; }
+    public float StatIncrease { get; set; }
     public float RequiredGold { get; set; }
     public float RequiredGoldIncrease { get; set; }
 

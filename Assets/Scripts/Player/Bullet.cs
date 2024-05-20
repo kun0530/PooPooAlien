@@ -10,12 +10,12 @@ public class Bullet : MonoBehaviour
     public IObjectPool<Bullet> pool;
 
     // 테스트
-    public TempPlayerData playerData;
+    public DevelopPlayerData playerData;
 
     private void Start()
     {
-        speed = playerData.bulletSpeed;
-        atk = playerData.bulletAtk;
+        speed = playerData.focusSpeed;
+        atk = playerData.focusAttack;
     }
     // 테스트
 

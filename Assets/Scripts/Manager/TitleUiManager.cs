@@ -1,10 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class TitleUiManager : MonoBehaviour
 {
+    public GameObject titlePanel;
+    public GameObject stageSelectPanel;
+    public GameObject enhanceStatPanel;
+
     public Camera mainCamera;
     public Transform cameraTarget;
     private Vector3 nextPlanetPos;
@@ -17,6 +22,21 @@ public class TitleUiManager : MonoBehaviour
 
     private void Start()
     {
+        if (Variables.isStartGame)
+        {
+            titlePanel.SetActive(true);
+            stageSelectPanel.SetActive(false);
+            enhanceStatPanel.SetActive(false);
+
+            Variables.isStartGame = false;
+        }
+        else
+        {
+            titlePanel.SetActive(false);
+            stageSelectPanel.SetActive(true);
+            enhanceStatPanel.SetActive(false);
+        }
+
         foreach (var button in buttons)
         {
             var buttonImage = button.GetComponent<Image>();
@@ -55,6 +75,23 @@ public class TitleUiManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             SaveLoadSystem.Save(Variables.SaveData);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            SceneManager.LoadScene(SceneIds.Develop);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            titlePanel.SetActive(false);
+            stageSelectPanel.SetActive(false);
+            enhanceStatPanel.SetActive(true);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            titlePanel.SetActive(false);
+            stageSelectPanel.SetActive(true);
+            enhanceStatPanel.SetActive(false);
         }
     }
 }
