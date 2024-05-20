@@ -16,25 +16,42 @@ public class PlayerShooter : MonoBehaviour
 {
     public Bullet bulletPrefab;
     private IObjectPool<Bullet> poolBullet;
-    public Transform firePosition;
 
+    private Dictionary<ShootingMode, Weapon> weapons = new Dictionary<ShootingMode, Weapon>();
     private ShootingMode shootingMode;
-    public List<Transform> fireDirections;
-    public LineRenderer lazorLineRenderer;
-    public GameObject lazorBox;
+    public ShootingMode Mode{
+        get { return shootingMode; }
+        set {
+            shootingMode = value;
+            foreach (var weapon in weapons)
+            {
+                if (weapon.Value == null)
+                    continue;
+
+                if (weapon.Key == shootingMode)
+                    weapon.Value.gameObject.SetActive(true);
+                else
+                    weapon.Value.gameObject.SetActive(false);
+            }
+        }
+    }
+    private int weaponLevel;
+    public int WeaponLevel{
+        get { return weaponLevel; }
+        set {
+            weaponLevel = Mathf.Clamp(value, 1, 3);
+        }
+    }
 
     public DevelopPlayerData testPlayerData;
 
-    private float nextCreateTime;
-    public float interval = 0.2f;
-
     public float BasicAttack { get; private set; }
-    private float itemAttack;
-    public float ItemAttack {
-        get { return itemAttack; }
+    private float powerUpAttack;
+    public float PowerUpAttack {
+        get { return powerUpAttack; }
         set {
-            itemAttack = value;
-            FinalAttack = BasicAttack + ItemAttack;
+            powerUpAttack = value;
+            FinalAttack = BasicAttack + PowerUpAttack;
         }
     }
     public float FinalAttack { get; private set; }
@@ -43,20 +60,19 @@ public class PlayerShooter : MonoBehaviour
     {
         var basicAttackLevel = Variables.SaveData.EnhanceStatData[PlayerStat.BasicAttack];
         var basicAttackData = DataTableManager.Get<EnhanceTable>(DataTableIds.Enhance).Get(PlayerStat.BasicAttack);
-        BasicAttack = basicAttackData.StatIncrease * (basicAttackLevel - 1); // basic stat 적용해야함...
+        BasicAttack = basicAttackData.BasicStat + basicAttackData.StatIncrease * (basicAttackLevel - 1);
         FinalAttack = BasicAttack;
-
-        lazorLineRenderer.enabled = false;
-        lazorLineRenderer.positionCount = 2;
-
-        lazorBox.SetActive(false);
     }
 
     private void Start()
     {
-        shootingMode = ShootingMode.Focus;
+        weapons.Add(ShootingMode.Focus, GetComponentInChildren<WeaponFocus>());
+        weapons.Add(ShootingMode.Spread, GetComponentInChildren<WeaponSpread>());
+        weapons.Add(ShootingMode.Lazor, GetComponentInChildren<WeaponLazor>());
+        weapons.Add(ShootingMode.Penet, GetComponentInChildren<WeaponPenet>());
+        Mode = ShootingMode.Focus;
 
-        nextCreateTime = Time.time + interval;
+        WeaponLevel = 3;
 
         poolBullet = new ObjectPool<Bullet>(
             CreatePooledItem,
@@ -76,114 +92,12 @@ public class PlayerShooter : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            shootingMode = ShootingMode.Focus;
-            lazorLineRenderer.enabled = false;
-            lazorBox.SetActive(false);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            shootingMode = ShootingMode.Spread;
-            lazorLineRenderer.enabled = false;
-            lazorBox.SetActive(false);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            shootingMode = ShootingMode.Lazor;
-            lazorLineRenderer.enabled = true;
-            lazorBox.SetActive(true);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            shootingMode = ShootingMode.Penet;
-            lazorLineRenderer.enabled = true;
-            lazorBox.SetActive(true);
-        }
 
-        switch (shootingMode)
-        {
-            case ShootingMode.Focus:
-                CreateFocusBullet();
-                break;
-            case ShootingMode.Spread:
-                CreateSpreadBullet();
-                break;
-            case ShootingMode.Lazor:
-                LazorAttack();
-                break;
-            case ShootingMode.Penet:
-                PenetAttack();
-                break;
-        }
     }
 
-    private void CreateFocusBullet()
+    public Bullet CreateBullet()
     {
-        if (nextCreateTime < Time.time)
-        {
-            var newBullet = poolBullet.Get();
-            newBullet.transform.position = firePosition.position;
-            newBullet.transform.LookAt(fireDirections[0].position);
-            newBullet.SetAtk(FinalAttack);
-
-            nextCreateTime = Time.time + interval;
-        }
-    }
-
-    private void CreateSpreadBullet()
-    {
-        if (nextCreateTime < Time.time)
-        {
-            foreach (var dir in fireDirections)
-            {
-                var newBullet = poolBullet.Get();
-                newBullet.transform.position = firePosition.position;
-                newBullet.transform.LookAt(dir.position);
-                newBullet.SetAtk(FinalAttack);
-            }
-
-            nextCreateTime = Time.time + interval;
-        }
-    }
-
-    private void LazorAttack()
-    {
-        var fireDistance = 100f;
-        var hitPoint = Vector3.zero;
-        var ray = new Ray(firePosition.position, firePosition.forward);
-
-        int layerMask = 1 << LayerMask.NameToLayer("Monster");
-        if (Physics.Raycast(ray, out RaycastHit hitInfo, fireDistance, layerMask))
-        {
-            hitPoint = hitInfo.point;
-        }
-        else
-        {
-            hitPoint = firePosition.position + firePosition.forward * fireDistance;
-        }
-
-        lazorLineRenderer.SetPosition(0, firePosition.position);
-        lazorLineRenderer.SetPosition(1, hitPoint);
-    }
-
-    private void PenetAttack()
-    {
-        if (lazorBox.activeInHierarchy)
-            lazorBox.SetActive(false);
-
-        var fireDistance = 100f;
-        var hitPoint = firePosition.position + firePosition.forward * fireDistance;
-
-        lazorLineRenderer.SetPosition(0, firePosition.position);
-        lazorLineRenderer.SetPosition(1, hitPoint);
-
-        if (nextCreateTime < Time.time)
-        {
-            lazorBox.SetActive(true);
-
-            nextCreateTime = Time.time + interval;
-        }
+        return poolBullet.Get();
     }
 
     private Bullet CreatePooledItem()

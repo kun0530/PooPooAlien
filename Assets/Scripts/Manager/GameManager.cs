@@ -67,6 +67,8 @@ public class GameManager : MonoBehaviour
     private string formatScore = "{0}";
     public TextMeshProUGUI textGameClear;
 
+    public TextMeshProUGUI textStartTimer;
+
     private void Start()
     {
         gameStatus = GameStatus.Running;
@@ -86,6 +88,8 @@ public class GameManager : MonoBehaviour
         nextKillPoint = targetKillPoint * killPointData.killPointBoundaries[0];
         killPointSlider.minValue = 0;
         killPointSlider.maxValue = targetKillPoint;
+
+        textStartTimer.gameObject.SetActive(true);
     }
 
     private void Update()
