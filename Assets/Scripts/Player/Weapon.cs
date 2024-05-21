@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.IO.LowLevel.Unsafe;
 using UnityEngine;
+using System.Diagnostics;
 
 public abstract class Weapon : MonoBehaviour
 {
     protected PlayerShooter playerShooter;
 
     protected float weaponAttack;
+    protected float weaponPhaseAttack;
+    protected float weaponScale;
     protected float weaponSpeed;
     protected float weaponInterval;
 
@@ -18,12 +22,9 @@ public abstract class Weapon : MonoBehaviour
         nextFireTime = 0f;
     }
 
-    // Start는 테스트용
-    private void Start()
+    protected virtual void Start()
     {
-        weaponAttack = 1f;
-        weaponSpeed = 1f;
-        weaponInterval = 10f;
+        ApplyTestData();
     }
 
     protected virtual void Update()
@@ -35,5 +36,19 @@ public abstract class Weapon : MonoBehaviour
         }
     }
 
+    public void ChangeWeaponPhase(WeaponType type)
+    {
+        var data = DataTableManager.Get<ProjectileTable>(DataTableIds.Projectile).Get(type, playerShooter.WeaponLevel);
+        weaponPhaseAttack = data.Damage;
+        weaponScale = data.Scale;
+        weaponSpeed = data.Speed;
+        weaponInterval = data.Interval;
+
+        ApplyTestData();
+    }
+
     protected abstract void Fire();
+
+    [Conditional("DEVELOP_TEST")]
+    public abstract void ApplyTestData();
 }

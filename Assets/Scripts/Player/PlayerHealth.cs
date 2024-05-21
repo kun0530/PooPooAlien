@@ -2,30 +2,45 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using System.Diagnostics;
 
 public class PlayerHealth : LivingEntity
 {
-    public DevelopPlayerData playerData; // 테스트
+    public DevelopPlayerData testPlayerData;
     public GameManager gameManager;
 
-    public float invincibleduration = 1f;
+    private float invincibleduration = 1f;
     private float invincibleTimer;
     private bool isInvincible;
+    public float MaxHealth { get; private set; }
+    public float StartHealth {
+        get { return startHealth; }
+        private set {
+            if (MaxHealth < value)
+            {
+                value = MaxHealth;
+            }
+            startHealth = value;
+        }
+    }
     private float CurrentHealth {
         get { return currentHealth; }
         set {
-            currentHealth = value;
+            currentHealth = Mathf.Clamp(value, 0, MaxHealth);
             gameManager.uiManager.SetPlayerHealth((int)currentHealth);
         }
     }
 
     private void Start()
     {
-        startHealth = 5;
+        MaxHealth = Variables.CalculateSaveStat(PlayerStat.MaxHP);
+        StartHealth = Variables.CalculateSaveStat(PlayerStat.StartHP);
         CurrentHealth = startHealth;
 
         invincibleTimer = 0f;
         isInvincible = false;
+
+        ApplyTestData();
     }
 
     private void Update()
@@ -69,5 +84,18 @@ public class PlayerHealth : LivingEntity
     public void RestoreHealth(float hp)
     {
         CurrentHealth += hp;
+    }
+
+    [Conditional("DEVELOP_TEST")]
+    public void ApplyTestData()
+    {
+        if (!gameManager.testPlayerData.isTesting)
+            return;
+            
+        MaxHealth = testPlayerData.maxHp;
+        StartHealth = testPlayerData.startHp;
+        CurrentHealth = startHealth;
+        
+        invincibleduration = testPlayerData.invincibleDuration;
     }
 }

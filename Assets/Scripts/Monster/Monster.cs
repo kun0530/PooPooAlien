@@ -62,6 +62,9 @@ public class Monster : LivingEntity
         if (collider.CompareTag("Player"))
         {
             collider.GetComponent<LivingEntity>().OnDamage(atk);
+            var playerShooter = collider.GetComponent<PlayerShooter>();
+            playerShooter.WeaponLevel--;
+            playerShooter.PowerUpCount = 0;
         }
         else if (collider.CompareTag("Wall") && pool != null)
         {
@@ -71,6 +74,7 @@ public class Monster : LivingEntity
 
     public override void OnDamage(float damage)
     {
+        Logger.Log("damage!");
         damage -= def;
         if (damage > 0)
             base.OnDamage(damage);

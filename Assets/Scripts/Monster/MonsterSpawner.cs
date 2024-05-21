@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.Pool;
-using UnityEngine.UIElements;
+using System.Diagnostics;
 
 public class MonsterSpawner : MonoBehaviour
 {
@@ -18,7 +17,7 @@ public class MonsterSpawner : MonoBehaviour
     private GameManager gameManager;
 
     private float nextCreateTime;
-    private float interval = 2.3f;
+    private float spawnInterval = 2.3f;
 
     private void Start()
     {
@@ -49,6 +48,8 @@ public class MonsterSpawner : MonoBehaviour
         }
 
         monsterTable = DataTableManager.Get<MonsterTable>(DataTableIds.Monster);
+
+        ApplyTestData();
     }
 
     private void Update()
@@ -67,7 +68,7 @@ public class MonsterSpawner : MonoBehaviour
                 CreateEnemy(monsterData, spawnPositions[i].position);
             }
 
-            nextCreateTime = Time.time + interval;
+            nextCreateTime = Time.time + spawnInterval;
         }
     }
 
@@ -124,5 +125,14 @@ public class MonsterSpawner : MonoBehaviour
     public bool ChangeMonsterSpawnGroup(int stageId, int sectionId)
     {
         return ChangeMonsterSpawnGroup((stageId, sectionId));
+    }
+
+    [Conditional("DEVELOP_TEST")]
+    public void ApplyTestData()
+    {
+        if (!gameManager.testPlayerData.isTesting)
+            return;
+
+        spawnInterval = gameManager.testPlayerData.monsterSpawnInterval;
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WeaponLazor : Weapon
 {
-    private Transform firePosition;
+    public Transform firePosition;
     private RaycastHit hitInfo;
     private bool isHitted;
 
@@ -17,6 +17,13 @@ public class WeaponLazor : Weapon
         isHitted = false;
 
         base.Awake();
+
+        weaponAttack = Variables.CalculateSaveStat(PlayerStat.LazorAttack);
+    }
+
+    protected override void Start()
+    {
+        base.Start();
     }
 
     protected override void Update()
@@ -51,5 +58,14 @@ public class WeaponLazor : Weapon
         var monster = hitInfo.collider.GetComponent<Monster>();
         if (monster != null)
             monster.OnDamage(playerShooter.FinalAttack + weaponAttack);
+    }
+
+    public override void ApplyTestData()
+    {
+        if (!playerShooter.testPlayerData.isTesting)
+            return;
+
+        weaponAttack = playerShooter.testPlayerData.lazorAttack;
+        weaponInterval = playerShooter.testPlayerData.lazorInterval;
     }
 }

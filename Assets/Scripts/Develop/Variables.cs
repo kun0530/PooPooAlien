@@ -18,4 +18,11 @@ public static class Variables
             return saveData;
         }
     }
+
+    public static float CalculateSaveStat(PlayerStat type)
+    {
+        var level = Variables.SaveData.EnhanceStatData[type];
+        var data = DataTableManager.Get<EnhanceTable>(DataTableIds.Enhance).Get(type);
+        return data.BasicStat + data.StatIncrease * (level - 1);
+    }
 }

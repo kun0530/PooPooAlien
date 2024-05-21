@@ -9,6 +9,7 @@ public static class DataTableIds
     public static readonly string Item = "ItemTable";
     public static readonly string ItemDrop = "ItemDropTable";
     public static readonly string Enhance = "EnhanceTable";
+    public static readonly string Projectile = "ProjectileTable";
 
 }
 

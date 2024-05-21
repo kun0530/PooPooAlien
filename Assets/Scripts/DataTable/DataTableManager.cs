@@ -12,6 +12,10 @@ public static class DataTableManager
         enhanceTable.Load(DataTableIds.Enhance);
         tables.Add(DataTableIds.Enhance, enhanceTable);
 
+        ProjectileTable projectileTable = new ProjectileTable();
+        projectileTable.Load(DataTableIds.Projectile);
+        tables.Add(DataTableIds.Projectile, projectileTable);
+
         MonsterTable monsterTable = new MonsterTable();
         monsterTable.Load(DataTableIds.Monster);
         tables.Add(DataTableIds.Monster, monsterTable);

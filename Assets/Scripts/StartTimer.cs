@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class StartTimer : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class StartTimer : MonoBehaviour
     private float timerInterval = 1f;
     private float timer = 0f;
     private float currentTimer;
+
+    public Button pauseButton;
+    public PlayerMovement playerMovement;
 
     private void Awake()
     {
@@ -23,6 +27,9 @@ public class StartTimer : MonoBehaviour
         currentTimer = startTimer + 1f;
         timerText.text = $"{currentTimer}";
         Time.timeScale = 0f;
+
+        pauseButton.enabled = false;
+        playerMovement.enabled = false;
     }
 
     private void Update()
@@ -45,6 +52,10 @@ public class StartTimer : MonoBehaviour
         if (currentTimer < 0f)
         {
             Time.timeScale = 1f;
+
+            pauseButton.enabled = true;
+            playerMovement.enabled = true;
+
             this.gameObject.SetActive(false);
         }
     }

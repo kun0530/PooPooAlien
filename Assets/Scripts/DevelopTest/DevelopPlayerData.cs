@@ -10,17 +10,19 @@ public class DevelopPlayerData : ScriptableObject
 
     public float focusAttack;
     public float focusSpeed;
+    public float focusScale;
     public float focusInterval;
 
     public float spreadAttack;
     public float spreadSpeed;
+    public float spreadScale;
     public float spreadInterval;
 
     public float lazorAttack;
-    public float lazorSpeed;
     public float lazorInterval;
 
     public float penetAttack;
+    public float penetScale;
     public float penetInterval;
 
     public float invincibleDuration;
@@ -30,4 +32,6 @@ public class DevelopPlayerData : ScriptableObject
     public float boosterSize;
 
     public float monsterSpawnInterval;
+
+    public bool isTesting;
 }

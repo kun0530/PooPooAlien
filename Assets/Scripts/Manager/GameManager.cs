@@ -17,6 +17,7 @@ public enum GameStatus
 public class GameManager : MonoBehaviour
 {
     public GameStatus gameStatus { get; set; }
+    public DevelopPlayerData testPlayerData;
     public KillPointData killPointData;
 
     public MonsterSpawner monsterSpawner;

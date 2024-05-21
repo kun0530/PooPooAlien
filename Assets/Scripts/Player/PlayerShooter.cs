@@ -4,7 +4,7 @@ using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public enum ShootingMode
+public enum WeaponType
 {
     Focus,
     Spread,
@@ -17,18 +17,18 @@ public class PlayerShooter : MonoBehaviour
     public Bullet bulletPrefab;
     private IObjectPool<Bullet> poolBullet;
 
-    private Dictionary<ShootingMode, Weapon> weapons = new Dictionary<ShootingMode, Weapon>();
-    private ShootingMode shootingMode;
-    public ShootingMode Mode{
-        get { return shootingMode; }
+    private Dictionary<WeaponType, Weapon> weapons = new Dictionary<WeaponType, Weapon>();
+    private WeaponType currentWeaponType;
+    public WeaponType CurrentWeaponType{
+        get { return currentWeaponType; }
         set {
-            shootingMode = value;
+            currentWeaponType = value;
             foreach (var weapon in weapons)
             {
                 if (weapon.Value == null)
                     continue;
 
-                if (weapon.Key == shootingMode)
+                if (weapon.Key == currentWeaponType)
                     weapon.Value.gameObject.SetActive(true);
                 else
                     weapon.Value.gameObject.SetActive(false);
@@ -40,39 +40,44 @@ public class PlayerShooter : MonoBehaviour
         get { return weaponLevel; }
         set {
             weaponLevel = Mathf.Clamp(value, 1, 3);
+            foreach (var weapon in weapons)
+            {
+                weapon.Value.ChangeWeaponPhase(weapon.Key);
+            }
         }
     }
 
     public DevelopPlayerData testPlayerData;
 
     public float BasicAttack { get; private set; }
-    private float powerUpAttack;
-    public float PowerUpAttack {
-        get { return powerUpAttack; }
+    public float PowerUpAttack { get; private set; }
+    private int powerUpCount;
+    public int PowerUpCount {
+        get { return powerUpCount; }
         set {
-            powerUpAttack = value;
-            FinalAttack = BasicAttack + PowerUpAttack;
+            powerUpCount = Mathf.Clamp(value, 0, 3);
+            FinalAttack = BasicAttack + powerUpCount * PowerUpAttack;
         }
     }
     public float FinalAttack { get; private set; }
 
     private void Awake()
     {
-        var basicAttackLevel = Variables.SaveData.EnhanceStatData[PlayerStat.BasicAttack];
-        var basicAttackData = DataTableManager.Get<EnhanceTable>(DataTableIds.Enhance).Get(PlayerStat.BasicAttack);
-        BasicAttack = basicAttackData.BasicStat + basicAttackData.StatIncrease * (basicAttackLevel - 1);
+        BasicAttack = Variables.CalculateSaveStat(PlayerStat.BasicAttack);
+        PowerUpAttack = Variables.CalculateSaveStat(PlayerStat.PowerUpDamage);
+        powerUpCount = 0;
         FinalAttack = BasicAttack;
     }
 
     private void Start()
     {
-        weapons.Add(ShootingMode.Focus, GetComponentInChildren<WeaponFocus>());
-        weapons.Add(ShootingMode.Spread, GetComponentInChildren<WeaponSpread>());
-        weapons.Add(ShootingMode.Lazor, GetComponentInChildren<WeaponLazor>());
-        weapons.Add(ShootingMode.Penet, GetComponentInChildren<WeaponPenet>());
-        Mode = ShootingMode.Focus;
+        weapons.Add(WeaponType.Focus, GetComponentInChildren<WeaponFocus>());
+        weapons.Add(WeaponType.Spread, GetComponentInChildren<WeaponSpread>());
+        weapons.Add(WeaponType.Lazor, GetComponentInChildren<WeaponLazor>());
+        weapons.Add(WeaponType.Penet, GetComponentInChildren<WeaponPenet>());
+        CurrentWeaponType = WeaponType.Focus;
 
-        WeaponLevel = 3;
+        WeaponLevel = 1;
 
         poolBullet = new ObjectPool<Bullet>(
             CreatePooledItem,
@@ -92,7 +97,7 @@ public class PlayerShooter : MonoBehaviour
 
     private void Update()
     {
-
+        WeaponChangeTest();
     }
 
     public Bullet CreateBullet()
@@ -122,9 +127,44 @@ public class PlayerShooter : MonoBehaviour
         Destroy(bullet);
     }
 
+    public void ChangeOrUpgradeWeapon(WeaponType type)
+    {
+        if (CurrentWeaponType == type)
+        {
+            WeaponLevel++;
+            return;
+        }
+        
+        CurrentWeaponType = type;
+    }
+
+    [Conditional("DEVELOP_TEST")]
+    public void WeaponChangeTest()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            ChangeOrUpgradeWeapon(WeaponType.Focus);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            ChangeOrUpgradeWeapon(WeaponType.Spread);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            ChangeOrUpgradeWeapon(WeaponType.Lazor);
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            ChangeOrUpgradeWeapon(WeaponType.Penet);
+        }
+    }
+
     [Conditional("DEVELOP_TEST")]
     public void ApplyTestData()
     {
+        if (!testPlayerData.isTesting)
+            return;
+
         Logger.Log("Player Shooter: 테스트용 데이터 적용 중");
         BasicAttack = testPlayerData.basicAttack;
     }

@@ -5,8 +5,8 @@ using UnityEngine.Pool;
 
 public class Bullet : MonoBehaviour
 {
-    private float speed = 10f;
-    private float atk = 50f;
+    public float speed { get; set; }
+    public float atk { get; set; }
     public IObjectPool<Bullet> pool;
 
     // 테스트
@@ -39,10 +39,5 @@ public class Bullet : MonoBehaviour
         {
             pool.Release(this);
         }
-    }
-
-    public void SetAtk(float atk)
-    {
-        this.atk = atk;
     }
 }
