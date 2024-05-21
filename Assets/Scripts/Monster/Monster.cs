@@ -74,7 +74,6 @@ public class Monster : LivingEntity
 
     public override void OnDamage(float damage)
     {
-        Logger.Log("damage!");
         damage -= def;
         if (damage > 0)
             base.OnDamage(damage);

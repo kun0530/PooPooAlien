@@ -43,7 +43,6 @@ public class WeaponLazor : Weapon
             isHitted = false;
             hitPoint = firePosition.position + firePosition.forward * fireDistance;
         }
-
         lazorLineRenderer.SetPosition(0, firePosition.position);
         lazorLineRenderer.SetPosition(1, hitPoint);
 

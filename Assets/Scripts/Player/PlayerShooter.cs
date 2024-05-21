@@ -157,6 +157,10 @@ public class PlayerShooter : MonoBehaviour
         {
             ChangeOrUpgradeWeapon(WeaponType.Penet);
         }
+        else if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            gameObject.GetComponent<PlayerBooster>().enabled = true;
+        }
     }
 
     [Conditional("DEVELOP_TEST")]

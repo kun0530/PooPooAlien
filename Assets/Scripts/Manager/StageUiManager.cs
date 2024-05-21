@@ -7,14 +7,20 @@ using System.Numerics;
 
 public class StageUiManager : MonoBehaviour
 {
+    private GameManager gameManager;
+
     public TextMeshProUGUI textGameTimer;
     public List<Image> heartImages;
 
     public GameObject pausePanel;
+    private float prevTimeScale;
 
     private void Start()
     {
+        gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+
         pausePanel.SetActive(false);
+        prevTimeScale = 1f;
     }
 
     private void Update()
@@ -29,8 +35,13 @@ public class StageUiManager : MonoBehaviour
 
     public void ActivePausePanel(bool isActive)
     {
+        if (isActive)
+        {
+            prevTimeScale = Time.timeScale;
+        }
         pausePanel.SetActive(isActive);
-        Time.timeScale = isActive ? 0f : 1f;
+        Time.timeScale = isActive ? 0f : prevTimeScale;
+        gameManager.gameStatus = isActive ? GameStatus.Pause : GameStatus.Running;
     }
 
     public void SetPlayerHealth(int health)

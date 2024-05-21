@@ -20,9 +20,9 @@ MonoBehaviour:
   focusScale: 1
   focusInterval: 0.1
   spreadAttack: 1
-  spreadSpeed: 1
+  spreadSpeed: 5
   spreadScale: 1
-  spreadInterval: 0.1
+  spreadInterval: 0.3
   lazorAttack: 100000
   lazorInterval: 0.1
   penetAttack: 1000000
