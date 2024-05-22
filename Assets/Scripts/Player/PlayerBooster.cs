@@ -9,35 +9,40 @@ public class PlayerBooster : MonoBehaviour
     private GameManager gameManager;
 
     // 부스터 지속 시간, 부스터 스피드(스케일), 부스터 충돌 범위
-    private float boosterDuration = 5f;
+    public float boosterDuration = 5f;
     private float nextBoosterTimer;
-    private float boosterSpeed = 2f;
-    private float boosterColliderRange;
+
+    private float boosterSpeed;
+    private float boosterColliderScale;
+    public GameObject boosterCollider;
+
+    public bool isBoosting { get; private set; }
 
     private void Awake()
     {
-        // boosterDuration = Variables.CalculateSaveStat(PlayerStat.BoosterDuration);
-        // boosterSpeed = Variables.CalculateSaveStat(PlayerStat.BoosterSpeed);
-        // boosterColliderRange = gameManager.testPlayerData.boosterSize;
+        isBoosting = false;
+
+        boosterSpeed = Variables.CalculateSaveStat(PlayerStat.BoosterSpeed);
+        boosterColliderScale = Variables.CalculateSaveStat(PlayerStat.BoosterSize);
     }
 
     private void OnEnable()
     {
-        // 타이머 시작
-        nextBoosterTimer = 0f;
-        Time.timeScale = boosterSpeed;
     }
 
     private void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
         ApplyTestData();
-        this.enabled = false;
+
+        var colliderScale = boosterCollider.transform.localScale;
+        boosterCollider.transform.localScale = new Vector3(boosterColliderScale, colliderScale.y, colliderScale.z);
+        boosterCollider.SetActive(false);
     }
 
     private void Update()
     {
-        if (gameManager.gameStatus == GameStatus.Pause) // 게임 매니저에서 상태 확인
+        if (!isBoosting || gameManager.gameStatus == GameStatus.Pause) // 게임 매니저에서 상태 확인
             return;
 
         nextBoosterTimer += Time.deltaTime / Time.timeScale;
@@ -45,8 +50,20 @@ public class PlayerBooster : MonoBehaviour
         if (nextBoosterTimer >= boosterDuration)
         {
             Time.timeScale = 1f;
-            this.enabled = false;
+            boosterCollider.SetActive(false);
+            isBoosting = false;
         }
+    }
+
+    public void BoosterOn()
+    {
+        if (isBoosting)
+            return;
+
+        nextBoosterTimer = 0f;
+        Time.timeScale = boosterSpeed;
+        boosterCollider.SetActive(true);
+        isBoosting = true;
     }
 
     [Conditional("DEVELOP_TEST")]
@@ -54,6 +71,6 @@ public class PlayerBooster : MonoBehaviour
     {
         boosterDuration = gameManager.testPlayerData.boosterDuration;
         boosterSpeed = gameManager.testPlayerData.boosterSpeed;
-        boosterColliderRange = gameManager.testPlayerData.boosterSize;
+        boosterColliderScale = gameManager.testPlayerData.boosterSize;
     }
 }

@@ -42,5 +42,7 @@ public class WeaponFocus : Weapon
         weaponSpeed = playerShooter.testPlayerData.focusSpeed;
         weaponScale = playerShooter.testPlayerData.focusScale;
         weaponInterval = playerShooter.testPlayerData.focusInterval;
+
+        weaponPhaseAttack = 0f;
     }
 }

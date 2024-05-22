@@ -66,5 +66,7 @@ public class WeaponLazor : Weapon
 
         weaponAttack = playerShooter.testPlayerData.lazorAttack;
         weaponInterval = playerShooter.testPlayerData.lazorInterval;
+
+        weaponPhaseAttack = 0f;
     }
 }

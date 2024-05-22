@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 3
   startHp: 8
-  basicAttack: 1000
-  focusAttack: 1
+  basicAttack: 0
+  focusAttack: 0
   focusSpeed: 30
   focusScale: 1
   focusInterval: 0.1
@@ -29,7 +29,7 @@ MonoBehaviour:
   penetScale: 10
   penetInterval: 0.1
   invincibleDuration: 1
-  boosterSpeed: 10
+  boosterSpeed: 2
   boosterDuration: 10
   boosterSize: 10
   monsterSpawnInterval: 10

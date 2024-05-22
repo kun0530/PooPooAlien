@@ -16,7 +16,7 @@ public enum PlayerStat
     PenetAttack,
     PowerUpDamage,
     BoosterSpeed,
-    BoosterDuration,
+    BoosterSize,
     Count
 }
 

@@ -159,7 +159,7 @@ public class PlayerShooter : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Alpha5))
         {
-            gameObject.GetComponent<PlayerBooster>().enabled = true;
+            gameObject.GetComponent<PlayerBooster>().BoosterOn();
         }
     }
 
@@ -171,5 +171,6 @@ public class PlayerShooter : MonoBehaviour
 
         Logger.Log("Player Shooter: 테스트용 데이터 적용 중");
         BasicAttack = testPlayerData.basicAttack;
+        FinalAttack = BasicAttack;
     }
 }

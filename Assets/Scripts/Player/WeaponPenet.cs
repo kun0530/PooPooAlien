@@ -59,5 +59,7 @@ public class WeaponPenet : Weapon
         weaponAttack = playerShooter.testPlayerData.penetAttack;
         weaponScale = playerShooter.testPlayerData.penetScale;
         weaponInterval = playerShooter.testPlayerData.penetInterval;
+
+        weaponPhaseAttack = 0f;
     }
 }

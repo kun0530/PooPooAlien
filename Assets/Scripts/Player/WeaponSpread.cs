@@ -50,5 +50,7 @@ public class WeaponSpread : Weapon
         weaponSpeed = playerShooter.testPlayerData.spreadSpeed;
         weaponScale = playerShooter.testPlayerData.spreadScale;
         weaponInterval = playerShooter.testPlayerData.spreadInterval;
+
+        weaponPhaseAttack = 0f;
     }
 }
