@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5789cecf142042d0abf648e6dc18a2c, type: 3}
   m_Name: Test Player Data
   m_EditorClassIdentifier: 
-  maxHp: 3
-  startHp: 8
-  basicAttack: 0
-  focusAttack: 0
-  focusSpeed: 30
+  maxHp: 10
+  startHp: 3
+  basicAttack: 10000
+  focusAttack: 100
+  focusSpeed: 10
   focusScale: 1
   focusInterval: 0.1
   spreadAttack: 1
@@ -32,5 +32,5 @@ MonoBehaviour:
   boosterSpeed: 2
   boosterDuration: 10
   boosterSize: 10
-  monsterSpawnInterval: 10
+  monsterSpawnInterval: 0.5
   isTesting: 1

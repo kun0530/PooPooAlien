@@ -11,7 +11,8 @@ public class PenetCube : MonoBehaviour
         if (collider.CompareTag("Enemy"))
         {
             var living = collider.GetComponent<LivingEntity>();
-            living.OnDamage(penetAttack);
+            if (living != null)
+                living.OnDamage(penetAttack);
         }
     }
 }

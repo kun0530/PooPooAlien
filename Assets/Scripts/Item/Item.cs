@@ -8,8 +8,10 @@ public enum ItemType
     None = -1,
     Heal,
     PowerUp,
-    Coin,
-    Weapon,
+    WeaponFocus,
+    WeaponSpread,
+    WeaponLazor,
+    WeaponPenet,
     Booster,
     Count
 }
@@ -29,7 +31,7 @@ public class Item : MonoBehaviour
         direction = new Vector3(0, 0, -1);
     }
 
-    void Update()
+    private void Update()
     {
         transform.position += direction * speed * Time.deltaTime;
     }
