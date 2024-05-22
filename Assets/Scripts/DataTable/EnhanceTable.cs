@@ -30,6 +30,13 @@ public class EnhanceData
     public float StatIncrease { get; set; }
     public float RequiredGold { get; set; }
     public float RequiredGoldIncrease { get; set; }
+    public string Sprite { get; set; }
+    public string Desc { get; set; }
+
+    public Sprite GetIcon()
+    {
+        return Resources.Load<Sprite>(string.Format("EnhanceIcon/{0}", Sprite));
+    }
 
     public override string ToString()
     {

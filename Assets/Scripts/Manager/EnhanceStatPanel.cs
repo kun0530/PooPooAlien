@@ -8,42 +8,43 @@ public class EnhanceStatPanel : MonoBehaviour
 {
     private EnhanceManager enhanceManager;
 
+    public Image statIcon;
+
+    private string statNameFormat = "{0}\n<size=12>{1} / {2}</size>";
     public TextMeshProUGUI statName;
 
-    public EnhanceData data;
+    public TextMeshProUGUI enhanceEnableText;
+
+    private EnhanceData data;
     public EnhanceData Data{
         get { return data; }
         set {
+            if (value == null)
+                return;
+
             data = value;
-            statName.text = data.Name;
-            var enhanceButton = GetComponent<Button>();
-            enhanceButton.onClick.AddListener(() => {
-                int currentLevel = Variables.SaveData.EnhanceStatData[(PlayerStat)data.Stat];
-                float requiredGold = data.RequiredGold + data.RequiredGoldIncrease * currentLevel;
 
-                Logger.Log($"현재 레벨: {currentLevel}");
-                Logger.Log($"필요 금액: {Utils.NumberToString(requiredGold)}");
+            statIcon.sprite = data.GetIcon();
 
-                if (Variables.SaveData.Gold < requiredGold)
-                {
-                    Logger.Log("돈 없음");
-                    return;
-                }
+            int currentLevel = Variables.SaveData.EnhanceStatData[(PlayerStat)data.Stat];
+            statName.text = string.Format(statNameFormat, data.Name, currentLevel, data.MaxLevel);
 
-                if (currentLevel >= data.MaxLevel)
-                {
-                    Logger.Log("최대 레벨");
-                    return;
-                }
+            if (currentLevel >= data.MaxLevel)
+            {
+                Variables.SaveData.EnhanceStatData[(PlayerStat)data.Stat] = data.MaxLevel;
+                enhanceEnableText.enabled = false;
+                return;
+            }
 
-                Variables.SaveData.Gold -= requiredGold;
-                currentLevel = ++Variables.SaveData.EnhanceStatData[(PlayerStat)data.Stat];
-                Logger.Log($"강화: {currentLevel}");
-                Logger.Log($"남은 금액: {Utils.NumberToString(Variables.SaveData.Gold)}");
-                enhanceManager.UpdateGoldText();
-
-                SaveLoadSystem.Save(Variables.SaveData);
-            });
+            float requiredGold = data.RequiredGold + data.RequiredGoldIncrease * currentLevel;
+            if (Variables.SaveData.Gold >= requiredGold)
+            {
+                enhanceEnableText.enabled = true;
+            }
+            else
+            {
+                enhanceEnableText.enabled = false;
+            }
         }
     }
 
