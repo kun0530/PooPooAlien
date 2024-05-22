@@ -970,6 +970,7 @@ GameObject:
   - component: {fileID: 474842294}
   - component: {fileID: 474842296}
   - component: {fileID: 474842295}
+  - component: {fileID: 474842297}
   m_Layer: 5
   m_Name: TitlePanel
   m_TagString: Untagged
@@ -1035,6 +1036,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 474842293}
   m_CullTransparentMesh: 1
+--- !u!114 &474842297
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 474842293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f1d362168e4040ee989bcb94179714c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uiManager: {fileID: 833908368}
 --- !u!1 &538906720
 GameObject:
   m_ObjectHideFlags: 0
@@ -2255,6 +2269,7 @@ GameObject:
   - component: {fileID: 984420427}
   - component: {fileID: 984420429}
   - component: {fileID: 984420428}
+  - component: {fileID: 984420430}
   m_Layer: 5
   m_Name: StageSelectPanel
   m_TagString: Untagged
@@ -2322,6 +2337,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 984420426}
   m_CullTransparentMesh: 1
+--- !u!114 &984420430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 984420426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42f6eb99a685c4cb4a3e7be3b2707fa3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1034469854 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5951689805844928106, guid: ed362d38ae72649c2a97906b29dc246c, type: 3}

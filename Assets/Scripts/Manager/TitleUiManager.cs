@@ -4,37 +4,57 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+public enum UiStatus
+{
+    None = -1,
+    Title,
+    StageSelect,
+    Enhance,
+    Count
+}
+
 public class TitleUiManager : MonoBehaviour
 {
     public GameObject titlePanel;
     public GameObject stageSelectPanel;
     public GameObject enhanceStatPanel;
 
-    public Camera mainCamera;
-    public Transform cameraTarget;
-    private Vector3 nextPlanetPos;
-    private float cameraSpeed = 10f;
-    private bool isCameraMoving;
+    private Dictionary<UiStatus, GameObject> uiPanels = new Dictionary<UiStatus, GameObject>();
+
+    private UiStatus status;
+    public UiStatus Status {
+        get { return status; }
+        set {
+            foreach (var panel in uiPanels)
+            {
+                if (panel.Value != null)
+                panel.Value.SetActive(false);
+            }
+
+            if (uiPanels[value] != null)
+            {
+                status = value;
+                uiPanels[status].SetActive(true);
+            }
+        }
+    }
 
     public List<Button> buttons;
-    public List<Transform> planets;
-    private int currentStage;
 
     private void Start()
     {
+        uiPanels.Add(UiStatus.Title, titlePanel);
+        uiPanels.Add(UiStatus.StageSelect, stageSelectPanel);
+        uiPanels.Add(UiStatus.Enhance, enhanceStatPanel);
+
         if (Variables.isStartGame)
         {
-            titlePanel.SetActive(true);
-            stageSelectPanel.SetActive(false);
-            enhanceStatPanel.SetActive(false);
-
+            Status = UiStatus.Title;
             Variables.isStartGame = false;
         }
         else
         {
-            titlePanel.SetActive(false);
-            stageSelectPanel.SetActive(true);
-            enhanceStatPanel.SetActive(false);
+            Status = UiStatus.StageSelect;
         }
 
         foreach (var button in buttons)
@@ -43,38 +63,13 @@ public class TitleUiManager : MonoBehaviour
             if (buttonImage != null)
                 buttonImage.alphaHitTestMinimumThreshold = 0.1f;
         }
-
-        currentStage = 0;
-        cameraTarget.position = planets[currentStage].position;
-        mainCamera.transform.LookAt(cameraTarget);
-        isCameraMoving = false;
     }
 
     private void Update()
     {
-        if (isCameraMoving)
-        {
-            cameraTarget.position = Vector3.Lerp(cameraTarget.position, nextPlanetPos, Time.deltaTime * cameraSpeed);
-            if (Vector3.Distance(cameraTarget.position, nextPlanetPos) < 1f)
-            {
-                cameraTarget.position = nextPlanetPos;
-                isCameraMoving = false;
-            }
-            mainCamera.transform.LookAt(cameraTarget);
-        }
-        else if (Input.GetKeyDown(KeyCode.Return))
-        {
-            currentStage++;
-            if (currentStage >= planets.Count)
-                currentStage = 0;
-            nextPlanetPos = planets[currentStage].position;
-
-            isCameraMoving = true;
-        }
-
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            SaveLoadSystem.Save(Variables.SaveData);
+            SaveFile();
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -93,5 +88,10 @@ public class TitleUiManager : MonoBehaviour
             stageSelectPanel.SetActive(true);
             enhanceStatPanel.SetActive(false);
         }
+    }
+
+    public void SaveFile()
+    {
+        SaveLoadSystem.Save(Variables.SaveData);
     }
 }

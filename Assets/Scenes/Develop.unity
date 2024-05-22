@@ -5064,8 +5064,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterPrefabs:
-  - {fileID: 1277672540602276188, guid: 3bdeeb59f6c1b4bdaa77695058305746, type: 3}
-  - {fileID: 3377539463443500135, guid: 5ffacbd73b30042e8bbfa497e1326ebf, type: 3}
+  - {fileID: 8036222928183797087, guid: 616abce6520fb4b508fc4a3a306383b7, type: 3}
+  - {fileID: 3377539463443500135, guid: ffa0fa5a04f534b47a6dc332ef9c5e20, type: 3}
   - {fileID: -4678661405458760077, guid: 0c5c4afacd0aa43b6ae026b6e24507ba, type: 3}
   - {fileID: -2165934201918678375, guid: 577fdd38920bf4e56b0de1260873476f, type: 3}
   - {fileID: 644016335688021887, guid: d3a6106e0029d436687c9262104e90e5, type: 3}

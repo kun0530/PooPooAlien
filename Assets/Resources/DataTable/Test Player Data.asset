@@ -29,7 +29,7 @@ MonoBehaviour:
   penetScale: 10
   penetInterval: 0.1
   invincibleDuration: 1
-  boosterSpeed: 2
+  boosterSpeed: 5
   boosterDuration: 10
   boosterSize: 10
   monsterSpawnInterval: 0.5
