@@ -8,6 +8,10 @@ public static class DataTableManager
 
     static DataTableManager()
     {
+        StageTable stageTable = new StageTable();
+        stageTable.Load(DataTableIds.Stage);
+        tables.Add(DataTableIds.Stage, stageTable);
+
         EnhanceTable enhanceTable = new EnhanceTable();
         enhanceTable.Load(DataTableIds.Enhance);
         tables.Add(DataTableIds.Enhance, enhanceTable);

@@ -17,6 +17,7 @@ public class MonsterData
     public float HorizontalSpd  { get; set; }
     public int Score  { get; set; }
     public int KillPoint  { get; set; }
+    public float GetGold { get; set; }
     public int ItemDropId { get; set; }
 
     public override string ToString()

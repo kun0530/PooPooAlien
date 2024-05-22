@@ -67,27 +67,6 @@ public class TitleUiManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            SaveFile();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            SceneManager.LoadScene(SceneIds.Develop);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            titlePanel.SetActive(false);
-            stageSelectPanel.SetActive(false);
-            enhanceStatPanel.SetActive(true);
-        }
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            titlePanel.SetActive(false);
-            stageSelectPanel.SetActive(true);
-            enhanceStatPanel.SetActive(false);
-        }
     }
 
     public void SaveFile()

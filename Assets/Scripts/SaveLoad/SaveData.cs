@@ -11,7 +11,15 @@ public abstract class SaveData
 
 public class SaveDataV1 : SaveData
 {
-    public float Gold { get; set; } = 0;
+    private float gold = 0;
+    public float Gold {
+        get { return gold; }
+        set {
+            if (value >= 100000f)
+                value = 99999f;
+            gold = value;
+        }
+    }
     private Dictionary<PlayerStat, int> enhanceStatData;
     public Dictionary<PlayerStat, int> EnhanceStatData{
         get {

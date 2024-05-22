@@ -4,6 +4,7 @@ using UnityEngine;
 
 public static class DataTableIds
 {
+    public static readonly string Stage = "StageTable";
     public static readonly string Monster = "MonsterTable";
     public static readonly string MonsterSpawn = "MonsterSpawnTable";
     public static readonly string Item = "ItemTable";

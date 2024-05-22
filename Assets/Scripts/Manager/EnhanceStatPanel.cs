@@ -9,7 +9,6 @@ public class EnhanceStatPanel : MonoBehaviour
     private EnhanceManager enhanceManager;
 
     public TextMeshProUGUI statName;
-    public Button enhanceButton;
 
     public EnhanceData data;
     public EnhanceData Data{
@@ -17,6 +16,7 @@ public class EnhanceStatPanel : MonoBehaviour
         set {
             data = value;
             statName.text = data.Name;
+            var enhanceButton = GetComponent<Button>();
             enhanceButton.onClick.AddListener(() => {
                 int currentLevel = Variables.SaveData.EnhanceStatData[(PlayerStat)data.Stat];
                 float requiredGold = data.RequiredGold + data.RequiredGoldIncrease * currentLevel;
@@ -41,6 +41,8 @@ public class EnhanceStatPanel : MonoBehaviour
                 Logger.Log($"강화: {currentLevel}");
                 Logger.Log($"남은 금액: {Utils.NumberToString(Variables.SaveData.Gold)}");
                 enhanceManager.UpdateGoldText();
+
+                SaveLoadSystem.Save(Variables.SaveData);
             });
         }
     }

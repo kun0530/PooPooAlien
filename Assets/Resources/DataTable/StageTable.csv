@@ -1,0 +1,11 @@
+StageId,Name,StageNum,StageKillp,StageTimerset,StageScoreget,StageTimerleft,StageHitcount,ClearGold,Desc
+9001,Stage1_Name,1,200,360,100,60,5,1000,Stage1_Desc
+9002,Stage2_Name,2,300,360,100,60,5,2000,Stage2_Desc
+9003,Stage3_Name,3,400,500,100,90,5,3000,Stage3_Desc
+9004,Stage4_Name,4,500,360,100,60,5,4000,Stage4_Desc
+9005,Stage5_Name,5,600,360,100,60,5,8000,Stage5_Desc
+9006,Stage6_Name,6,700,360,100,60,5,16000,Stage6_Desc
+9007,Stage7_Name,7,1000,600,100,120,5,20000,Stage7_Desc
+9008,Stage8_Name,8,3000,360,100,60,5,20000,Stage8_Desc
+9009,Stage9_Name,9,5000,360,100,60,5,20000,Stage9_Desc
+9010,Stage10_Name,10,10000,900,100,180,5,50000,Stage10_Desc

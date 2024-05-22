@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public class UiStageSelect : MonoBehaviour
 {
+    public TitleUiManager uiManager;
+
     public Camera mainCamera;
     public Transform cameraTarget;
     private Vector3 nextPlanetPos;
@@ -11,12 +14,30 @@ public class UiStageSelect : MonoBehaviour
     private bool isCameraMoving;
 
     public List<Transform> planets;
-    private int currentStage;
+    private int startStage = 1;
+    private int stageCount;
+
+    private int selectedStage;
+    public int SelectedStage{
+        get{ return selectedStage; }
+        set{
+            if (isCameraMoving)
+                return;
+
+            selectedStage = Mathf.Clamp(value, startStage, stageCount);
+            nextPlanetPos = planets[selectedStage].position;
+            isCameraMoving = true;
+        }
+    }
 
     private void Start()
     {
-        currentStage = 0;
-        cameraTarget.position = planets[currentStage].position;
+        var stageTable = DataTableManager.Get<StageTable>(DataTableIds.Stage);
+        stageCount = planets.Count - startStage > stageTable.CountStage() ? stageTable.CountStage() : planets.Count - startStage;
+        Logger.Log($"스테이지 개수: {stageCount}");
+
+        selectedStage = startStage;
+        cameraTarget.position = planets[selectedStage].position;
         mainCamera.transform.LookAt(cameraTarget);
         isCameraMoving = false;
     }
@@ -33,14 +54,22 @@ public class UiStageSelect : MonoBehaviour
             }
             mainCamera.transform.LookAt(cameraTarget);
         }
-        else if (Input.GetKeyDown(KeyCode.Return))
-        {
-            currentStage++;
-            if (currentStage >= planets.Count)
-                currentStage = 0;
-            nextPlanetPos = planets[currentStage].position;
+    }
 
-            isCameraMoving = true;
-        }
+    public void SelectNextStage(bool isNext)
+    {
+        SelectedStage += isNext ? 1 : -1;
+        Logger.Log($"Selected Stage: {SelectedStage}");
+    }
+
+    public void EnterStage()
+    {
+        Variables.stageId = selectedStage;
+        SceneManager.LoadScene(SceneIds.Develop);
+    }
+
+    public void EnterEnhance()
+    {
+        uiManager.Status = UiStatus.Enhance;
     }
 }
