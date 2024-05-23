@@ -14,6 +14,8 @@ public class UiStageSelect : MonoBehaviour
     public Transform cameraTarget;
     private Vector3 nextPlanetPos;
     private float cameraSpeed = 10f;
+    private Vector3 nextCameraPos;
+    private bool isTargetMoving;
     private bool isCameraMoving;
 
     public TextMeshProUGUI stageNameText;
@@ -21,6 +23,7 @@ public class UiStageSelect : MonoBehaviour
     public List<Image> stageStars;
 
     public List<Transform> planets;
+    public List<Transform> cameraPositions;
     private int startStage = 1;
     private int stageCount;
 
@@ -30,7 +33,7 @@ public class UiStageSelect : MonoBehaviour
     public int SelectedStage{
         get{ return selectedStage; }
         set{
-            if (isCameraMoving)
+            if (isTargetMoving || isCameraMoving)
                 return;
 
             selectedStage = Mathf.Clamp(value, startStage, stageCount);
@@ -52,6 +55,8 @@ public class UiStageSelect : MonoBehaviour
             }
 
             nextPlanetPos = planets[selectedStage].position;
+            isTargetMoving = true;
+            nextCameraPos = cameraPositions[selectedStage].position;
             isCameraMoving = true;
         }
     }
@@ -68,7 +73,9 @@ public class UiStageSelect : MonoBehaviour
 
         SelectedStage = startStage;
         cameraTarget.position = planets[SelectedStage].position;
+        mainCamera.transform.position = cameraPositions[SelectedStage].position;
         mainCamera.transform.LookAt(cameraTarget);
+        isTargetMoving = false;
         isCameraMoving = false;
     }
 
@@ -76,13 +83,29 @@ public class UiStageSelect : MonoBehaviour
     {
         if (isCameraMoving)
         {
+            mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, nextCameraPos, Time.deltaTime * cameraSpeed);
+            if (Vector3.Distance(mainCamera.transform.position, nextCameraPos) < 1f)
+            {
+                mainCamera.transform.position = nextCameraPos;
+                mainCamera.transform.LookAt(cameraTarget);
+                isCameraMoving = false;
+            }
+        }
+
+        if (isTargetMoving)
+        {
             cameraTarget.position = Vector3.Lerp(cameraTarget.position, nextPlanetPos, Time.deltaTime * cameraSpeed);
             if (Vector3.Distance(cameraTarget.position, nextPlanetPos) < 1f)
             {
                 cameraTarget.position = nextPlanetPos;
-                isCameraMoving = false;
+                isTargetMoving = false;
             }
             mainCamera.transform.LookAt(cameraTarget);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            uiManager.Status = UiStatus.Title;
         }
     }
 

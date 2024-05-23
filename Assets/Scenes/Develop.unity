@@ -775,7 +775,8 @@ PrefabInstance:
       value: Gold
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 5502907778875538765, guid: a3623b773a1fd4188b59ecb3b8ad35fb, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3623b773a1fd4188b59ecb3b8ad35fb, type: 3}
