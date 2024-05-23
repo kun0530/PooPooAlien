@@ -28,6 +28,7 @@ public class EnhanceManager : MonoBehaviour
     public TextMeshProUGUI selectedStatIncreaseText;
     private string increaseFormat = "{0} ▶ {1}";
     public TextMeshProUGUI selectedStatRequiredGoldText;
+    public Button enhanceButton;
 
     private EnhanceData selectedEnhanceData;
     public EnhanceData SelectedEnhanceData{
@@ -42,6 +43,7 @@ public class EnhanceManager : MonoBehaviour
                 selectedStatDescText.enabled = false;
                 selectedStatIncreaseText.enabled = false;
                 selectedStatRequiredGoldText.enabled = false;
+                enhanceButton.interactable = false;
                 return;
             }
 
@@ -67,11 +69,13 @@ public class EnhanceManager : MonoBehaviour
             {
                 selectedStatIncreaseText.text = $"{currentStat}";
                 selectedStatRequiredGoldText.text = "강화 완료";
+                enhanceButton.interactable = false;
             }
             else
             {
                 selectedStatIncreaseText.text = string.Format(increaseFormat, currentStat, nextStat);
                 selectedStatRequiredGoldText.text = string.Format(goldTextFormat, requiredGold);
+                enhanceButton.interactable = Variables.SaveData.Gold >= requiredGold;
             }
         }
     }
@@ -111,6 +115,14 @@ public class EnhanceManager : MonoBehaviour
         });
 
         UpdateGoldText();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            uiManager.Status = UiStatus.StageSelect;
+        }
     }
 
     public void UpdateGoldText()
