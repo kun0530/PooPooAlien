@@ -186,7 +186,5 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0f;
 
         playerMovement.enabled = false;
-        // var prevClearStar = Variables.SaveData.StageClearData[StageId];
-        //Variables.SaveData.StageClearData[StageId] = prevClearStar
     }
 }

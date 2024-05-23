@@ -42,7 +42,7 @@ public class PlayerBooster : MonoBehaviour
 
     private void Update()
     {
-        if (!isBoosting || gameManager.gameStatus == GameStatus.Pause) // 게임 매니저에서 상태 확인
+        if (!isBoosting || gameManager.gameStatus != GameStatus.Running) // 게임 매니저에서 상태 확인
             return;
 
         nextBoosterTimer += Time.deltaTime / Time.timeScale;

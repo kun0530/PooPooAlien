@@ -71,7 +71,7 @@ public class UiStageSelect : MonoBehaviour
         stageCount = planets.Count - startStage > stageTable.CountStage() ? stageTable.CountStage() : planets.Count - startStage;
         Logger.Log($"스테이지 개수: {stageCount}");
 
-        SelectedStage = startStage;
+        SelectedStage = Variables.stageId > startStage && Variables.stageId <= stageCount ? Variables.stageId : startStage;
         cameraTarget.position = planets[SelectedStage].position;
         mainCamera.transform.position = cameraPositions[SelectedStage].position;
         mainCamera.transform.LookAt(cameraTarget);
