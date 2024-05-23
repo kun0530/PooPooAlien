@@ -87,8 +87,9 @@ public class MonsterSpawner : MonoBehaviour
 
     private void DropItem(MonsterData data, Vector3 pos)
     {
-        gameManager.AddScore(data.Score);
-        gameManager.AddKillPoint(data.KillPoint);
+        gameManager.CurrentScore += data.Score;
+        gameManager.CurrentKillPoint += data.KillPoint;
+        gameManager.EarnedGold += data.GetGold;
         gameManager.itemSpawner.DropItem(data.ItemDropId, pos);
     }
 

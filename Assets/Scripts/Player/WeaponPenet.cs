@@ -20,7 +20,7 @@ public class WeaponPenet : Weapon
 
         base.Awake();
 
-        weaponAttack = Variables.CalculateSaveStat(PlayerStat.PenetAttack);
+        weaponAttack = Variables.CalculateCurrentSaveStat(PlayerStat.PenetAttack);
     }
 
     protected override void Start()

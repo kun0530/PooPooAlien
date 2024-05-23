@@ -83,8 +83,9 @@ public class Monster : LivingEntity
     {
         base.OnDie();
 
-        gameManager.AddScore(Data.Score);
-        gameManager.AddKillPoint(Data.KillPoint);
+        gameManager.CurrentScore += Data.Score;
+        gameManager.CurrentKillPoint += Data.KillPoint;
+        gameManager.EarnedGold += Data.GetGold;
         gameManager.itemSpawner.DropItem(Data.ItemDropId, transform.position);
 
         if (pool != null)

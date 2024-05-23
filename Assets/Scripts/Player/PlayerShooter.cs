@@ -63,8 +63,8 @@ public class PlayerShooter : MonoBehaviour
 
     private void Awake()
     {
-        BasicAttack = Variables.CalculateSaveStat(PlayerStat.BasicAttack);
-        PowerUpAttack = Variables.CalculateSaveStat(PlayerStat.PowerUpDamage);
+        BasicAttack = Variables.CalculateCurrentSaveStat(PlayerStat.BasicAttack);
+        PowerUpAttack = Variables.CalculateCurrentSaveStat(PlayerStat.PowerUpDamage);
         powerUpCount = 0;
         FinalAttack = BasicAttack;
     }

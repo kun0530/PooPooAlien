@@ -14,7 +14,7 @@ public class WeaponSpread : Weapon
     {
         base.Awake();
 
-        weaponAttack = Variables.CalculateSaveStat(PlayerStat.SpreadAttack);
+        weaponAttack = Variables.CalculateCurrentSaveStat(PlayerStat.SpreadAttack);
     }
 
     protected override void Start()

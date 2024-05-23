@@ -22,8 +22,8 @@ public class PlayerBooster : MonoBehaviour
     {
         isBoosting = false;
 
-        boosterSpeed = Variables.CalculateSaveStat(PlayerStat.BoosterSpeed);
-        boosterColliderScale = Variables.CalculateSaveStat(PlayerStat.BoosterSize);
+        boosterSpeed = Variables.CalculateCurrentSaveStat(PlayerStat.BoosterSpeed);
+        boosterColliderScale = Variables.CalculateCurrentSaveStat(PlayerStat.BoosterSize);
     }
 
     private void OnEnable()
@@ -49,6 +49,7 @@ public class PlayerBooster : MonoBehaviour
 
         if (nextBoosterTimer >= boosterDuration)
         {
+            gameManager.IsTimerStop = false;
             Time.timeScale = 1f;
             boosterCollider.SetActive(false);
             isBoosting = false;
@@ -62,6 +63,7 @@ public class PlayerBooster : MonoBehaviour
 
         nextBoosterTimer = 0f;
         Time.timeScale = boosterSpeed;
+        gameManager.IsTimerStop = true;
         boosterCollider.SetActive(true);
         isBoosting = true;
     }

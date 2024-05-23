@@ -33,4 +33,4 @@ MonoBehaviour:
   boosterDuration: 10
   boosterSize: 10
   monsterSpawnInterval: 0.5
-  isTesting: 1
+  isTesting: 0

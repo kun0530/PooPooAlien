@@ -33,8 +33,8 @@ public class PlayerHealth : LivingEntity
 
     private void Start()
     {
-        MaxHealth = Variables.CalculateSaveStat(PlayerStat.MaxHP);
-        StartHealth = Variables.CalculateSaveStat(PlayerStat.StartHP);
+        MaxHealth = Variables.CalculateCurrentSaveStat(PlayerStat.MaxHP);
+        StartHealth = Variables.CalculateCurrentSaveStat(PlayerStat.StartHP);
         CurrentHealth = startHealth;
 
         invincibleTimer = 0f;
@@ -65,6 +65,7 @@ public class PlayerHealth : LivingEntity
             return;
 
         CurrentHealth -= damage;
+        gameManager.playerHitCount++;
 
         if (!isDead && CurrentHealth <= 0)
         {

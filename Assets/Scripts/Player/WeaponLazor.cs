@@ -18,7 +18,7 @@ public class WeaponLazor : Weapon
 
         base.Awake();
 
-        weaponAttack = Variables.CalculateSaveStat(PlayerStat.LazorAttack);
+        weaponAttack = Variables.CalculateCurrentSaveStat(PlayerStat.LazorAttack);
     }
 
     protected override void Start()

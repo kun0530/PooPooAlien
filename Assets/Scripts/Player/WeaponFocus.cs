@@ -12,7 +12,7 @@ public class WeaponFocus : Weapon
     {
         base.Awake();
 
-        weaponAttack = Variables.CalculateSaveStat(PlayerStat.FocusAttack);
+        weaponAttack = Variables.CalculateCurrentSaveStat(PlayerStat.FocusAttack);
     }
 
     protected override void Start()

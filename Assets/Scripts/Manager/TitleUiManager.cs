@@ -39,7 +39,10 @@ public class TitleUiManager : MonoBehaviour
         }
     }
 
-    public List<Button> buttons;
+    private void Awake()
+    {
+        Time.timeScale = 1f;
+    }
 
     private void Start()
     {
@@ -55,13 +58,6 @@ public class TitleUiManager : MonoBehaviour
         else
         {
             Status = UiStatus.StageSelect;
-        }
-
-        foreach (var button in buttons)
-        {
-            var buttonImage = button.GetComponent<Image>();
-            if (buttonImage != null)
-                buttonImage.alphaHitTestMinimumThreshold = 0.1f;
         }
     }
 

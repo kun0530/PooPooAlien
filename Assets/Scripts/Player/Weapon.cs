@@ -19,12 +19,12 @@ public abstract class Weapon : MonoBehaviour
     protected virtual void Awake()
     {
         playerShooter = GetComponentInParent<PlayerShooter>();
-        nextFireTime = 0f;
     }
 
     protected virtual void Start()
     {
         ApplyTestData();
+        nextFireTime = Time.time + weaponInterval;
     }
 
     protected virtual void Update()

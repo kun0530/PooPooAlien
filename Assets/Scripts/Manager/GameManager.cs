@@ -25,9 +25,10 @@ public class GameManager : MonoBehaviour
 
     public PlayerMovement playerMovement;
 
-    private float currentGameTimer;
+    public float CurrentGameTimer { get; set; }
     private float nextGameTime;
-    private readonly float gameTimeLimit = 600f;
+    private float gameTimeLimit;
+    public bool IsTimerStop { get; set;}
 
     public StageUiManager uiManager;
 
@@ -44,8 +45,11 @@ public class GameManager : MonoBehaviour
     private int currentScore;
     public int CurrentScore {
         get { return currentScore; }
-        private set
+        set
         {
+            if (value < 0)
+                return;
+
             currentScore = value;
             textScore.text = string.Format(formatScore, currentScore);
         }
@@ -57,8 +61,11 @@ public class GameManager : MonoBehaviour
     private float currentKillPoint;
     public float CurrentKillPoint {
         get { return currentKillPoint; }
-        private set
+        set
         {
+            if (value < 0)
+                return;
+
             currentKillPoint = value;
             killPointSlider.value = currentKillPoint;
         }
@@ -66,29 +73,51 @@ public class GameManager : MonoBehaviour
 
     public TextMeshProUGUI textScore;
     private string formatScore = "{0}";
-    public TextMeshProUGUI textGameClear;
+    public GameObject gameClearUi;
 
     public TextMeshProUGUI textStartTimer;
 
+    public TextMeshProUGUI goldText;
+    private string goldFormat = "{0}K";
+    private float earnedGold;
+    public float EarnedGold {
+        get { return earnedGold; }
+        set {
+            if (value < 0)
+                return;
+
+            earnedGold = value;
+            goldText.text = string.Format(goldFormat, (int)earnedGold);
+        }
+    }
+
+    public int playerHitCount;
+
     private void Start()
     {
-        gameStatus = GameStatus.Running;
-        textGameClear.enabled = false;
-
-        currentGameTimer = gameTimeLimit;
-        nextGameTime = currentGameTimer - 1f;
-        uiManager.SetGameTimer(currentGameTimer);
-
         StageId = Variables.stageId;
         SectionId = 1;
 
+        var stageData = DataTableManager.Get<StageTable>(DataTableIds.Stage).Get(StageId);
+
+        gameStatus = GameStatus.Running;
+
+        gameTimeLimit = stageData.StageTimerset;
+        CurrentGameTimer = gameTimeLimit;
+        nextGameTime = CurrentGameTimer - 1f;
+        IsTimerStop = false;
+        uiManager.SetGameTimer(CurrentGameTimer);
+
         CurrentScore = 0;
         CurrentKillPoint = 0;
-        targetKillPoint = 100; // 테스트
+        targetKillPoint = stageData.StageKillp;
+        EarnedGold = 0f;
 
         nextKillPoint = targetKillPoint * killPointData.killPointBoundaries[0];
         killPointSlider.minValue = 0;
         killPointSlider.maxValue = targetKillPoint;
+
+        playerHitCount = 0;
 
         textStartTimer.gameObject.SetActive(true);
     }
@@ -117,18 +146,16 @@ public class GameManager : MonoBehaviour
                 GameClear();
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            GameClear();
-        }
     }
 
     private void CalculateGameTime()
     {
-        currentGameTimer -= Time.deltaTime;
+        if (IsTimerStop)
+            return;
 
-        if (currentGameTimer <= nextGameTime)
+        CurrentGameTimer -= Time.deltaTime;
+
+        if (CurrentGameTimer <= nextGameTime)
         {
             uiManager.SetGameTimer(nextGameTime);
             nextGameTime--;
@@ -138,16 +165,6 @@ public class GameManager : MonoBehaviour
         {
             // time out!
         }
-    }
-
-    public void AddScore(int score)
-    {
-        CurrentScore += score;
-    }
-
-    public void AddKillPoint(int point)
-    {
-        CurrentKillPoint += point;
     }
 
     public void GoToTitle()
@@ -164,9 +181,12 @@ public class GameManager : MonoBehaviour
 
     private void GameClear()
     {
-        playerMovement.enabled = false;
         gameStatus = GameStatus.GameClear;
-        textGameClear.enabled = true;
-        Time.timeScale = 0;
+        gameClearUi.SetActive(true);
+        Time.timeScale = 0f;
+
+        playerMovement.enabled = false;
+        // var prevClearStar = Variables.SaveData.StageClearData[StageId];
+        //Variables.SaveData.StageClearData[StageId] = prevClearStar
     }
 }
