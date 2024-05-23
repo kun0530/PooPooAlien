@@ -4008,6 +4008,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 189430514ff544fe19ee30011330fb0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseButton: {fileID: 2030319275}
   clearScoreText: {fileID: 645842645845861022}
   clearScoreCheckImage: {fileID: 1244002684}
   clearHitCountText: {fileID: 675708364}
@@ -6427,8 +6428,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 21300000, guid: a00f1983786cd4fc68e2573a33b69f40, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

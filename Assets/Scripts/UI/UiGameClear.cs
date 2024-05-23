@@ -8,6 +8,8 @@ public class UiGameClear : MonoBehaviour
 {
     public GameManager gameManager { get; set; }
 
+    public Button pauseButton;
+
     public TextMeshProUGUI clearScoreText;
     public Image clearScoreCheckImage;
 
@@ -31,6 +33,8 @@ public class UiGameClear : MonoBehaviour
     {
         if (gameManager != null)
         {
+            pauseButton.enabled = false;
+
             var stageData = DataTableManager.Get<StageTable>(DataTableIds.Stage).Get(gameManager.StageId);
             if (gameManager.CurrentScore >= stageData.StageScoreget)
             {

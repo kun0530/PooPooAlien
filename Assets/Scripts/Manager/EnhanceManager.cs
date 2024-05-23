@@ -153,6 +153,8 @@ public class EnhanceManager : MonoBehaviour
                 enhanceStat.Value.Data = enhanceStat.Value.Data;
         }
 
+        SelectedEnhanceData = SelectedEnhanceData;
+
         SaveLoadSystem.Save(Variables.SaveData);
     }
 }
