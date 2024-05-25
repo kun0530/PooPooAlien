@@ -15,6 +15,7 @@ public class MonsterData
     public int Def { get; set; }
     public float VerticalSpd  { get; set; }
     public float HorizontalSpd  { get; set; }
+    public bool IsBounce { get; set; }
     public int Score  { get; set; }
     public int KillPoint  { get; set; }
     public float GetGold { get; set; }

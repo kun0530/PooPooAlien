@@ -28,7 +28,7 @@ public class WeaponFocus : Weapon
             newBullet.transform.localScale = new Vector3(weaponScale, weaponScale, weaponScale);
             newBullet.transform.position = firePositions[i].position;
             newBullet.transform.LookAt(fireDirections[i].position);
-            newBullet.atk = playerShooter.FinalAttack + weaponAttack + weaponPhaseAttack;
+            newBullet.atk = (playerShooter.FinalAttack + weaponAttack + weaponPhaseAttack) / (playerShooter.WeaponLevel * 2);
             newBullet.speed = weaponSpeed;
         }
     }

@@ -41,7 +41,7 @@ public class StageUiManager : MonoBehaviour
         }
         pausePanel.SetActive(isActive);
         Time.timeScale = isActive ? 0f : prevTimeScale;
-        gameManager.gameStatus = isActive ? GameStatus.Pause : GameStatus.Running;
+        gameManager.gameState = isActive ? GameState.Pause : GameState.Running;
     }
 
     public void SetPlayerHealth(int health)

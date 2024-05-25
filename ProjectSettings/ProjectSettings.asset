@@ -162,6 +162,7 @@ PlayerSettings:
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
     Android: com.Kyungil.PooPooAlien
+    Standalone: com.Kyungil.PooPooAlien
   buildNumber:
     Standalone: 0
     VisionOS: 0

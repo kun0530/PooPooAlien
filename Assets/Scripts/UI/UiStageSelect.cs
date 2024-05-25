@@ -13,7 +13,7 @@ public class UiStageSelect : MonoBehaviour
     public Camera mainCamera;
     public Transform cameraTarget;
     private Vector3 nextPlanetPos;
-    private float cameraSpeed = 10f;
+    public float cameraSpeed = 8f;
     private Vector3 nextCameraPos;
     private bool isTargetMoving;
     private bool isCameraMoving;
@@ -35,6 +35,11 @@ public class UiStageSelect : MonoBehaviour
         set{
             if (isTargetMoving || isCameraMoving)
                 return;
+
+            if (value > stageCount)
+            {
+                value = startStage;
+            }
 
             selectedStage = Mathf.Clamp(value, startStage, stageCount);
 

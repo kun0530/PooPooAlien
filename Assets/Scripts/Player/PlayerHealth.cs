@@ -9,6 +9,8 @@ public class PlayerHealth : LivingEntity
     public DevelopPlayerData testPlayerData;
     public GameManager gameManager;
 
+    private PlayerBooster playerBooster;
+
     private float invincibleduration = 1f;
     private float invincibleTimer;
     private bool isInvincible;
@@ -29,6 +31,11 @@ public class PlayerHealth : LivingEntity
             currentHealth = Mathf.Clamp(value, 0, MaxHealth);
             gameManager.uiManager.SetPlayerHealth((int)currentHealth);
         }
+    }
+
+    private void Awake()
+    {
+        playerBooster = GetComponent<PlayerBooster>();
     }
 
     private void Start()
@@ -61,7 +68,7 @@ public class PlayerHealth : LivingEntity
 
     public override void OnDamage(float damage)
     {
-        if (isInvincible)
+        if (isInvincible || playerBooster.isBoosting)
             return;
 
         CurrentHealth -= damage;

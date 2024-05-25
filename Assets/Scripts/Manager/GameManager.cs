@@ -6,7 +6,7 @@ using TMPro;
 using UnityEngine.SceneManagement;
 
 
-public enum GameStatus
+public enum GameState
 {
     Running,
     Pause,
@@ -16,7 +16,7 @@ public enum GameStatus
 
 public class GameManager : MonoBehaviour
 {
-    public GameStatus gameStatus { get; set; }
+    public GameState gameState { get; set; }
     public DevelopPlayerData testPlayerData;
     public KillPointData killPointData;
 
@@ -100,7 +100,7 @@ public class GameManager : MonoBehaviour
 
         var stageData = DataTableManager.Get<StageTable>(DataTableIds.Stage).Get(StageId);
 
-        gameStatus = GameStatus.Running;
+        gameState = GameState.Running;
 
         gameTimeLimit = stageData.StageTimerset;
         CurrentGameTimer = gameTimeLimit;
@@ -124,7 +124,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (gameStatus != GameStatus.Running)
+        if (gameState != GameState.Running)
             return;
 
         CalculateGameTime();
@@ -175,13 +175,13 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         Time.timeScale = 1f;
-        gameStatus = GameStatus.Running;
+        gameState = GameState.Running;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     private void GameClear()
     {
-        gameStatus = GameStatus.GameClear;
+        gameState = GameState.GameClear;
         gameClearUi.SetActive(true);
         Time.timeScale = 0f;
 

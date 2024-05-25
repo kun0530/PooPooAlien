@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -28,6 +29,7 @@ public class Monster : LivingEntity
             def = data.Def;
             vSpeed = data.VerticalSpd;
             hSpeed = data.HorizontalSpd;
+            isBounce = data.IsBounce;
             direction = new Vector3(hSpeed, 0, -vSpeed);
         }
     }
@@ -44,10 +46,25 @@ public class Monster : LivingEntity
 
     public GameManager gameManager;
 
+    public bool isDamageAble { get; set; }
+
+    private float moveLimitLeft;
+    private float moveLimitRight;
+
+    private bool isBounce;
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        isDamageAble = false;
+    }
+
     private void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
-
+        var spawnPositions = gameManager.monsterSpawner.spawnPositions;
+        moveLimitLeft = spawnPositions[0].position.x;
+        moveLimitRight = spawnPositions[spawnPositions.Count() - 1].position.x;
         // direction = new Vector3(1, 0, -1);
     }
 
@@ -55,6 +72,15 @@ public class Monster : LivingEntity
     {
         transform.position += direction * Time.deltaTime;
         transform.LookAt(transform.position + direction);
+
+        if (isBounce && direction.x != 0)
+        {
+            if ((transform.position.x <= moveLimitLeft && direction.x < 0)
+            || (transform.position.x >= moveLimitRight && direction.x > 0)) // test 스포너 양끝 경계
+            {
+                direction.x *= -1;
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider collider)
@@ -74,6 +100,9 @@ public class Monster : LivingEntity
 
     public override void OnDamage(float damage)
     {
+        if (!isDamageAble)
+            return;
+
         damage -= def;
         if (damage > 0)
             base.OnDamage(damage);
