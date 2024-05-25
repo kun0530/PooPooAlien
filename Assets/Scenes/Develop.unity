@@ -1789,7 +1789,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2888329954694594312, guid: ed362d38ae72649c2a97906b29dc246c, type: 3}
       propertyPath: m_Name
-      value: TimerText
+      value: StartTimerText
       objectReference: {fileID: 0}
     - target: {fileID: 2888329954694594312, guid: ed362d38ae72649c2a97906b29dc246c, type: 3}
       propertyPath: m_IsActive
@@ -3068,6 +3068,8 @@ MonoBehaviour:
   - {fileID: 300101918}
   - {fileID: 1109663558}
   pausePanel: {fileID: 71412548}
+  gameOverPanel: {fileID: 1965050792}
+  gameClearPanel: {fileID: 1054969503}
 --- !u!1001 &815789428
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5310,10 +5312,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 804214362}
-        m_TargetAssemblyTypeName: StageUiManager, Assembly-CSharp
-        m_MethodName: ActivePausePanel
-        m_Mode: 6
+      - m_Target: {fileID: 1556322662}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: ChangeGameState
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -6129,23 +6131,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8365925929454220151, guid: a802c0eb193c1414fa46c7f43e25bc9d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 6
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8365925929454220151, guid: a802c0eb193c1414fa46c7f43e25bc9d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 804214362}
+      objectReference: {fileID: 1556322662}
     - target: {fileID: 8365925929454220151, guid: a802c0eb193c1414fa46c7f43e25bc9d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8365925929454220151, guid: a802c0eb193c1414fa46c7f43e25bc9d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: ActivePausePanel
+      value: ChangeGameState
       objectReference: {fileID: 0}
     - target: {fileID: 8365925929454220151, guid: a802c0eb193c1414fa46c7f43e25bc9d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: StageUiManager, Assembly-CSharp
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8365925929454220151, guid: a802c0eb193c1414fa46c7f43e25bc9d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -6553,11 +6555,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   monsterPrefabs:
-  - {fileID: 8281040580223254183, guid: 0b50e2259c78e4f0a91d864026f47065, type: 3}
-  - {fileID: 8281040580223254183, guid: 0b50e2259c78e4f0a91d864026f47065, type: 3}
-  - {fileID: 8281040580223254183, guid: 0b50e2259c78e4f0a91d864026f47065, type: 3}
-  - {fileID: 8281040580223254183, guid: 0b50e2259c78e4f0a91d864026f47065, type: 3}
-  - {fileID: 8281040580223254183, guid: 0b50e2259c78e4f0a91d864026f47065, type: 3}
+  - {fileID: 8036222928183797087, guid: 616abce6520fb4b508fc4a3a306383b7, type: 3}
+  - {fileID: 8036222928183797087, guid: 616abce6520fb4b508fc4a3a306383b7, type: 3}
+  - {fileID: 8036222928183797087, guid: 616abce6520fb4b508fc4a3a306383b7, type: 3}
+  - {fileID: 8036222928183797087, guid: 616abce6520fb4b508fc4a3a306383b7, type: 3}
+  - {fileID: 8036222928183797087, guid: 616abce6520fb4b508fc4a3a306383b7, type: 3}
   spawnPositions:
   - {fileID: 744377577}
   - {fileID: 1568816593}
@@ -7018,17 +7020,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 804214362}
-        m_TargetAssemblyTypeName: StageUiManager, Assembly-CSharp
-        m_MethodName: ActivePausePanel
-        m_Mode: 6
+      - m_Target: {fileID: 1556322662}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: ChangeGameState
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &2030319276
 MonoBehaviour:

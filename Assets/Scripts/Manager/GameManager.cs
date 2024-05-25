@@ -8,21 +8,24 @@ using UnityEngine.SceneManagement;
 
 public enum GameState
 {
+    None = -1,
     Running,
     Pause,
     GameOver,
-    GameClear
+    GameClear,
+    Count
 }
 
 public class GameManager : MonoBehaviour
 {
-    public GameState gameState { get; set; }
+    public GameState gameState { get; private set; } = GameState.None;
     public DevelopPlayerData testPlayerData;
     public KillPointData killPointData;
 
     public MonsterSpawner monsterSpawner;
     public ItemSpawner itemSpawner;
 
+    private float prevTimeScale;
     public PlayerMovement playerMovement;
 
     public float CurrentGameTimer { get; set; }
@@ -100,7 +103,8 @@ public class GameManager : MonoBehaviour
 
         var stageData = DataTableManager.Get<StageTable>(DataTableIds.Stage).Get(StageId);
 
-        gameState = GameState.Running;
+        prevTimeScale = 1f;
+        ChangeGameState(GameState.Running);
 
         gameTimeLimit = stageData.StageTimerset;
         CurrentGameTimer = gameTimeLimit;
@@ -118,8 +122,6 @@ public class GameManager : MonoBehaviour
         killPointSlider.maxValue = targetKillPoint;
 
         playerHitCount = 0;
-
-        textStartTimer.gameObject.SetActive(true);
     }
 
     private void Update()
@@ -143,7 +145,7 @@ public class GameManager : MonoBehaviour
             }
             else
             {
-                GameClear();
+                ChangeGameState(GameState.GameClear);
             }
         }
     }
@@ -157,34 +159,71 @@ public class GameManager : MonoBehaviour
 
         if (CurrentGameTimer <= nextGameTime)
         {
-            uiManager.SetGameTimer(nextGameTime);
+            uiManager.SetGameTimer(CurrentGameTimer);
             nextGameTime--;
         }
 
-        if (nextGameTime < 0)
+        if (CurrentGameTimer <= 0f)
         {
-            // time out!
+            uiManager.SetGameTimer(0);
+            ChangeGameState(GameState.GameOver);
         }
     }
 
     public void GoToTitle()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneIds.Title);
     }
 
     public void RestartGame()
     {
         Time.timeScale = 1f;
-        gameState = GameState.Running;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    private void GameClear()
+    [VisibleEnum(typeof(GameState))]
+    public void ChangeGameState(int state)
     {
-        gameState = GameState.GameClear;
-        gameClearUi.SetActive(true);
-        Time.timeScale = 0f;
+        if (gameState == (GameState)state)
+            return;
+        
+        switch (state)
+        {
+            case (int)GameState.Running:
+                {
+                    uiManager.CurrentActivePanel = null;
 
-        playerMovement.enabled = false;
+                    Time.timeScale = prevTimeScale;
+                    textStartTimer.gameObject.SetActive(true);
+
+                    if (playerMovement != null)
+                        playerMovement.enabled = true;
+                    break;
+                }
+            case (int)GameState.Pause:
+            case (int)GameState.GameOver:
+            case (int)GameState.GameClear:
+                {
+                    if (gameState != GameState.Running)
+                        return;
+
+                    uiManager.CurrentActivePanel = uiManager.panels[(GameState)state];
+
+                    prevTimeScale = Time.timeScale;
+                    Time.timeScale = 0f;
+
+                    if (playerMovement != null)
+                        playerMovement.enabled = false;
+                    break;
+                }
+            default:
+                return;
+        }
+        gameState = (GameState)state;
+    }
+    public void ChangeGameState(GameState state)
+    {
+        ChangeGameState((int)state);
     }
 }

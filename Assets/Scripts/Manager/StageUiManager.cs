@@ -13,14 +13,29 @@ public class StageUiManager : MonoBehaviour
     public List<Image> heartImages;
 
     public GameObject pausePanel;
-    private float prevTimeScale;
+    public GameObject gameOverPanel;
+    public GameObject gameClearPanel;
+    public Dictionary<GameState, GameObject> panels = new Dictionary<GameState, GameObject>();
+    private GameObject currentActivePanel;
+    public GameObject CurrentActivePanel
+    {
+        get { return currentActivePanel; }
+        set {
+            currentActivePanel?.SetActive(false);
+            currentActivePanel = value;
+            currentActivePanel?.SetActive(true);
+        }
+    }
 
     private void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 
+        panels.Add(GameState.Pause, pausePanel);
+        panels.Add(GameState.GameOver, gameOverPanel);
+        panels.Add(GameState.GameClear, gameClearPanel);
+
         pausePanel.SetActive(false);
-        prevTimeScale = 1f;
     }
 
     private void Update()
@@ -30,18 +45,7 @@ public class StageUiManager : MonoBehaviour
 
     public void SetGameTimer(float time)
     {
-        textGameTimer.text = $"{time}";
-    }
-
-    public void ActivePausePanel(bool isActive)
-    {
-        if (isActive)
-        {
-            prevTimeScale = Time.timeScale;
-        }
-        pausePanel.SetActive(isActive);
-        Time.timeScale = isActive ? 0f : prevTimeScale;
-        gameManager.gameState = isActive ? GameState.Pause : GameState.Running;
+        textGameTimer.text = $"{(int)time}";
     }
 
     public void SetPlayerHealth(int health)

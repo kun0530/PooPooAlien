@@ -20,6 +20,15 @@ public class MonsterData
     public int KillPoint  { get; set; }
     public float GetGold { get; set; }
     public int ItemDropId { get; set; }
+    public string MaterialName { get; set; }
+
+    private string materialFilePath = "Materials/{0}";
+    public Material GetMaterial()
+    {
+        if (MaterialName == null || string.Equals(FrequentlyUsed.Default, MaterialName))
+            return null;
+        return Resources.Load<Material>(string.Format(materialFilePath, MaterialName));
+    }
 
     public override string ToString()
     {

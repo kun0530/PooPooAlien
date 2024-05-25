@@ -19,3 +19,8 @@ public static class SceneIds
     public static readonly string Title = "Title";
     public static readonly string Develop = "Develop";
 }
+
+public static class FrequentlyUsed
+{
+    public static readonly string Default = "Default";
+}

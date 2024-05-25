@@ -12,6 +12,7 @@ public class StartTimer : MonoBehaviour
     private float timerInterval = 1f;
     private float timer = 0f;
     private float currentTimer;
+    private float prevTimeScale;
 
     public Button pauseButton;
     public PlayerMovement playerMovement;
@@ -19,13 +20,15 @@ public class StartTimer : MonoBehaviour
     private void Awake()
     {
         timerText = GetComponent<TextMeshProUGUI>();
+        prevTimeScale = 1f;
     }
 
     private void OnEnable()
     {
         timer = 0f;
-        currentTimer = startTimer + 1f;
+        currentTimer = startTimer;
         timerText.text = $"{currentTimer}";
+        prevTimeScale = Time.timeScale;
         Time.timeScale = 0f;
 
         pauseButton.enabled = false;
@@ -51,12 +54,12 @@ public class StartTimer : MonoBehaviour
 
         if (currentTimer < 0f)
         {
-            Time.timeScale = 1f;
+            Time.timeScale = prevTimeScale;
 
             pauseButton.enabled = true;
             playerMovement.enabled = true;
 
-            this.gameObject.SetActive(false);
+            gameObject.SetActive(false);
         }
     }
 }

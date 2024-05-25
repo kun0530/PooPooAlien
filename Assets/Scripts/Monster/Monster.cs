@@ -11,6 +11,9 @@ public class Monster : LivingEntity
     public MonsterData Data{
         get { return data; }
         set {
+            if (value == null)
+                return;
+
             data = value;
             startHealth = data.Hp;
             currentHealth = startHealth;
@@ -19,6 +22,9 @@ public class Monster : LivingEntity
             vSpeed = data.VerticalSpd;
             hSpeed = data.HorizontalSpd;
             isBounce = data.IsBounce;
+            var material = data.GetMaterial();
+            if (material != null)
+                skinRenderer.material = material;
             direction = new Vector3(hSpeed, 0, -vSpeed);
         }
     }
@@ -40,6 +46,13 @@ public class Monster : LivingEntity
     private float moveLimitRight;
 
     private bool isBounce;
+
+    private SkinnedMeshRenderer skinRenderer;
+
+    private void Awake()
+    {
+        skinRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
+    }
 
     protected override void OnEnable()
     {
