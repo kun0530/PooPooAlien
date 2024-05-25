@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 10
   startHp: 3
-  basicAttack: 10000
-  focusAttack: 100
+  basicAttack: 0
+  focusAttack: 0
   focusSpeed: 10
-  focusScale: 1
+  focusScale: 0.01
   focusInterval: 0.1
   spreadAttack: 1
   spreadSpeed: 5
@@ -32,5 +32,5 @@ MonoBehaviour:
   boosterSpeed: 5
   boosterDuration: 10
   boosterSize: 10
-  monsterSpawnInterval: 0.5
+  monsterSpawnInterval: 10
   isTesting: 0

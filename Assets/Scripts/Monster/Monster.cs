@@ -5,17 +5,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Pool;
 
-public enum MonsterType
-{
-    None = -1,
-    Normal,
-    Physic,
-    Speed,
-    Reaf,
-    Projectile,
-    Count
-};
-
 public class Monster : LivingEntity
 {
     private MonsterData data;
@@ -33,7 +22,6 @@ public class Monster : LivingEntity
             direction = new Vector3(hSpeed, 0, -vSpeed);
         }
     }
-    public MonsterType monseterType = MonsterType.None;
 
     private float atk;
     private float def;

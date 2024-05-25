@@ -514,7 +514,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5eba65f95365545279c990538f0ea529, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monseterType: -1
   gameManager: {fileID: 0}
 --- !u!54 &-5796008273839993221
 Rigidbody:

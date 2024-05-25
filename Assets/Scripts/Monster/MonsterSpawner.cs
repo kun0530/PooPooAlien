@@ -6,8 +6,8 @@ using System.Diagnostics;
 
 public class MonsterSpawner : MonoBehaviour
 {
-    public Monster[] monsterPrefabs;
-    private Dictionary<MonsterType, IObjectPool<Monster>> poolEnemies = new Dictionary<MonsterType, IObjectPool<Monster>>();
+    public List<Monster> monsterPrefabs;
+    private Dictionary<int, IObjectPool<Monster>> poolEnemies = new Dictionary<int, IObjectPool<Monster>>();
     // private IObjectPool<Enemy> poolEnemy;
     private List<List<int>> monsterSpawnGroups;
     private int currentMosterSpawnGroupIndex = 0;
@@ -26,16 +26,14 @@ public class MonsterSpawner : MonoBehaviour
 
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
 
-        for (int i = 0; i < (int)MonsterType.Count; i++)
+        for (int i = 0; i < monsterPrefabs.Count; i++)
         {
             int index = i;
-            var monsterType = (MonsterType)index;
 
             IObjectPool<Monster> poolEnemy = new ObjectPool<Monster>(
                 () => {
                     var monster = Instantiate(monsterPrefabs[index]);
-                    monster.monseterType = monsterType;
-                    monster.pool = poolEnemies[monsterType];
+                    monster.pool = poolEnemies[index];
                     return monster;
                 },
                 OnTakeFromPool,
@@ -44,7 +42,7 @@ public class MonsterSpawner : MonoBehaviour
                 true, 10, 100
             );
 
-            poolEnemies.Add(monsterType, poolEnemy);
+            poolEnemies.Add(index, poolEnemy);
         }
 
         monsterTable = DataTableManager.Get<MonsterTable>(DataTableIds.Monster);
@@ -80,7 +78,8 @@ public class MonsterSpawner : MonoBehaviour
             return;
         }
 
-        var newEnemy = poolEnemies[(MonsterType)data.Type].Get();
+        var prefabNum = Mathf.Clamp(data.Type, 0, monsterPrefabs.Count - 1);
+        var newEnemy = poolEnemies[prefabNum].Get();
         newEnemy.Data = data;
         newEnemy.transform.position = pos;
     }

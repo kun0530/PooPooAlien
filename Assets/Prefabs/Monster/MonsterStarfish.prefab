@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4347479058819008991}
   - component: {fileID: 8036222928183797087}
   m_Layer: 7
-  m_Name: MonsterNormal
+  m_Name: MonsterStarfish
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
