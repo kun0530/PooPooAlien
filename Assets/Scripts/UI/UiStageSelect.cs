@@ -113,7 +113,7 @@ public class UiStageSelect : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            uiManager.Status = UiStatus.Title;
+            uiManager.ChangeUiState(UiStates.Title);
         }
     }
 
@@ -131,6 +131,6 @@ public class UiStageSelect : MonoBehaviour
 
     public void EnterEnhance()
     {
-        uiManager.Status = UiStatus.Enhance;
+        uiManager.ChangeUiState(UiStates.Enhance);
     }
 }

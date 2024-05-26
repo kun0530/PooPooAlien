@@ -4,11 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public enum UiStatus
+public enum UiStates
 {
     None = -1,
     Title,
     StageSelect,
+    Setting,
     Enhance,
     Count
 }
@@ -18,26 +19,11 @@ public class TitleUiManager : MonoBehaviour
     public GameObject titlePanel;
     public GameObject stageSelectPanel;
     public GameObject enhanceStatPanel;
+    public GameObject settingPanel;
 
-    private Dictionary<UiStatus, GameObject> uiPanels = new Dictionary<UiStatus, GameObject>();
+    private Dictionary<UiStates, GameObject> uiPanels = new Dictionary<UiStates, GameObject>();
 
-    private UiStatus status;
-    public UiStatus Status {
-        get { return status; }
-        set {
-            foreach (var panel in uiPanels)
-            {
-                if (panel.Value != null)
-                panel.Value.SetActive(false);
-            }
-
-            if (uiPanels[value] != null)
-            {
-                status = value;
-                uiPanels[status].SetActive(true);
-            }
-        }
-    }
+    public UiStates UiState { get; private set; } = UiStates.None;
 
     private void Awake()
     {
@@ -46,18 +32,19 @@ public class TitleUiManager : MonoBehaviour
 
     private void Start()
     {
-        uiPanels.Add(UiStatus.Title, titlePanel);
-        uiPanels.Add(UiStatus.StageSelect, stageSelectPanel);
-        uiPanels.Add(UiStatus.Enhance, enhanceStatPanel);
+        uiPanels.Add(UiStates.Title, titlePanel);
+        uiPanels.Add(UiStates.StageSelect, stageSelectPanel);
+        uiPanels.Add(UiStates.Setting, settingPanel);
+        uiPanels.Add(UiStates.Enhance, enhanceStatPanel);
 
         if (Variables.isStartGame)
         {
-            Status = UiStatus.Title;
+            ChangeUiState(UiStates.Title);
             Variables.isStartGame = false;
         }
         else
         {
-            Status = UiStatus.StageSelect;
+            ChangeUiState(UiStates.StageSelect);
         }
     }
 
@@ -68,5 +55,25 @@ public class TitleUiManager : MonoBehaviour
     public void SaveFile()
     {
         SaveLoadSystem.Save(Variables.SaveData);
+    }
+
+    [VisibleEnum(typeof(UiStates))]
+    public void ChangeUiState(int state)
+    {
+        if (UiState == (UiStates)state || state <= (int)UiStates.None || state >= (int)UiStates.Count)
+            return;
+
+        foreach (var panel in uiPanels)
+        {
+            panel.Value?.SetActive(false);
+        }
+
+        uiPanels[(UiStates)state]?.SetActive(true);
+        UiState = (UiStates)state;
+    }
+
+    public void ChangeUiState(UiStates state)
+    {
+        ChangeUiState((int)state);
     }
 }

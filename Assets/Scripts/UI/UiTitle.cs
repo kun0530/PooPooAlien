@@ -15,7 +15,7 @@ public class UiTitle : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            uiManager.Status = UiStatus.StageSelect;
+            uiManager.ChangeUiState(UiStates.StageSelect);
         }
     }
 }

@@ -20,6 +20,8 @@ public class EnhanceManager : MonoBehaviour
     public EnhanceStatPanel enhanceStatPanelPrefab;
     private Dictionary<PlayerStat, EnhanceStatPanel> enhanceStats = new Dictionary<PlayerStat, EnhanceStatPanel>();
 
+    public GameObject enhanceInfo;
+    public GameObject selectStatText;
     public Image selectedStatIcon; 
     public TextMeshProUGUI selectedStatNameText;
     public TextMeshProUGUI selectedStatLevelText;
@@ -34,49 +36,8 @@ public class EnhanceManager : MonoBehaviour
     public EnhanceData SelectedEnhanceData{
         get{ return selectedEnhanceData; }
         set{
-            if (value == null)
-            {
-                selectedEnhanceData = null;
-                selectedStatIcon.enabled = false;
-                selectedStatNameText.enabled = false;
-                selectedStatLevelText.enabled = false;
-                selectedStatDescText.enabled = false;
-                selectedStatIncreaseText.enabled = false;
-                selectedStatRequiredGoldText.enabled = false;
-                enhanceButton.interactable = false;
-                return;
-            }
-
             selectedEnhanceData = value;
-            selectedStatIcon.enabled = true;
-            selectedStatIcon.sprite = selectedEnhanceData.GetIcon();
-
-            var currentLevel = Variables.SaveData.EnhanceStatData[(PlayerStat)SelectedEnhanceData.Stat];
-            var maxLevel = selectedEnhanceData.MaxLevel;
-            var currentStat = Variables.CalculateCurrentSaveStat((PlayerStat)SelectedEnhanceData.Stat);
-            var nextStat = Variables.CalculateStat((PlayerStat)SelectedEnhanceData.Stat, currentLevel + 1);
-            float requiredGold = SelectedEnhanceData.RequiredGold + SelectedEnhanceData.RequiredGoldIncrease * (currentLevel - 1);
-
-            selectedStatNameText.enabled = true;
-            selectedStatNameText.text = selectedEnhanceData.Name;
-            selectedStatLevelText.enabled = true;
-            selectedStatLevelText.text = string.Format(levelFormat, currentLevel, maxLevel);
-            selectedStatDescText.enabled = true;
-            selectedStatDescText.text = selectedEnhanceData.Desc;
-            selectedStatIncreaseText.enabled = true;
-            selectedStatRequiredGoldText.enabled = true;
-            if (currentLevel >= selectedEnhanceData.MaxLevel)
-            {
-                selectedStatIncreaseText.text = $"{currentStat}";
-                selectedStatRequiredGoldText.text = "강화 완료";
-                enhanceButton.interactable = false;
-            }
-            else
-            {
-                selectedStatIncreaseText.text = string.Format(increaseFormat, currentStat, nextStat);
-                selectedStatRequiredGoldText.text = string.Format(goldTextFormat, requiredGold);
-                enhanceButton.interactable = Variables.SaveData.Gold >= requiredGold;
-            }
+            UpdateEnhanceInfo();
         }
     }
 
@@ -111,7 +72,7 @@ public class EnhanceManager : MonoBehaviour
             buttonImage.alphaHitTestMinimumThreshold = 0.1f;
 
         exitButton.onClick.AddListener(() => {
-            uiManager.Status = UiStatus.StageSelect;
+            uiManager.ChangeUiState(UiStates.StageSelect);
         });
 
         UpdateGoldText();
@@ -121,7 +82,7 @@ public class EnhanceManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            uiManager.Status = UiStatus.StageSelect;
+            uiManager.ChangeUiState(UiStates.StageSelect);
         }
     }
 
@@ -165,8 +126,44 @@ public class EnhanceManager : MonoBehaviour
                 enhanceStat.Value.Data = enhanceStat.Value.Data;
         }
 
-        SelectedEnhanceData = SelectedEnhanceData;
+        UpdateEnhanceInfo();
 
         SaveLoadSystem.Save(Variables.SaveData);
+    }
+
+    private void UpdateEnhanceInfo()
+    {
+        if (SelectedEnhanceData == null)
+        {
+            selectStatText.SetActive(true);
+            enhanceInfo.SetActive(false);
+            return;
+        }
+
+        selectStatText.SetActive(false);
+        enhanceInfo.SetActive(true);
+
+        var currentLevel = Variables.SaveData.EnhanceStatData[(PlayerStat)SelectedEnhanceData.Stat];
+        var maxLevel = SelectedEnhanceData.MaxLevel;
+        var currentStat = Variables.CalculateCurrentSaveStat((PlayerStat)SelectedEnhanceData.Stat);
+        var nextStat = Variables.CalculateStat((PlayerStat)SelectedEnhanceData.Stat, currentLevel + 1);
+        float requiredGold = SelectedEnhanceData.RequiredGold + SelectedEnhanceData.RequiredGoldIncrease * (currentLevel - 1);
+
+        selectedStatIcon.sprite = SelectedEnhanceData.GetIcon();
+        selectedStatNameText.text = SelectedEnhanceData.Name;
+        selectedStatLevelText.text = string.Format(levelFormat, currentLevel, maxLevel);
+        selectedStatDescText.text = SelectedEnhanceData.Desc;
+        if (currentLevel >= SelectedEnhanceData.MaxLevel)
+        {
+            selectedStatIncreaseText.text = $"{currentStat}";
+            selectedStatRequiredGoldText.text = "강화 완료";
+            enhanceButton.interactable = false;
+        }
+        else
+        {
+            selectedStatIncreaseText.text = string.Format(increaseFormat, currentStat, nextStat);
+            selectedStatRequiredGoldText.text = string.Format(goldTextFormat, requiredGold);
+            enhanceButton.interactable = Variables.SaveData.Gold >= requiredGold;
+        }
     }
 }
