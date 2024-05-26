@@ -84,9 +84,12 @@ public class PlayerHealth : LivingEntity
 
     protected override void OnDie()
     {
+        if (isDead)
+            return;
+
         base.OnDie();
         gameObject.SetActive(false);
-        Time.timeScale = 0f;
+        gameManager.ChangeGameState(GameState.GameOver);
     }
 
     public void RestoreHealth(float hp)

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
+using UnityEngine.Analytics;
 
 
 public enum GameState
@@ -81,8 +82,7 @@ public class GameManager : MonoBehaviour
 
     public TextMeshProUGUI textStartTimer;
 
-    public TextMeshProUGUI goldText;
-    private string goldFormat = "{0}K";
+    public UiNumberIncrease goldText;
     private float earnedGold;
     public float EarnedGold {
         get { return earnedGold; }
@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour
                 return;
 
             earnedGold = value;
-            goldText.text = string.Format(goldFormat, (int)earnedGold);
+            goldText.TargetNum = earnedGold;
         }
     }
 
@@ -115,7 +115,8 @@ public class GameManager : MonoBehaviour
         CurrentScore = 0;
         CurrentKillPoint = 0;
         targetKillPoint = stageData.StageKillp;
-        EarnedGold = 0f;
+        earnedGold = 0f;
+        goldText.CurrentNum = earnedGold;
 
         nextKillPoint = targetKillPoint * killPointData.killPointBoundaries[0];
         killPointSlider.minValue = 0;
@@ -207,9 +208,9 @@ public class GameManager : MonoBehaviour
                         playerMovement.enabled = true;
                     break;
                 }
-            case (int)GameState.Pause:
             case (int)GameState.GameOver:
             case (int)GameState.GameClear:
+            case (int)GameState.Pause:
                 {
                     if (gameState != GameState.Running)
                         return;
@@ -222,6 +223,13 @@ public class GameManager : MonoBehaviour
 
                     if (playerMovement != null)
                         playerMovement.enabled = false;
+
+                    if (state == (int)GameState.GameOver)
+                    {
+                        Variables.SaveData.Gold += earnedGold;
+                        SaveLoadSystem.Save(Variables.SaveData);
+                    }
+
                     break;
                 }
             default:

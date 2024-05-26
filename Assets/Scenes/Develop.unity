@@ -1060,6 +1060,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5951689805844928106, guid: ed362d38ae72649c2a97906b29dc246c, type: 3}
   m_PrefabInstance: {fileID: 506467431}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &420477314 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3668461265165180641, guid: 86489ef2ecb804c42bfc7c5529bb00f3, type: 3}
+  m_PrefabInstance: {fileID: 1577387311}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &430699462
 GameObject:
   m_ObjectHideFlags: 0
@@ -3488,17 +3493,21 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3255067659891236816, guid: 86489ef2ecb804c42bfc7c5529bb00f3, type: 3}
   m_PrefabInstance: {fileID: 1577387311}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1187789573 stripped
+--- !u!114 &1187789574
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6142335984653819936, guid: 86489ef2ecb804c42bfc7c5529bb00f3, type: 3}
-  m_PrefabInstance: {fileID: 1577387311}
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 420477314}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Script: {fileID: 11500000, guid: 1ecafa4741b8d4cdf87a30417fb103d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  numberFormat: '{0}'
+  increaseDuration: 0.5
+  increaseCount: 10
 --- !u!114 &1244002684 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4891318255081833460, guid: a3623b773a1fd4188b59ecb3b8ad35fb, type: 3}
@@ -4429,7 +4438,7 @@ MonoBehaviour:
   textScore: {fileID: 2095266435}
   gameClearUi: {fileID: 1054969503}
   textStartTimer: {fileID: 369681181}
-  goldText: {fileID: 1187789573}
+  goldText: {fileID: 1187789574}
   playerHitCount: 0
 --- !u!4 &1556322663
 Transform:
@@ -4657,7 +4666,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3668461265165180641, guid: 86489ef2ecb804c42bfc7c5529bb00f3, type: 3}
       propertyPath: m_Name
-      value: CoinText
+      value: GoldText
       objectReference: {fileID: 0}
     - target: {fileID: 6142335984653819936, guid: 86489ef2ecb804c42bfc7c5529bb00f3, type: 3}
       propertyPath: m_text
@@ -4678,7 +4687,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3668461265165180641, guid: 86489ef2ecb804c42bfc7c5529bb00f3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1187789574}
   m_SourcePrefab: {fileID: 100100000, guid: 86489ef2ecb804c42bfc7c5529bb00f3, type: 3}
 --- !u!1 &1584934602
 GameObject:
