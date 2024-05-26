@@ -193,6 +193,7 @@ public class GameManager : MonoBehaviour
             case (int)GameState.Running:
                 {
                     uiManager.CurrentActivePanel = null;
+                    uiManager.stagePanel.SetActive(true);
 
                     Time.timeScale = prevTimeScale;
                     textStartTimer.gameObject.SetActive(true);
@@ -209,6 +210,7 @@ public class GameManager : MonoBehaviour
                         return;
 
                     uiManager.CurrentActivePanel = uiManager.panels[(GameState)state];
+                    uiManager.stagePanel.SetActive(false);
 
                     prevTimeScale = Time.timeScale;
                     Time.timeScale = 0f;

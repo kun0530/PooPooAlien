@@ -9,6 +9,7 @@ public class StageUiManager : MonoBehaviour
 {
     private GameManager gameManager;
 
+    public GameObject stagePanel;
     public TextMeshProUGUI textGameTimer;
     public List<Image> heartImages;
 
