@@ -10,8 +10,7 @@ public class EnhanceManager : MonoBehaviour
 
     private EnhanceTable enhanceTable;
 
-    public TextMeshProUGUI goldText;
-    private string goldTextFormat = "{0}K";
+    public UiNumberIncrease goldText;
     
     public Button exitButton;
 
@@ -75,7 +74,7 @@ public class EnhanceManager : MonoBehaviour
             uiManager.ChangeUiState(UiStates.StageSelect);
         });
 
-        UpdateGoldText();
+        goldText.CurrentNum = Variables.SaveData.Gold;
     }
 
     private void Update()
@@ -84,11 +83,6 @@ public class EnhanceManager : MonoBehaviour
         {
             uiManager.ChangeUiState(UiStates.StageSelect);
         }
-    }
-
-    public void UpdateGoldText()
-    {
-        goldText.text = string.Format(goldTextFormat, Utils.NumberToString(Variables.SaveData.Gold));
     }
 
     public void EnhanceStat()
@@ -118,7 +112,7 @@ public class EnhanceManager : MonoBehaviour
         currentLevel = ++Variables.SaveData.EnhanceStatData[(PlayerStat)SelectedEnhanceData.Stat];
         Logger.Log($"강화: {currentLevel}");
         Logger.Log($"남은 금액: {Utils.NumberToString(Variables.SaveData.Gold)}");
-        UpdateGoldText();
+        goldText.TargetNum = Variables.SaveData.Gold;
 
         foreach (var enhanceStat in enhanceStats)
         {
@@ -162,7 +156,7 @@ public class EnhanceManager : MonoBehaviour
         else
         {
             selectedStatIncreaseText.text = string.Format(increaseFormat, currentStat, nextStat);
-            selectedStatRequiredGoldText.text = string.Format(goldTextFormat, requiredGold);
+            selectedStatRequiredGoldText.text = string.Format("{0} Gold", requiredGold);
             enhanceButton.interactable = Variables.SaveData.Gold >= requiredGold;
         }
     }

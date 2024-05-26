@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 
 public enum GameState
@@ -100,7 +101,6 @@ public class GameManager : MonoBehaviour
     {
         StageId = Variables.stageId;
         SectionId = 1;
-
         var stageData = DataTableManager.Get<StageTable>(DataTableIds.Stage).Get(StageId);
 
         prevTimeScale = 1f;

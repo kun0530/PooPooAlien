@@ -37,6 +37,7 @@ public class StageUiManager : MonoBehaviour
         panels.Add(GameState.GameClear, gameClearPanel);
 
         pausePanel.SetActive(false);
+        gameOverPanel.SetActive(false);
     }
 
     private void Update()
