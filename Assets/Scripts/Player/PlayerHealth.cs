@@ -33,6 +33,9 @@ public class PlayerHealth : LivingEntity
         }
     }
 
+    public ParticleSystem hitEffect;
+    public ParticleSystem deathEffect;
+
     private void Awake()
     {
         playerBooster = GetComponent<PlayerBooster>();
@@ -68,8 +71,10 @@ public class PlayerHealth : LivingEntity
 
     public override void OnDamage(float damage)
     {
-        if (isInvincible || playerBooster.isBoosting)
+        if (isInvincible || playerBooster.IsBoosting)
             return;
+
+        hitEffect.Play();
 
         CurrentHealth -= damage;
         gameManager.playerHitCount++;
@@ -86,6 +91,8 @@ public class PlayerHealth : LivingEntity
     {
         if (isDead)
             return;
+
+        deathEffect.Play();
 
         base.OnDie();
         gameObject.SetActive(false);

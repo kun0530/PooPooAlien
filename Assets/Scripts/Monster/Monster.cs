@@ -49,6 +49,9 @@ public class Monster : LivingEntity
 
     private SkinnedMeshRenderer skinRenderer;
 
+    public ParticleSystem hitEffect;
+    public ParticleSystem deathEffect;
+
     private void Awake()
     {
         skinRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
@@ -57,6 +60,7 @@ public class Monster : LivingEntity
     protected override void OnEnable()
     {
         base.OnEnable();
+        skinRenderer.enabled = true;
         isDamageAble = false;
     }
 
@@ -71,13 +75,21 @@ public class Monster : LivingEntity
 
     private void Update()
     {
+        if (isDead)
+        {
+            if (deathEffect.isPlaying)
+                return;
+            else
+                pool?.Release(this);
+        }
+
         transform.position += direction * Time.deltaTime;
         transform.LookAt(transform.position + direction);
 
         if (isBounce && direction.x != 0)
         {
             if ((transform.position.x <= moveLimitLeft && direction.x < 0)
-            || (transform.position.x >= moveLimitRight && direction.x > 0)) // test 스포너 양끝 경계
+            || (transform.position.x >= moveLimitRight && direction.x > 0))
             {
                 direction.x *= -1;
             }
@@ -104,6 +116,8 @@ public class Monster : LivingEntity
         if (!isDamageAble)
             return;
 
+        hitEffect.Play();
+
         damage -= def;
         if (damage > 0)
             base.OnDamage(damage);
@@ -113,14 +127,13 @@ public class Monster : LivingEntity
     {
         base.OnDie();
 
+        skinRenderer.enabled = false;
+        hitEffect.Stop();
+        deathEffect.Play();
+
         gameManager.CurrentScore += Data.Score;
         gameManager.CurrentKillPoint += Data.KillPoint;
         gameManager.EarnedGold += Data.GetGold;
         gameManager.itemSpawner.DropItem(Data.ItemDropId, transform.position);
-
-        if (pool != null)
-        {
-            pool.Release(this);
-        }
     }
 }

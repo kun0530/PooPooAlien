@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5424091172235954343}
   - component: {fileID: 9155241680319229140}
   - component: {fileID: 5083106285633870778}
-  - component: {fileID: 3368714737727876276}
   m_Layer: 0
   m_Name: CFX_Hit_C Directional White
   m_TagString: FxTemporaire
@@ -28,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 6169536614055068081}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalPosition: {x: 0.74444836, y: 0, z: 8.112871}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4730,16 +4729,3 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &3368714737727876276
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6169536614055068081}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fd2e8874f60266498a388d7229a1bac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnlyDeactivate: 0

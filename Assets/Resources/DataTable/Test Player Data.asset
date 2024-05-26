@@ -12,25 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5789cecf142042d0abf648e6dc18a2c, type: 3}
   m_Name: Test Player Data
   m_EditorClassIdentifier: 
-  maxHp: 10
+  maxHp: 3
   startHp: 3
   basicAttack: 0
   focusAttack: 0
   focusSpeed: 10
-  focusScale: 0.01
-  focusInterval: 0.1
+  focusScale: 1
+  focusInterval: 1
   spreadAttack: 1
-  spreadSpeed: 5
+  spreadSpeed: 10
   spreadScale: 1
-  spreadInterval: 0.3
-  lazorAttack: 100000
+  spreadInterval: 1
+  lazorAttack: 0
   lazorInterval: 0.1
-  penetAttack: 1000000
+  penetAttack: 0
   penetScale: 10
   penetInterval: 0.1
   invincibleDuration: 1
-  boosterSpeed: 5
-  boosterDuration: 10
+  boosterSpeed: 3
+  boosterDuration: 1
   boosterSize: 10
-  monsterSpawnInterval: 10
-  isTesting: 0
+  monsterSpawnInterval: 1
+  isTesting: 1

@@ -16,11 +16,27 @@ public class PlayerBooster : MonoBehaviour
     private float boosterColliderScale;
     public GameObject boosterCollider;
 
-    public bool isBoosting { get; private set; }
+    public ParticleSystem boosterEffect;
+
+    private bool isBoosting;
+    public bool IsBoosting {
+        get { return isBoosting; }
+        private set
+        {
+            if (isBoosting == value)
+                return;
+
+            isBoosting = value;
+            if (isBoosting)
+                boosterEffect.Play();
+            else
+                boosterEffect.Stop();
+        }
+    }
 
     private void Awake()
     {
-        isBoosting = false;
+        IsBoosting = false;
 
         boosterSpeed = Variables.CalculateCurrentSaveStat(PlayerStat.BoosterSpeed);
         boosterColliderScale = Variables.CalculateCurrentSaveStat(PlayerStat.BoosterSize);
@@ -42,7 +58,7 @@ public class PlayerBooster : MonoBehaviour
 
     private void Update()
     {
-        if (!isBoosting || gameManager.gameState != GameState.Running || Time.timeScale == 0f)
+        if (!IsBoosting || gameManager.gameState != GameState.Running || Time.timeScale == 0f)
             return;
 
         nextBoosterTimer += Time.deltaTime / Time.timeScale;
@@ -52,20 +68,20 @@ public class PlayerBooster : MonoBehaviour
             gameManager.IsTimerStop = false;
             Time.timeScale = 1f;
             boosterCollider.SetActive(false);
-            isBoosting = false;
+            IsBoosting = false;
         }
     }
 
     public void BoosterOn()
     {
-        if (isBoosting)
+        if (IsBoosting)
             return;
 
         nextBoosterTimer = 0f;
         Time.timeScale = boosterSpeed;
         gameManager.IsTimerStop = true;
         boosterCollider.SetActive(true);
-        isBoosting = true;
+        IsBoosting = true;
     }
 
     [Conditional("DEVELOP_TEST")]

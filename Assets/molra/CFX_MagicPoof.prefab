@@ -9595,7 +9595,6 @@ GameObject:
   - component: {fileID: 260053361352414890}
   - component: {fileID: 2508537586737781032}
   - component: {fileID: 3411169635508916275}
-  - component: {fileID: 8864363390534073368}
   m_Layer: 0
   m_Name: CFX_MagicPoof
   m_TagString: FxTemporaire
@@ -14351,19 +14350,6 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &8864363390534073368
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1825986632306053631}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fd2e8874f60266498a388d7229a1bac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnlyDeactivate: 0
 --- !u!1 &3117749584977879781
 GameObject:
   m_ObjectHideFlags: 0
