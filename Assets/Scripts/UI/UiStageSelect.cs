@@ -37,11 +37,11 @@ public class UiStageSelect : MonoBehaviour
                 return;
 
             if (value > stageCount)
-            {
                 value = startStage;
-            }
+            else if (value < startStage)
+                value = stageCount;
 
-            selectedStage = Mathf.Clamp(value, startStage, stageCount);
+            selectedStage = value;
 
             stageNameText.text = string.Format(stageNameForamt, selectedStage, stageTable.Get(selectedStage).Name);
             
@@ -89,10 +89,9 @@ public class UiStageSelect : MonoBehaviour
         if (isCameraMoving)
         {
             mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, nextCameraPos, Time.deltaTime * cameraSpeed);
-            if (Vector3.Distance(mainCamera.transform.position, nextCameraPos) < 1f)
+            if (Vector3.Distance(mainCamera.transform.position, nextCameraPos) < 0.01f)
             {
                 mainCamera.transform.position = nextCameraPos;
-                mainCamera.transform.LookAt(cameraTarget);
                 isCameraMoving = false;
             }
         }
@@ -100,11 +99,15 @@ public class UiStageSelect : MonoBehaviour
         if (isTargetMoving)
         {
             cameraTarget.position = Vector3.Lerp(cameraTarget.position, nextPlanetPos, Time.deltaTime * cameraSpeed);
-            if (Vector3.Distance(cameraTarget.position, nextPlanetPos) < 1f)
+            if (Vector3.Distance(cameraTarget.position, nextPlanetPos) < 0.01f)
             {
                 cameraTarget.position = nextPlanetPos;
                 isTargetMoving = false;
             }
+        }
+
+        if (isCameraMoving || isTargetMoving)
+        {
             mainCamera.transform.LookAt(cameraTarget);
         }
 

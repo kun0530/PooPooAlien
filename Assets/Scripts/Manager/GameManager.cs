@@ -148,6 +148,11 @@ public class GameManager : MonoBehaviour
                 ChangeGameState(GameState.GameClear);
             }
         }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            ChangeGameState(GameState.Pause);
+        }
     }
 
     private void CalculateGameTime()
