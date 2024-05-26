@@ -86,6 +86,15 @@ public class UiStageSelect : MonoBehaviour
 
     private void Update()
     {
+        if (TouchManager.Instance.Swipe == Directions.Right)
+        {
+            SelectedStage--;
+        }
+        else if (TouchManager.Instance.Swipe == Directions.Left)
+        {
+            SelectedStage++;
+        }
+
         if (isCameraMoving)
         {
             mainCamera.transform.position = Vector3.Lerp(mainCamera.transform.position, nextCameraPos, Time.deltaTime * cameraSpeed);
