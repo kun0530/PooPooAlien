@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class UiTitleSetting : MonoBehaviour
 {
@@ -11,10 +13,41 @@ public class UiTitleSetting : MonoBehaviour
     private Languages selectedLanguage;
     public TextMeshProUGUI languageText;
 
-    public void OnEnable()
+    // Audio
+    public Slider backgroundMusicSlider;
+    public Slider effectSoundSlider;
+    public AudioMixer masterMixer;
+    private AudioManager audioMgr;
+    public AudioManager audioManager{
+        get
+        {
+            if (audioMgr == null)
+                audioMgr = AudioManager.Instance;
+            if (audioMgr.masterMixer == null)
+                audioMgr.masterMixer = masterMixer;
+            return audioMgr;
+        }
+    }
+
+    public float MusicVolume
+    {
+        get { return audioManager.MusicVolume; }
+        set { audioManager.MusicVolume = value; }
+    }
+
+    public float EffectsVolume
+    {
+        get { return audioManager.EffectsVolume; }
+        set { audioManager.EffectsVolume = value; }
+    }
+
+    private void OnEnable()
     {
         selectedLanguage = Variables.SaveData.CurrentLang;
         languageText.text = selectedLanguage.ToString();
+
+        backgroundMusicSlider.value = MusicVolume;
+        effectSoundSlider.value = EffectsVolume;
     }
 
     public void ChangeLanguage(bool isNext)
@@ -38,6 +71,7 @@ public class UiTitleSetting : MonoBehaviour
         }
         else
         {
+            Variables.isStartGame = true;
             uiManager.ChangeUiState(UiStates.StageSelect);
         }
     }
