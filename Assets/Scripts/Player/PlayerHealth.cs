@@ -36,9 +36,14 @@ public class PlayerHealth : LivingEntity
     public ParticleSystem hitEffect;
     public ParticleSystem deathEffect;
 
+    private AudioSource audioPlayer;
+    public AudioClip hitSound;
+    public AudioClip deathSound;
+
     private void Awake()
     {
         playerBooster = GetComponent<PlayerBooster>();
+        audioPlayer = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -75,6 +80,7 @@ public class PlayerHealth : LivingEntity
             return;
 
         hitEffect.Play();
+        audioPlayer.PlayOneShot(hitSound);
 
         CurrentHealth -= damage;
         gameManager.playerHitCount++;
@@ -93,6 +99,7 @@ public class PlayerHealth : LivingEntity
             return;
 
         deathEffect.Play();
+        audioPlayer.PlayOneShot(deathSound);
 
         base.OnDie();
         gameObject.SetActive(false);

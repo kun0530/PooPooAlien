@@ -95,7 +95,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public int playerHitCount;
+    public int playerHitCount { get; set; }
 
     private void Start()
     {
@@ -240,5 +240,31 @@ public class GameManager : MonoBehaviour
     public void ChangeGameState(GameState state)
     {
         ChangeGameState((int)state);
+    }
+
+    //public AudioMixer masterMixer;
+    private AudioManager audioMgr;
+    public AudioManager audioManager{
+        get
+        {
+            if (audioMgr == null)
+            {
+                audioMgr = AudioManager.Instance;
+                //audioMgr.masterMixer = masterMixer;
+            }
+            return audioMgr;
+        }
+    }
+
+    public float MusicVolume
+    {
+        get { return audioManager.MusicVolume; }
+        set { audioManager.MusicVolume = value;}
+    }
+
+    public float EffectsVolume
+    {
+        get { return audioManager.EffectsVolume; }
+        set { audioManager.EffectsVolume = value;}
     }
 }

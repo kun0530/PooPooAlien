@@ -33,42 +33,42 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        var newPosX = transform.position.x + joyStick.GetAxis(JoyStick.Axis.Horizontal) * speed * Time.deltaTime;
-        transform.position = new Vector3(Mathf.Clamp(newPosX, moveLimitLeft, moveLimitRight), transform.position.y, transform.position.z);
+        // var newPosX = transform.position.x + joyStick.GetAxis(JoyStick.Axis.Horizontal) * speed * Time.deltaTime;
+        // transform.position = new Vector3(Mathf.Clamp(newPosX, moveLimitLeft, moveLimitRight), transform.position.y, transform.position.z);
 
-        // move = Vector3.zero;
+        move = Vector3.zero;
 
-        // if (!isMoving && Input.GetMouseButtonDown(0))
-        // {
-        //     var cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-        //     int layerMask = 1 << LayerMask.NameToLayer("Player");
-        //     if (Physics.Raycast(cameraRay, out RaycastHit hitInfo, layerMask))
-        //     {
-        //         if (hitInfo.collider.gameObject == gameObject)
-        //         {
-        //             touchEffect.Play();
-        //             isMoving = true;
-        //         }
-        //     }
-        // }
+        if (!isMoving && Input.GetMouseButtonDown(0))
+        {
+            var cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+            int layerMask = 1 << LayerMask.NameToLayer("PlayerMove");
+            if (Physics.Raycast(cameraRay, out RaycastHit hitInfo, layerMask))
+            {
+                if (hitInfo.collider.gameObject != null)
+                {
+                    touchEffect.Play();
+                    isMoving = true;
+                }
+            }
+        }
 
-        // if (isMoving && Input.GetMouseButton(0))
-        // {
-        //     var cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-        //     if (plane.Raycast(cameraRay, out float rayLength))
-        //     {
-        //         move = new Vector3(Mathf.Clamp(cameraRay.GetPoint(rayLength).x, moveLimitLeft, moveLimitRight), 0f, transform.position.z);
-        //         transform.position = move;
-        //         touchEffect.transform.position = cameraRay.GetPoint(rayLength);
-        //         touchEffect.Play();
-        //         // transform.position = Vector3.Lerp(transform.position, move, Time.deltaTime * speed);
-        //     }
-        // }
+        if (isMoving && Input.GetMouseButton(0))
+        {
+            var cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (plane.Raycast(cameraRay, out float rayLength))
+            {
+                move = new Vector3(Mathf.Clamp(cameraRay.GetPoint(rayLength).x, moveLimitLeft, moveLimitRight), 0f, transform.position.z);
+                transform.position = move;
+                touchEffect.transform.position = cameraRay.GetPoint(rayLength);
+                touchEffect.Play();
+                // transform.position = Vector3.Lerp(transform.position, move, Time.deltaTime * speed);
+            }
+        }
 
-        // if (isMoving && Input.GetMouseButtonUp(0))
-        // {
-        //     touchEffect.Stop();
-        //     isMoving = false;
-        // }
+        if (isMoving && Input.GetMouseButtonUp(0))
+        {
+            touchEffect.Stop();
+            isMoving = false;
+        }
     }
 }

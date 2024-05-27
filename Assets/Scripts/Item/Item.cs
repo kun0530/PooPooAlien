@@ -26,6 +26,13 @@ public class Item : MonoBehaviour
     private float speed = 3f;
     private Vector3 direction;
 
+    private AudioSource itemAudioPlayer;
+
+    private void Awake()
+    {
+        itemAudioPlayer = GetComponent<AudioSource>();
+    }
+
     private void Start()
     {
         direction = new Vector3(0, 0, -1);
@@ -41,6 +48,7 @@ public class Item : MonoBehaviour
         if (collider.CompareTag("Player"))
         {
             ApplyItemEffect(collider);
+            itemAudioPlayer.Play();
             if (pool != null)
             {
                 pool.Release(this);

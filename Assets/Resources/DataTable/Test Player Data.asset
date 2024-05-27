@@ -16,8 +16,8 @@ MonoBehaviour:
   startHp: 3
   basicAttack: 0
   focusAttack: 0
-  focusSpeed: 10
-  focusScale: 1
+  focusSpeed: 100
+  focusScale: 0.5
   focusInterval: 1
   spreadAttack: 1
   spreadSpeed: 10
@@ -33,4 +33,4 @@ MonoBehaviour:
   boosterDuration: 1
   boosterSize: 10
   monsterSpawnInterval: 1
-  isTesting: 1
+  isTesting: 0
