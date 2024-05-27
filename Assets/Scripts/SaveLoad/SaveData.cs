@@ -14,15 +14,19 @@ public class SaveDataV1 : SaveData
     private float gold = 0;
     public float Gold {
         get { return gold; }
-        set {
+        set
+        {
             if (value >= 100000f)
                 value = 99999f;
+            if (value < 0f)
+                value = 0f;
             gold = value;
         }
     }
     private Dictionary<PlayerStat, int> enhanceStatData;
     public Dictionary<PlayerStat, int> EnhanceStatData{
-        get {
+        get
+        {
             if (enhanceStatData == null)
             {
                 enhanceStatData = new Dictionary<PlayerStat, int>();
@@ -34,9 +38,11 @@ public class SaveDataV1 : SaveData
             return enhanceStatData;
         }
     }
+
     private Dictionary<int, int> stageClearData;
     public Dictionary<int, int> StageClearData{
-        get {
+        get
+        {
             if (stageClearData == null)
             {
                 stageClearData = new Dictionary<int, int>();
@@ -46,6 +52,25 @@ public class SaveDataV1 : SaveData
                 }
             }
             return stageClearData;
+        }
+    }
+
+    private Languages currentLang = Variables.defaultLang;
+    public Languages CurrentLang{
+        get
+        {
+            if ((int)currentLang <= (int)Languages.None || (int)currentLang >= (int)Languages.Count)
+            {
+                currentLang = Variables.defaultLang;
+            }
+            return currentLang;
+        }
+        set
+        {
+            if ((int)value <= (int)Languages.None || (int)value >= (int)Languages.Count)
+                return;
+
+            currentLang = value;
         }
     }
 

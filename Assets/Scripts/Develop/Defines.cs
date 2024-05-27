@@ -2,8 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum Languages
+{
+    None = -1,
+    Korean,
+    English,
+    Count
+}
+
 public static class DataTableIds
 {
+    public static readonly string[] String =
+    {
+        "StringTableKr",
+        "StringTableEn"
+    };
+
+    public static string CurrString
+    {
+        get
+        {
+            return String[(int)Variables.SaveData.CurrentLang];
+        }
+    }
+
     public static readonly string Stage = "StageTable";
     public static readonly string Monster = "MonsterTable";
     public static readonly string MonsterSpawn = "MonsterSpawnTable";

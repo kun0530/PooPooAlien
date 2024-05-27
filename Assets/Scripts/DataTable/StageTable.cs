@@ -18,6 +18,11 @@ public class StageData
     public float ClearGold { get; set; }
     public string Desc { get; set; }
 
+    public string GetName()
+    {
+        return DataTableManager.GetStringTable().Get(Name);
+    }
+
     public override string ToString()
     {
         return $"{StageNum}스테이지: {Name} / {StageKillp} / {StageTimerset} / {StageScoreget} / {StageTimerleft} / {StageHitcount} / {ClearGold} / {Desc}";

@@ -43,7 +43,7 @@ public class UiStageSelect : MonoBehaviour
 
             selectedStage = value;
 
-            stageNameText.text = string.Format(stageNameForamt, selectedStage, stageTable.Get(selectedStage).Name);
+            stageNameText.text = string.Format(stageNameForamt, selectedStage, stageTable.Get(selectedStage).GetName());
             
             var clearStar = Variables.SaveData.StageClearData[selectedStage];
             foreach (var star in stageStars)
