@@ -144,9 +144,9 @@ public class EnhanceManager : MonoBehaviour
         float requiredGold = SelectedEnhanceData.RequiredGold + SelectedEnhanceData.RequiredGoldIncrease * (currentLevel - 1);
 
         selectedStatIcon.sprite = SelectedEnhanceData.GetIcon();
-        selectedStatNameText.text = SelectedEnhanceData.Name;
+        selectedStatNameText.text = SelectedEnhanceData.GetName();
         selectedStatLevelText.text = string.Format(levelFormat, currentLevel, maxLevel);
-        selectedStatDescText.text = SelectedEnhanceData.Desc;
+        selectedStatDescText.text = SelectedEnhanceData.GetDesc();
         if (currentLevel >= SelectedEnhanceData.MaxLevel)
         {
             selectedStatIncreaseText.text = $"{currentStat}";

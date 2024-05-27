@@ -38,6 +38,16 @@ public class EnhanceData
         return Resources.Load<Sprite>(string.Format("EnhanceIcon/{0}", Sprite));
     }
 
+    public string GetName()
+    {
+        return DataTableManager.GetStringTable().Get(Name);
+    }
+
+    public string GetDesc()
+    {
+        return DataTableManager.GetStringTable().Get(Desc);
+    }
+
     public override string ToString()
     {
         return $"{Id}: {Name} / {Stat} / {MaxLevel} / {StatIncrease} / {RequiredGold} / {RequiredGoldIncrease}";

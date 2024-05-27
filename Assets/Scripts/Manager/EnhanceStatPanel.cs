@@ -27,7 +27,7 @@ public class EnhanceStatPanel : MonoBehaviour
             statIcon.sprite = data.GetIcon();
 
             int currentLevel = Variables.SaveData.EnhanceStatData[(PlayerStat)data.Stat];
-            statName.text = string.Format(statNameFormat, data.Name, currentLevel, data.MaxLevel);
+            statName.text = string.Format(statNameFormat, data.GetName(), currentLevel, data.MaxLevel);
 
             if (currentLevel >= data.MaxLevel)
             {

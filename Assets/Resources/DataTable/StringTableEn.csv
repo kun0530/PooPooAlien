@@ -1,21 +1,53 @@
 Id,String
 Stage1_Name,PooPoo
-Stage2_Name,PpuPpu
+Stage2_Name,PPuPPu
 Stage3_Name,PoPo
-Stage4_Name,PpoPpo
-Stage5_Name,PpiPpi
+Stage4_Name,PPoPPo
+Stage5_Name,PPiPPi
 Stage6_Name,PiPi
-Stage7_Name,PpaPpa
+Stage7_Name,PePe
 Stage8_Name,PaPa
 Stage9_Name,PuPu
-Stage10_Name,PwaPwa
-Stage1_Desc,This is a Planet1
-Stage2_Desc,This is a Planet2
-Stage3_Desc,This is a Planet3
-Stage4_Desc,This is a Planet4
-Stage5_Desc,This is a Planet5
-Stage6_Desc,This is a Planet6
-Stage7_Desc,This is a Planet7
-Stage8_Desc,This is a Planet8
-Stage9_Desc,This is a Planet9
-Stage10_Desc,This is a Planet10
+Stage10_Name,PyPy
+Stage_Start_Text,START
+Stage_Enhance_Text,Enhance
+Setting_Title_Text,Setting
+Setting_Lang_Text,Language
+Setting_BGM_Text,BGM
+Setting_VFX_Text,VFX
+Setting_BackToTitle_Text,Back To Title
+Setting_Quit_Text,Quit Game
+Pause_Title_Text,Pause
+Pause_BackToMain_Text,Back To MAIN
+Pause_Restart_Text,ReSTART
+Pause_Continue_Text,Continue
+Gameover_BackToMain_Text,Back To MAIN
+Gameover_Retry_Text,Retry
+Clear_Score_Text,SCORE
+Clear_Score_Timeleft_Text,TIME LEFT
+Clear_Hitcount_Text,HIT GOT
+Clear_Goldearn_Text,GOLD EARN
+Clear_Confirm_Text,Confirm
+Enhance_Title_Text,ENHANCE
+Enhance_Choice_Text,Choose the List
+Enhance_Possible_Text,Can Enhance!!
+BasicAtkEnhance_Name,Basic Attack
+BasicAtkEnhance_Desc,Enhance the Player's Attack. Applies to ALL Attacks.
+MaxHeartEnhance_Name,Max Heart
+MaxHeartEnhance_Desc,Increase the Player's Maximum Heart Cap
+StartHeartEnhance_Name,Starting Heart
+StartHeartEnhance_Desc,Increase the Heart when Player get start. It Cannot Exceed the Player's Maximum Heart.
+FocusPjtEnhance_Name,Focus Attack
+FocusPjtEnhance_Desc,Enhance the Focus Projectile's Attack DMG.
+SpreadPjtEnhance_Name,Spread Attack
+SpreadPjtEnhance_Desc,Enhance the Spread Projectile's Attack DMG.
+LazorPjtEnhance_Name,Laser Attack
+LazorPjtEnhance_Desc,Enhance the Laser Attack DMG.
+PenetPjtEnhance_Name,X
+PenetPjtEnhance_Desc,X
+PowerUpEnhance_Name,PowerUP
+PowerUpEnhance_Desc,Increase More DMG when you get PowerUP Item.
+BoosterSpdEnhance_Name,Boost SPD
+BoosterSpdEnhance_Desc,Increase Speed when you Boosting
+BoosterSizeEnhance_Name,Boost SIZE
+BoosterSizeEnhance_Desc,Increase Collision Size when you Boosting
