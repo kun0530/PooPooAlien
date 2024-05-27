@@ -123,7 +123,7 @@ public class Monster : LivingEntity
             base.OnDamage(damage);
     }
 
-    protected override void OnDie()
+    public override void OnDie()
     {
         base.OnDie();
 

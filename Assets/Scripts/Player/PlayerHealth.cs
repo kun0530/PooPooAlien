@@ -87,7 +87,7 @@ public class PlayerHealth : LivingEntity
         isInvincible = true;
     }
 
-    protected override void OnDie()
+    public override void OnDie()
     {
         if (isDead)
             return;

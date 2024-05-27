@@ -9,7 +9,9 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 move;
     private Plane plane = new Plane(Vector3.up, Vector3.zero);
     private bool isMoving = false;
-    // private float speed = 5f;
+    public float speed = 5f;
+
+    public JoyStick joyStick;
 
     private float moveLimitLeft;
     private float moveLimitRight;
@@ -31,40 +33,42 @@ public class PlayerMovement : MonoBehaviour
 
     private void Update()
     {
-        move = Vector3.zero;
+        var newPosX = transform.position.x + joyStick.GetAxis(JoyStick.Axis.Horizontal) * speed * Time.deltaTime;
+        transform.position = new Vector3(Mathf.Clamp(newPosX, moveLimitLeft, moveLimitRight), transform.position.y, transform.position.z);
 
-        if (!isMoving && Input.GetMouseButtonDown(0))
-        {
-            var cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-            int layerMask = 1 << LayerMask.NameToLayer("Player");
-            if (Physics.Raycast(cameraRay, out RaycastHit hitInfo, layerMask))
-            {
-                if (hitInfo.collider.gameObject == gameObject)
-                {
-                    touchEffect.Play();
-                    isMoving = true;
-                }
-            }
-        }
+        // move = Vector3.zero;
 
-        if (isMoving && Input.GetMouseButton(0))
-        {
-            var cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (plane.Raycast(cameraRay, out float rayLength))
-            {
-                move = new Vector3(Mathf.Clamp(cameraRay.GetPoint(rayLength).x, moveLimitLeft, moveLimitRight), 0f, transform.position.z);
-                transform.position = move;
-                touchEffect.transform.position = cameraRay.GetPoint(rayLength);
-                touchEffect.Play();
-                // transform.position = Vector3.Lerp(transform.position, move, Time.deltaTime * speed);
-            }
-        }
+        // if (!isMoving && Input.GetMouseButtonDown(0))
+        // {
+        //     var cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //     int layerMask = 1 << LayerMask.NameToLayer("Player");
+        //     if (Physics.Raycast(cameraRay, out RaycastHit hitInfo, layerMask))
+        //     {
+        //         if (hitInfo.collider.gameObject == gameObject)
+        //         {
+        //             touchEffect.Play();
+        //             isMoving = true;
+        //         }
+        //     }
+        // }
 
-        if (isMoving && Input.GetMouseButtonUp(0))
-        {
-            touchEffect.Stop();
-            isMoving = false;
-            // 이동 끝처리는 조금 더 생각
-        }
+        // if (isMoving && Input.GetMouseButton(0))
+        // {
+        //     var cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //     if (plane.Raycast(cameraRay, out float rayLength))
+        //     {
+        //         move = new Vector3(Mathf.Clamp(cameraRay.GetPoint(rayLength).x, moveLimitLeft, moveLimitRight), 0f, transform.position.z);
+        //         transform.position = move;
+        //         touchEffect.transform.position = cameraRay.GetPoint(rayLength);
+        //         touchEffect.Play();
+        //         // transform.position = Vector3.Lerp(transform.position, move, Time.deltaTime * speed);
+        //     }
+        // }
+
+        // if (isMoving && Input.GetMouseButtonUp(0))
+        // {
+        //     touchEffect.Stop();
+        //     isMoving = false;
+        // }
     }
 }

@@ -28,7 +28,7 @@ public class LivingEntity : MonoBehaviour
         }
     }
 
-    protected virtual void OnDie()
+    public virtual void OnDie()
     {
         isDead = true;
     }

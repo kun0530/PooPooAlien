@@ -9,7 +9,7 @@ public class PlayerBoosterCollider : MonoBehaviour
         if (collider.CompareTag("Enemy"))
         {
             var living = collider.GetComponent<LivingEntity>();
-            living.OnDamage(float.MaxValue);
+            living.OnDie();
         }
     }
 }
