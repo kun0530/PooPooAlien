@@ -17,7 +17,7 @@ public class MonsterSpawner : MonoBehaviour
     private GameManager gameManager;
 
     private float nextCreateTime;
-    private float spawnInterval = 2.3f;
+    private float spawnInterval = 0.4f;
 
     private void Start()
     {

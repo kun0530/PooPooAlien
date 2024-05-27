@@ -98,8 +98,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
-  hitEffect: {fileID: 0}
-  deathEffect: {fileID: 0}
+  hitEffect: {fileID: 6819967459622506825, guid: ff48ed7e697a5ed4187c382b45f9d9c9, type: 3}
+  deathEffect: {fileID: 9212034317224828028, guid: 7113346407db95f4680cab0d913838ce, type: 3}
 --- !u!1001 &5143058292031457537
 PrefabInstance:
   m_ObjectHideFlags: 0

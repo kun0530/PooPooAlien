@@ -6,60 +6,63 @@ using UnityEngine.UI;
 
 public class StartTimer : MonoBehaviour
 {
-    private TextMeshProUGUI timerText;
+    public List<Image> timerImages;
+    private int timerIndex;
 
-    public float startTimer = 3f;
     private float timerInterval = 1f;
-    private float timer = 0f;
-    private float currentTimer;
+    private float nextCountTime;
     private float prevTimeScale;
 
-    public Button pauseButton;
+    private bool isActiveTimer;
+
     public PlayerMovement playerMovement;
 
     private void Awake()
     {
-        timerText = GetComponent<TextMeshProUGUI>();
-        prevTimeScale = 1f;
+        isActiveTimer = false;
     }
 
-    private void OnEnable()
+    private void Start()
     {
-        timer = 0f;
-        currentTimer = startTimer;
-        timerText.text = $"{currentTimer}";
-        prevTimeScale = Time.timeScale;
-        Time.timeScale = 0f;
-
-        pauseButton.enabled = false;
-        playerMovement.enabled = false;
+        foreach (var image in timerImages)
+        {
+            image.gameObject.SetActive(false);
+        }
     }
 
     private void Update()
     {
-        timer += Time.unscaledDeltaTime;
-        if (timer >= timerInterval)
+        if (!isActiveTimer)
+            return;
+
+        if (Time.unscaledTime >= nextCountTime)
         {
-            currentTimer--;
-            if (currentTimer <= 0f)
-            {
-                timerText.text = "Start!";
-            }
-            else
-            {
-                timerText.text = $"{currentTimer}";
-            }
-            timer = 0f;
+            nextCountTime = Time.unscaledTime + timerInterval;
+            if (timerIndex < timerImages.Count && timerIndex >= 0)
+                timerImages[timerIndex].gameObject.SetActive(false);
+            timerIndex--;
+            if (timerIndex < timerImages.Count && timerIndex >= 0)
+                timerImages[timerIndex].gameObject.SetActive(true);
         }
 
-        if (currentTimer < 0f)
+        if (timerIndex < 0)
         {
+            isActiveTimer = false;
             Time.timeScale = prevTimeScale;
-
-            pauseButton.enabled = true;
             playerMovement.enabled = true;
-
-            gameObject.SetActive(false);
         }
+    }
+
+    public void ActiveTimer()
+    {
+        isActiveTimer = true;
+
+        timerIndex = timerImages.Count;
+        nextCountTime = 0f;
+
+        prevTimeScale = Time.timeScale;
+        Time.timeScale = 0f;
+
+        playerMovement.enabled = false;
     }
 }

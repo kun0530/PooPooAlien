@@ -116,6 +116,8 @@ public class Monster : LivingEntity
         if (!isDamageAble)
             return;
 
+        Logger.Log("Monster: Hit!");
+
         hitEffect.Play();
 
         damage -= def;

@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour
     private string formatScore = "{0}";
     public GameObject gameClearUi;
 
-    public TextMeshProUGUI textStartTimer;
+    public StartTimer startTimer;
 
     public UiNumberIncrease goldText;
     private float earnedGold;
@@ -202,10 +202,8 @@ public class GameManager : MonoBehaviour
                     uiManager.stagePanel.SetActive(true);
 
                     Time.timeScale = prevTimeScale;
-                    textStartTimer.gameObject.SetActive(true);
-
-                    if (playerMovement != null)
-                        playerMovement.enabled = true;
+                    startTimer.ActiveTimer();
+                    
                     break;
                 }
             case (int)GameState.GameOver:
@@ -240,31 +238,5 @@ public class GameManager : MonoBehaviour
     public void ChangeGameState(GameState state)
     {
         ChangeGameState((int)state);
-    }
-
-    //public AudioMixer masterMixer;
-    private AudioManager audioMgr;
-    public AudioManager audioManager{
-        get
-        {
-            if (audioMgr == null)
-            {
-                audioMgr = AudioManager.Instance;
-                //audioMgr.masterMixer = masterMixer;
-            }
-            return audioMgr;
-        }
-    }
-
-    public float MusicVolume
-    {
-        get { return audioManager.MusicVolume; }
-        set { audioManager.MusicVolume = value;}
-    }
-
-    public float EffectsVolume
-    {
-        get { return audioManager.EffectsVolume; }
-        set { audioManager.EffectsVolume = value;}
     }
 }

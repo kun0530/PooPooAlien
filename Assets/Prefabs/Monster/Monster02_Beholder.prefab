@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4613897477412778154}
-  - component: {fileID: 9117588388533289468}
   - component: {fileID: 2352809893667563006}
   - component: {fileID: 8323391716809737289}
+  - component: {fileID: 9117588388533289468}
   m_Layer: 7
   m_Name: Monster02_Beholder
   m_TagString: Enemy
@@ -35,21 +35,6 @@ Transform:
   - {fileID: 4656809384387890146}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9117588388533289468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 771970147723367544}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5eba65f95365545279c990538f0ea529, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
-  hitEffect: {fileID: 0}
-  deathEffect: {fileID: 0}
 --- !u!136 &2352809893667563006
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -65,7 +50,7 @@ CapsuleCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -100,6 +85,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &9117588388533289468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 771970147723367544}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5eba65f95365545279c990538f0ea529, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  hitEffect: {fileID: 6819967459622506825, guid: ff48ed7e697a5ed4187c382b45f9d9c9, type: 3}
+  deathEffect: {fileID: 9212034317224828028, guid: 7113346407db95f4680cab0d913838ce, type: 3}
 --- !u!1001 &8684547528735399822
 PrefabInstance:
   m_ObjectHideFlags: 0
