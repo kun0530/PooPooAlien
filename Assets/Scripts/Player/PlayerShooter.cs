@@ -6,6 +6,7 @@ using UnityEngine.Pool;
 
 public enum WeaponType
 {
+    None = -1,
     Focus,
     Spread,
     Lazor,
@@ -23,6 +24,16 @@ public class PlayerShooter : MonoBehaviour
         get { return currentWeaponType; }
         set {
             currentWeaponType = value;
+
+            if (currentWeaponType == WeaponType.None)
+            {
+                foreach (var weapon in weapons)
+                {
+                    weapon.Value.gameObject.SetActive(false);
+                }
+                return;
+            }
+
             foreach (var weapon in weapons)
             {
                 if (weapon.Value == null)
@@ -86,11 +97,6 @@ public class PlayerShooter : MonoBehaviour
             OnDestroyPoolObject,
             true, 10, 100
         );
-
-        for (int i = 0; i < 10; i++)
-        {
-            CreatePooledItem().gameObject.SetActive(false);
-        }
 
         ApplyTestData();
     }

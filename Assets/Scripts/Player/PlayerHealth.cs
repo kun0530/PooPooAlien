@@ -131,10 +131,14 @@ public class PlayerHealth : LivingEntity
         audioPlayer.PlayOneShot(deathSound);
 
         isInvincible = false;
+
         playerRender.SetActive(false);
         var playerMovement = gameObject.GetComponent<PlayerMovement>();
         if (playerMovement != null)
             playerMovement.enabled = false;
+        var playerShooter = gameObject.GetComponent<PlayerShooter>();
+        if (playerShooter != null)
+            playerShooter.CurrentWeaponType = WeaponType.None;
 
         base.OnDie();
     }
