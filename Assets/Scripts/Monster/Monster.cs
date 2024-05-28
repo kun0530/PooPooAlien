@@ -67,6 +67,8 @@ public class Monster : LivingEntity
         base.OnEnable();
         skinRenderer.enabled = true;
         isDamageAble = false;
+
+        gameObject.layer = LayerMask.NameToLayer("Monster");
     }
 
     private void Start()
@@ -136,6 +138,8 @@ public class Monster : LivingEntity
             return;
 
         base.OnDie();
+
+        gameObject.layer = LayerMask.NameToLayer("DeadMonster");
 
         skinRenderer.enabled = false;
         hitEffect?.Stop();

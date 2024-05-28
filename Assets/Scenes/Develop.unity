@@ -7064,6 +7064,50 @@ PrefabInstance:
       propertyPath: joyStick
       value: 
       objectReference: {fileID: 1747527809}
+    - target: {fileID: 3965630161900392078, guid: fcf7a741257814e939ad409aac33107f, type: 3}
+      propertyPath: laserMaterials.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3965630161900392078, guid: fcf7a741257814e939ad409aac33107f, type: 3}
+      propertyPath: laserMaterials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 78ce7799cad9b4348b6b97e2359e551b, type: 2}
+    - target: {fileID: 3965630161900392078, guid: fcf7a741257814e939ad409aac33107f, type: 3}
+      propertyPath: laserMaterials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2d7bea98f78a24417af8b1bfb689beb4, type: 2}
+    - target: {fileID: 3965630161900392078, guid: fcf7a741257814e939ad409aac33107f, type: 3}
+      propertyPath: laserMaterials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: b59ddce5832f640dab18de955ec1fd03, type: 2}
+    - target: {fileID: 7141244317895103074, guid: fcf7a741257814e939ad409aac33107f, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141244317895103074, guid: fcf7a741257814e939ad409aac33107f, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141244317895103074, guid: fcf7a741257814e939ad409aac33107f, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141244317895103074, guid: fcf7a741257814e939ad409aac33107f, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141244317895103074, guid: fcf7a741257814e939ad409aac33107f, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141244317895103074, guid: fcf7a741257814e939ad409aac33107f, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7141244317895103074, guid: fcf7a741257814e939ad409aac33107f, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7274667582119908993, guid: fcf7a741257814e939ad409aac33107f, type: 3}
       propertyPath: gameManager
       value: 

@@ -10,6 +10,8 @@ public class WeaponLazor : Weapon
 
     private LineRenderer lazorLineRenderer;
 
+    public List<Material> laserMaterials;
+
     protected override void Awake()
     {
         lazorLineRenderer = GetComponent<LineRenderer>();
@@ -43,6 +45,7 @@ public class WeaponLazor : Weapon
             isHitted = false;
             hitPoint = firePosition.position + firePosition.forward * fireDistance;
         }
+        lazorLineRenderer.material = laserMaterials[playerShooter.WeaponLevel - 1];
         lazorLineRenderer.SetPosition(0, firePosition.position);
         lazorLineRenderer.SetPosition(1, hitPoint);
 
