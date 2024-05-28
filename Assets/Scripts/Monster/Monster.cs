@@ -52,9 +52,14 @@ public class Monster : LivingEntity
     public ParticleSystem hitEffect;
     public ParticleSystem deathEffect;
 
+    private AudioSource audioPlayer;
+    public AudioClip hitSound;
+    public AudioClip deathSound;
+
     private void Awake()
     {
         skinRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
+        audioPlayer = GetComponent<AudioSource>();
     }
 
     protected override void OnEnable()
@@ -117,6 +122,7 @@ public class Monster : LivingEntity
             return;
 
         hitEffect.Play();
+        audioPlayer.PlayOneShot(hitSound);
 
         damage -= def;
         if (damage > 0)
@@ -125,11 +131,17 @@ public class Monster : LivingEntity
 
     public override void OnDie()
     {
+        if (isDead)
+            return;
+
         base.OnDie();
 
         skinRenderer.enabled = false;
         hitEffect.Stop();
         deathEffect.Play();
+
+        audioPlayer.Stop();
+        audioPlayer.PlayOneShot(deathSound);
 
         gameManager.CurrentScore += Data.Score;
         gameManager.CurrentKillPoint += Data.KillPoint;
