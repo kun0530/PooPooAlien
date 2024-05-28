@@ -5,49 +5,49 @@ Stage3_Name,포포
 Stage4_Name,뽀뽀
 Stage5_Name,삐삐
 Stage6_Name,피피
-Stage7_Name,페페
-Stage8_Name,파파
+Stage7_Name,빼빼
+Stage8_Name,패패
 Stage9_Name,퓨퓨
-Stage10_Name,퓌퓌
-Stage_Start_Text,시작
+Stage10_Name,퐈퐈
+Stage_Start_Text,출격
 Stage_Enhance_Text,강화
 Setting_Title_Text,설정
 Setting_Lang_Text,언어
-Setting_BGM_Text,배경음
-Setting_VFX_Text,효과음
+Setting_BGM_Text,BGM
+Setting_VFX_Text,VFX
 Setting_BackToTitle_Text,타이틀로 돌아가기
-Setting_Quit_Text,게임 나가기
+Setting_Quit_Text,게임 종료
 Pause_Title_Text,일시정지
-Pause_BackToMain_Text,메인으로 돌아가기
-Pause_Restart_Text,재시작
+Pause_BackToMain_Text,메인으로 돌아가
+Pause_Restart_Text,처음부터
 Pause_Continue_Text,계속하기
 Gameover_BackToMain_Text,메인으로 돌아가기
-Gameover_Retry_Text,다시하기
-Clear_Score_Text,점수
-Clear_Score_Timeleft_Text,남은 시간
-Clear_Hitcount_Text,피격 횟수
+Gameover_Retry_Text,스테이지 재도전
+Clear_Score_Text,스코어
+Clear_Score_Timeleft_Text,남은 타이머 시간
+Clear_Hitcount_Text,맞은 횟수
 Clear_Goldearn_Text,획득 골드
 Clear_Confirm_Text,확인
 Enhance_Title_Text,강화
-Enhance_Choice_Text,강화할 목록을 선택하세요
-Enhance_Possible_Text,강화 가능!!
+Enhance_Choice_Text,강화할 항목을 선택하세요
+Enhance_Possible_Text,강화 가능
 BasicAtkEnhance_Name,기본 공격력
 BasicAtkEnhance_Desc,플레이어의 공격력을 강화합니다. 모든 공격에 적용됩니다.
 MaxHeartEnhance_Name,최대 체력
-MaxHeartEnhance_Desc,플레이어의 최대 체력을 증가시킵니다.
+MaxHeartEnhance_Desc,플레이어의 최대 체력 상한을 상승시킵니다.
 StartHeartEnhance_Name,시작 체력
-StartHeartEnhance_Desc,시작할 때 플레이어가 갖는 체력을 증가시킵니다. 시작 체력은 플레이어의 최대 체력을 초과할 수 없습니다.
-FocusPjtEnhance_Name,집중형 공격
-FocusPjtEnhance_Desc,집중형 투사체 공격의 데미지를 강화합니다.
-SpreadPjtEnhance_Name,산탄형 공격
-SpreadPjtEnhance_Desc,산탄형 투사체 공격의 데미지를 강화합니다.
-LazorPjtEnhance_Name,레이저 공격
-LazorPjtEnhance_Desc,레이저 공격의 데미지를 강화합니다.
+StartHeartEnhance_Desc,플레이어가 스테이지를 시작할때 가지는 체력을 상승시킵니다. 플레이어의 최대 체력을 상회할 수 없습니다.
+FocusPjtEnhance_Name,집중형 투사체
+FocusPjtEnhance_Desc,집중형 투사체의 공격력이 증가합니다.
+SpreadPjtEnhance_Name,산탄형 투사체
+SpreadPjtEnhance_Desc,산탄형 투사체의 공격력이 증가합니다.
+LazorPjtEnhance_Name,레이저형 투사체
+LazorPjtEnhance_Desc,레이저형 투사체의 공격력이 증가합니다.
 PenetPjtEnhance_Name,X
 PenetPjtEnhance_Desc,X
-PowerUpEnhance_Name,파워업
-PowerUpEnhance_Desc,"파워업 아이템을 먹을 때, 증가되는 데미지의 양을 증가시킵니다."
-BoosterSpdEnhance_Name,부스터 스피드
-BoosterSpdEnhance_Desc,부스터 스피드를 증가시킵니다.
-BoosterSizeEnhance_Name,부스터 사이즈
-BoosterSizeEnhance_Desc,부스터 충돌 범위를 증가시킵니다.
+PowerUpEnhance_Name, 파워업 증폭
+PowerUpEnhance_Desc,파워업 아이템으로 상승하는 공격력이 증가합니다.
+BoosterSpdEnhance_Name,부스터 속도
+BoosterSpdEnhance_Desc,부스터 아이템을 획득 했을 때 앞으로 달려나가는 속도가 증가합니다.
+BoosterSizeEnhance_Name,부스터 충돌 크기
+BoosterSizeEnhance_Desc,부스터 아이템을 획득 했을 때 적들을 치고나가는 범위가 증가합니다.
