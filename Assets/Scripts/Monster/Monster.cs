@@ -100,7 +100,6 @@ public class Monster : LivingEntity
     {
         if (collider.CompareTag("Player"))
         {
-            Logger.Log("Player: Damage!");
             collider.GetComponent<LivingEntity>().OnDamage(atk);
             var playerShooter = collider.GetComponent<PlayerShooter>();
             playerShooter.WeaponLevel--;
@@ -114,10 +113,8 @@ public class Monster : LivingEntity
 
     public override void OnDamage(float damage)
     {
-        if (!isDamageAble)
+        if (!isDamageAble || isDead)
             return;
-
-        Logger.Log("Monster: Damage!");
 
         hitEffect.Play();
 
