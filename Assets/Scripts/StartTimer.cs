@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class StartTimer : MonoBehaviour
 {
+    public StageUiManager uiManager;
+
     public List<Image> timerImages;
     private int timerIndex;
 
@@ -50,6 +52,8 @@ public class StartTimer : MonoBehaviour
             isActiveTimer = false;
             Time.timeScale = prevTimeScale;
             playerMovement.enabled = true;
+
+            uiManager.stagePanel.SetActive(true);
         }
     }
 
@@ -64,5 +68,7 @@ public class StartTimer : MonoBehaviour
         Time.timeScale = 0f;
 
         playerMovement.enabled = false;
+
+        uiManager.stagePanel.SetActive(false);
     }
 }

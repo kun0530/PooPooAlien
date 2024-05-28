@@ -19,6 +19,10 @@ public class Bullet : MonoBehaviour
         if (collider.CompareTag("Enemy"))
         {
             var living = collider.GetComponent<LivingEntity>();
+
+            if (living.isDead)
+                return;
+
             if (living != null)
                 living.OnDamage(atk);
             if (pool != null)

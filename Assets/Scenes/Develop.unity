@@ -5804,6 +5804,7 @@ MonoBehaviour:
   - {fileID: 1585571200}
   - {fileID: 282472629}
   - {fileID: 1660654173}
+  spawnInterval: 0.55
 --- !u!4 &1911654223
 Transform:
   m_ObjectHideFlags: 0
@@ -6174,6 +6175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 539d91629cc194f03b95d78a9a6638e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  uiManager: {fileID: 804214362}
   timerImages:
   - {fileID: 38456296}
   - {fileID: 449283028}
