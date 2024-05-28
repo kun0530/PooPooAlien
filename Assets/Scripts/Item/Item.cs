@@ -26,11 +26,22 @@ public class Item : MonoBehaviour
     private float speed = 3f;
     private Vector3 direction;
 
+    private bool isEarned;
+    private MeshRenderer meshRenderer;
     private AudioSource itemAudioPlayer;
+    public ParticleSystem itemGetEffect;
 
     private void Awake()
     {
+        isEarned = false;
+        meshRenderer = GetComponentInChildren<MeshRenderer>();
         itemAudioPlayer = GetComponent<AudioSource>();
+    }
+
+    private void OnEnable()
+    {
+        meshRenderer.enabled = true;
+        isEarned = false;
     }
 
     private void Start()
@@ -40,19 +51,29 @@ public class Item : MonoBehaviour
 
     private void Update()
     {
+        if (isEarned)
+        {
+            if (itemGetEffect.isPlaying)
+                return;
+            else
+                pool?.Release(this);
+        }
+
         transform.position += direction * speed * Time.deltaTime;
     }
 
     private void OnTriggerEnter(Collider collider)
     {
+        if (isEarned)
+            return;
+
         if (collider.CompareTag("Player"))
         {
             ApplyItemEffect(collider);
             itemAudioPlayer.Play();
-            if (pool != null)
-            {
-                pool.Release(this);
-            }
+            itemGetEffect.Play();
+            meshRenderer.enabled = false;
+            isEarned = true;
         }
         else if (collider.CompareTag("Wall") && pool != null)
         {

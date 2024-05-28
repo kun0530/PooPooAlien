@@ -121,8 +121,9 @@ public class Monster : LivingEntity
         if (!isDamageAble || isDead)
             return;
 
-        hitEffect.Play();
-        audioPlayer.PlayOneShot(hitSound);
+        hitEffect?.Play();
+        if (hitSound != null)
+            audioPlayer?.PlayOneShot(hitSound);
 
         damage -= def;
         if (damage > 0)
@@ -137,11 +138,12 @@ public class Monster : LivingEntity
         base.OnDie();
 
         skinRenderer.enabled = false;
-        hitEffect.Stop();
-        deathEffect.Play();
+        hitEffect?.Stop();
+        deathEffect?.Play();
 
-        audioPlayer.Stop();
-        audioPlayer.PlayOneShot(deathSound);
+        audioPlayer?.Stop();
+        if (deathSound != null)
+            audioPlayer?.PlayOneShot(deathSound);
 
         gameManager.CurrentScore += Data.Score;
         gameManager.CurrentKillPoint += Data.KillPoint;

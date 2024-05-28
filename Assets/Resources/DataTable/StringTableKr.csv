@@ -18,7 +18,7 @@ Setting_VFX_Text,VFX
 Setting_BackToTitle_Text,타이틀로 돌아가기
 Setting_Quit_Text,게임 종료
 Pause_Title_Text,일시정지
-Pause_BackToMain_Text,메인으로 돌아가
+Pause_BackToMain_Text,메인으로 돌아가기
 Pause_Restart_Text,처음부터
 Pause_Continue_Text,계속하기
 Gameover_BackToMain_Text,메인으로 돌아가기

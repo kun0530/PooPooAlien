@@ -33,6 +33,10 @@ public class PlayerHealth : LivingEntity
         }
     }
 
+    public GameObject playerRender;
+    public float blinkInterval = 0.3f;
+    private float nextBlinkTime;
+
     public ParticleSystem hitEffect;
     public ParticleSystem deathEffect;
 
@@ -44,6 +48,12 @@ public class PlayerHealth : LivingEntity
     {
         playerBooster = GetComponent<PlayerBooster>();
         audioPlayer = GetComponent<AudioSource>();
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        playerRender.SetActive(true);
     }
 
     private void Start()
@@ -60,23 +70,40 @@ public class PlayerHealth : LivingEntity
 
     private void Update()
     {
+        if (isDead)
+        {
+            if (deathEffect.isPlaying)
+                return;
+            else
+            {
+                gameObject.SetActive(false);
+                gameManager.ChangeGameState(GameState.GameOver);
+            }
+        }
+
         if (isInvincible)
         {
             if (invincibleTimer >= invincibleduration)
             {
+                playerRender.SetActive(true);
                 isInvincible = false;
                 invincibleTimer = 0f;
             }
             else
             {
                 invincibleTimer += Time.deltaTime;
+                if (nextBlinkTime >= Time.time)
+                {
+                    playerRender.SetActive(!playerRender.activeSelf);
+                    nextBlinkTime = Time.time + blinkInterval;
+                }
             }
         }
     }
 
     public override void OnDamage(float damage)
     {
-        if (isInvincible || playerBooster.IsBoosting)
+        if (isInvincible || playerBooster.IsBoosting || isDead)
             return;
 
         hitEffect.Play();
@@ -85,12 +112,14 @@ public class PlayerHealth : LivingEntity
         CurrentHealth -= damage;
         gameManager.playerHitCount++;
 
+        isInvincible = true;
+        nextBlinkTime = Time.time + blinkInterval;
+
         if (!isDead && CurrentHealth <= 0)
         {
             CurrentHealth = 0;
             OnDie();
         }
-        isInvincible = true;
     }
 
     public override void OnDie()
@@ -101,9 +130,13 @@ public class PlayerHealth : LivingEntity
         deathEffect.Play();
         audioPlayer.PlayOneShot(deathSound);
 
+        isInvincible = false;
+        playerRender.SetActive(false);
+        var playerMovement = gameObject.GetComponent<PlayerMovement>();
+        if (playerMovement != null)
+            playerMovement.enabled = false;
+
         base.OnDie();
-        gameObject.SetActive(false);
-        gameManager.ChangeGameState(GameState.GameOver);
     }
 
     public void RestoreHealth(float hp)
