@@ -16,8 +16,6 @@ public class PlayerMovement : MonoBehaviour
     private float moveLimitLeft;
     private float moveLimitRight;
 
-    public ParticleSystem touchEffect;
-
     private void Awake()
     {
         isMoving = false;
@@ -46,7 +44,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (hitInfo.collider.gameObject != null)
                 {
-                    touchEffect.Play();
                     isMoving = true;
                 }
             }
@@ -59,15 +56,12 @@ public class PlayerMovement : MonoBehaviour
             {
                 move = new Vector3(Mathf.Clamp(cameraRay.GetPoint(rayLength).x, moveLimitLeft, moveLimitRight), 0f, transform.position.z);
                 transform.position = move;
-                touchEffect.transform.position = cameraRay.GetPoint(rayLength);
-                touchEffect.Play();
                 // transform.position = Vector3.Lerp(transform.position, move, Time.deltaTime * speed);
             }
         }
 
         if (isMoving && Input.GetMouseButtonUp(0))
         {
-            touchEffect.Stop();
             isMoving = false;
         }
     }

@@ -33,6 +33,10 @@ public class PlayerHealth : LivingEntity
         }
     }
 
+    public GameObject playerRender;
+    public float blinkInterval = 0.3f;
+    private float nextBlinkTime;
+
     public ParticleSystem hitEffect;
     public ParticleSystem deathEffect;
 
@@ -44,6 +48,12 @@ public class PlayerHealth : LivingEntity
     {
         playerBooster = GetComponent<PlayerBooster>();
         audioPlayer = GetComponent<AudioSource>();
+    }
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        playerRender.SetActive(true);
     }
 
     private void Start()
@@ -64,12 +74,18 @@ public class PlayerHealth : LivingEntity
         {
             if (invincibleTimer >= invincibleduration)
             {
+                playerRender.SetActive(true);
                 isInvincible = false;
                 invincibleTimer = 0f;
             }
             else
             {
                 invincibleTimer += Time.deltaTime;
+                if (nextBlinkTime >= Time.time)
+                {
+                    playerRender.SetActive(!playerRender.activeSelf);
+                    nextBlinkTime = Time.time + blinkInterval;
+                }
             }
         }
     }
@@ -91,6 +107,7 @@ public class PlayerHealth : LivingEntity
             OnDie();
         }
         isInvincible = true;
+        nextBlinkTime = Time.time + blinkInterval;
     }
 
     public override void OnDie()
