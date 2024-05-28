@@ -10,6 +10,7 @@ public class EnhanceManager : MonoBehaviour
 
     private EnhanceTable enhanceTable;
 
+    public TextMeshProUGUI titleText;
     public UiNumberIncrease goldText;
     
     public Button exitButton;
@@ -20,7 +21,7 @@ public class EnhanceManager : MonoBehaviour
     private Dictionary<PlayerStat, EnhanceStatPanel> enhanceStats = new Dictionary<PlayerStat, EnhanceStatPanel>();
 
     public GameObject enhanceInfo;
-    public GameObject selectStatText;
+    public TextMeshProUGUI selectStatText;
     public Image selectedStatIcon; 
     public TextMeshProUGUI selectedStatNameText;
     public TextMeshProUGUI selectedStatLevelText;
@@ -66,6 +67,10 @@ public class EnhanceManager : MonoBehaviour
 
     private void Start()
     {
+        var stringTable = DataTableManager.GetStringTable();
+        titleText.text = stringTable.Get(StringTableIds.Enhance_Title_Text);
+        selectStatText.text = stringTable.Get(StringTableIds.Enhance_Choice_Text);
+
         var buttonImage = exitButton.GetComponent<Image>();
         if (buttonImage != null)
             buttonImage.alphaHitTestMinimumThreshold = 0.1f;
@@ -129,12 +134,12 @@ public class EnhanceManager : MonoBehaviour
     {
         if (SelectedEnhanceData == null)
         {
-            selectStatText.SetActive(true);
+            selectStatText.gameObject.SetActive(true);
             enhanceInfo.SetActive(false);
             return;
         }
 
-        selectStatText.SetActive(false);
+        selectStatText.gameObject.SetActive(false);
         enhanceInfo.SetActive(true);
 
         var currentLevel = Variables.SaveData.EnhanceStatData[(PlayerStat)SelectedEnhanceData.Stat];

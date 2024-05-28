@@ -8,16 +8,22 @@ public class UiGameClear : MonoBehaviour
 {
     private GameManager gameManager;
 
+    public TextMeshProUGUI scoreText;
     public TextMeshProUGUI clearScoreText;
     public Image clearScoreCheckImage;
 
+    public TextMeshProUGUI hitCountText;
     public TextMeshProUGUI clearHitCountText;
     public Image clearHitCountCheckImage;
 
+    public TextMeshProUGUI timeText;
     public TextMeshProUGUI clearTimeText;
     public Image clearTimeCheckImage;
 
+    public TextMeshProUGUI earnedGoldText;
     public TextMeshProUGUI clearEarnedGoldText;
+
+    public Button confirmButton;
 
     private int clearStarCount;
     public List<Image> clearStars;
@@ -69,6 +75,16 @@ public class UiGameClear : MonoBehaviour
     private void Start()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();
+
+        var stringTable = DataTableManager.GetStringTable();
+        scoreText.text = stringTable.Get(StringTableIds.Clear_Score_Text);
+        hitCountText.text = stringTable.Get(StringTableIds.Clear_Hitcount_Text);
+        timeText.text = stringTable.Get(StringTableIds.Clear_Score_Timeleft_Text);
+        earnedGoldText.text = stringTable.Get(StringTableIds.Clear_Goldearn_Text);
+        var confirmText = confirmButton.GetComponentInChildren<TextMeshProUGUI>();
+        if (confirmText != null)
+            confirmText.text = stringTable.Get(StringTableIds.Clear_Confirm_Text);
+        confirmButton.onClick.AddListener(gameManager.GoToTitle);
 
         foreach (var star in clearStars)
         {

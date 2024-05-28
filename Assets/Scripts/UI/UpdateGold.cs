@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class UpdateGold : MonoBehaviour
 {
-    private string goldFormat = "{0}K";
+    private string goldFormat = "{0} Gold";
     private TextMeshProUGUI goldText;
 
     private void Awake()

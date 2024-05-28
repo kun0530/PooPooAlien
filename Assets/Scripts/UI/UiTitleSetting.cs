@@ -10,8 +10,15 @@ public class UiTitleSetting : MonoBehaviour
 {
     public TitleUiManager uiManager;
 
-    private Languages selectedLanguage;
+    public TextMeshProUGUI settingText;
     public TextMeshProUGUI languageText;
+    public TextMeshProUGUI bgmText;
+    public TextMeshProUGUI effectSoundText;
+    public Button titleButton;
+    public Button exitGameButton;
+
+    private Languages selectedLanguage;
+    public TextMeshProUGUI selectedlanguageText;
 
     // Audio
     public Slider backgroundMusicSlider;
@@ -44,10 +51,42 @@ public class UiTitleSetting : MonoBehaviour
     private void OnEnable()
     {
         selectedLanguage = Variables.SaveData.CurrentLang;
-        languageText.text = selectedLanguage.ToString();
+        selectedlanguageText.text = selectedLanguage.ToString();
 
         backgroundMusicSlider.value = MusicVolume;
         effectSoundSlider.value = EffectsVolume;
+    }
+
+    private void Start()
+    {
+        var stringTable = DataTableManager.GetStringTable();
+        settingText.text = stringTable.Get(StringTableIds.Setting_Title_Text);
+        languageText.text = stringTable.Get(StringTableIds.Setting_Lang_Text);
+        bgmText.text = stringTable.Get(StringTableIds.Setting_BGM_Text);
+        effectSoundText.text = stringTable.Get(StringTableIds.Setting_VFX_Text);
+        var titleButtonText = titleButton.GetComponentInChildren<TextMeshProUGUI>();
+        if (titleButtonText != null)
+            titleButtonText.text = stringTable.Get(StringTableIds.Setting_BackToTitle_Text);
+        var exitGameButtonText = exitGameButton.GetComponentInChildren<TextMeshProUGUI>();
+        if (exitGameButtonText != null)
+            exitGameButtonText.text = stringTable.Get(StringTableIds.Setting_Quit_Text);
+
+        titleButton.onClick.AddListener( () => {
+            if (selectedLanguage != Variables.SaveData.CurrentLang)
+            {
+                Variables.SaveData.CurrentLang = selectedLanguage;
+                SaveLoadSystem.Save(Variables.SaveData);
+                Variables.isStartGame = true;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
+            else
+            {
+                uiManager.ChangeUiState(UiStates.Title);
+            }
+        });
+        exitGameButton.onClick.AddListener( () => {
+            Application.Quit();
+        });
     }
 
     public void ChangeLanguage(bool isNext)
@@ -58,7 +97,7 @@ public class UiTitleSetting : MonoBehaviour
         if (selectedLanguage >= Languages.Count)
             selectedLanguage = Languages.None + 1;
 
-        languageText.text = selectedLanguage.ToString();
+        selectedlanguageText.text = selectedLanguage.ToString();
     }
 
     public void ExitSettingPanel()
@@ -71,7 +110,6 @@ public class UiTitleSetting : MonoBehaviour
         }
         else
         {
-            Variables.isStartGame = true;
             uiManager.ChangeUiState(UiStates.StageSelect);
         }
     }

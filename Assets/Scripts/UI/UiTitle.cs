@@ -13,7 +13,7 @@ public class UiTitle : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (TouchManager.Instance.Tap)
         {
             uiManager.ChangeUiState(UiStates.StageSelect);
         }

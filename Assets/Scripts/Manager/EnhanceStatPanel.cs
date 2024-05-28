@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -51,5 +52,11 @@ public class EnhanceStatPanel : MonoBehaviour
     private void Awake()
     {
         enhanceManager = GameObject.FindWithTag("EnhanceManager").GetComponent<EnhanceManager>();
+    }
+
+    private void Start()
+    {
+        var stringTable = DataTableManager.GetStringTable();
+        enhanceEnableText.text = stringTable.Get(StringTableIds.Enhance_Possible_Text);
     }
 }

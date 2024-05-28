@@ -748,6 +748,10 @@ PrefabInstance:
       value: 512
       objectReference: {fileID: 0}
     - target: {fileID: 6142335984653819936, guid: 86489ef2ecb804c42bfc7c5529bb00f3, type: 3}
+      propertyPath: m_enableWordWrapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6142335984653819936, guid: 86489ef2ecb804c42bfc7c5529bb00f3, type: 3}
       propertyPath: m_HorizontalAlignment
       value: 4
       objectReference: {fileID: 0}
