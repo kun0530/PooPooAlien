@@ -10,6 +10,7 @@ public enum UiStates
     None = -1,
     Title,
     StageSelect,
+    Help,
     Setting,
     Enhance,
     Count
@@ -19,8 +20,9 @@ public class TitleUiManager : MonoBehaviour
 {
     public GameObject titlePanel;
     public GameObject stageSelectPanel;
-    public GameObject enhanceStatPanel;
+    public GameObject helpPanel;
     public GameObject settingPanel;
+    public GameObject enhanceStatPanel;
 
     private Dictionary<UiStates, GameObject> uiPanels = new Dictionary<UiStates, GameObject>();
 
@@ -35,6 +37,7 @@ public class TitleUiManager : MonoBehaviour
     {
         uiPanels.Add(UiStates.Title, titlePanel);
         uiPanels.Add(UiStates.StageSelect, stageSelectPanel);
+        uiPanels.Add(UiStates.Help, helpPanel);
         uiPanels.Add(UiStates.Setting, settingPanel);
         uiPanels.Add(UiStates.Enhance, enhanceStatPanel);
 
