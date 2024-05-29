@@ -28,6 +28,7 @@ public class UiStageSelect : MonoBehaviour
     private int stageCount;
 
     public Button stageStartButton;
+    public Button enhanceButton;
 
     private int selectedStage;
     public int SelectedStage{
@@ -82,6 +83,10 @@ public class UiStageSelect : MonoBehaviour
         mainCamera.transform.LookAt(cameraTarget);
         isTargetMoving = false;
         isCameraMoving = false;
+
+        var stringTable = DataTableManager.GetStringTable();
+        stageStartButton.GetComponentInChildren<TextMeshProUGUI>().text = stringTable.Get(StringTableIds.Stage_Start_Text);
+        enhanceButton.GetComponentInChildren<TextMeshProUGUI>().text = stringTable.Get(StringTableIds.Stage_Enhance_Text);
     }
 
     private void Update()

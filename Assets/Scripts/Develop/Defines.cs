@@ -63,6 +63,7 @@ public static class StringTableIds
     public static readonly string Enhance_Title_Text = "Enhance_Title_Text";
     public static readonly string Enhance_Choice_Text = "Enhance_Choice_Text";
     public static readonly string Enhance_Possible_Text = "Enhance_Possible_Text";
+    public static readonly string Enhance_Complete_Text = "Enhance_Complete_Text";
 
     public static readonly string Pause_Title_Text = "Pause_Title_Text";
     public static readonly string Pause_BackToMain_Text = "Pause_BackToMain_Text";

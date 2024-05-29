@@ -31,6 +31,7 @@ Clear_Confirm_Text,Confirm
 Enhance_Title_Text,ENHANCE
 Enhance_Choice_Text,Choose the List
 Enhance_Possible_Text,Can Enhance!!
+Enhance_Complete_Text,Complete!!
 BasicAtkEnhance_Name,Basic Attack
 BasicAtkEnhance_Desc,Enhance the Player's Attack. Applies to ALL Attacks.
 MaxHeartEnhance_Name,Max Heart

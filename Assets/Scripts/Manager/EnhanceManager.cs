@@ -155,7 +155,7 @@ public class EnhanceManager : MonoBehaviour
         if (currentLevel >= SelectedEnhanceData.MaxLevel)
         {
             selectedStatIncreaseText.text = $"{currentStat}";
-            selectedStatRequiredGoldText.text = "강화 완료";
+            selectedStatRequiredGoldText.text = DataTableManager.GetStringTable().Get(StringTableIds.Enhance_Complete_Text);
             enhanceButton.interactable = false;
         }
         else

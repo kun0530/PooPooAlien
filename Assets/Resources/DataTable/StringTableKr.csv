@@ -31,6 +31,7 @@ Clear_Confirm_Text,확인
 Enhance_Title_Text,강화
 Enhance_Choice_Text,강화할 항목을 선택하세요
 Enhance_Possible_Text,강화 가능
+Enhance_Complete_Text,강화 완료
 BasicAtkEnhance_Name,기본 공격력
 BasicAtkEnhance_Desc,플레이어의 공격력을 강화합니다. 모든 공격에 적용됩니다.
 MaxHeartEnhance_Name,최대 체력
@@ -45,7 +46,7 @@ LazorPjtEnhance_Name,레이저형 투사체
 LazorPjtEnhance_Desc,레이저형 투사체의 공격력이 증가합니다.
 PenetPjtEnhance_Name,X
 PenetPjtEnhance_Desc,X
-PowerUpEnhance_Name, 파워업 증폭
+PowerUpEnhance_Name," 파워업 증폭"
 PowerUpEnhance_Desc,파워업 아이템으로 상승하는 공격력이 증가합니다.
 BoosterSpdEnhance_Name,부스터 속도
 BoosterSpdEnhance_Desc,부스터 아이템을 획득 했을 때 앞으로 달려나가는 속도가 증가합니다.
