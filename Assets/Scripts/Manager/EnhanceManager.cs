@@ -46,9 +46,13 @@ public class EnhanceManager : MonoBehaviour
         enhanceTable = DataTableManager.Get<EnhanceTable>(DataTableIds.Enhance);
         for (int i = 0; i < (int)PlayerStat.Count; i++)
         {
+            var data = enhanceTable.Get((PlayerStat)i);
+            if (data == null)
+                continue;
+
             var panel = Instantiate(enhanceStatPanelPrefab);
             panel.transform.SetParent(content.transform, false);
-            panel.Data = enhanceTable.Get((PlayerStat)i);
+            panel.Data = data;
 
             var button = panel.GetComponent<Button>();
             button.onClick.AddListener( () => {

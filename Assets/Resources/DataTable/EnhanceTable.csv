@@ -5,7 +5,6 @@ Id,Name,Stat,MaxLevel,BasicStat,StatIncrease,RequiredGold,RequiredGoldIncrease,S
 613005,FocusPjtEnhance_Name,3,50,50,3,500,200,FocusPjtEnhance,FocusPjtEnhance_Desc
 614006,SpreadPjtEnhance_Name,4,50,30,2,500,200,SpreadPjtEnhance,SpreadPjtEnhance_Desc
 615007,LazorPjtEnhance_Name,5,50,2,0.1,500,200,LazorPjtEnhance,LazorPjtEnhance_Desc
-616008,PenetPjtEnhance_Name,6,50,500,2,500,200,PenetPjtEnhance,PenetPjtEnhance_Desc
 609009,PowerUpEnhance_Name,7,10,5,5,1000,500,PowerUpEnhance,PowerUpEnhance_Desc
 610010,BoosterSpdEnhance_Name,8,30,3,0.25,500,200,BoosterSpdEnhance,BoosterSpdEnhance_Desc
 611011,BoosterSizeEnhance_Name,9,30,4,0.2,300,100,BoosterSizeEnhance,BoosterSizeEnhance_Desc
