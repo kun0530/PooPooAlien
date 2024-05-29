@@ -20,13 +20,19 @@ public class UiHelp : MonoBehaviour
 
     private void OnEnable()
     {
+        var lang = Variables.SaveData.CurrentLang;
+        var filePaths = ResourcesPath.HelpUiResouces[(int)lang];
+        string resourcesPathFormat = "HelpUIResource/{0}";
+        for (int i = 0; i < helpImages.Count; i++)
+        {
+            helpImages[i].sprite = Resources.Load<Sprite>(string.Format(resourcesPathFormat, filePaths[i]));
+        }
+
         CurrentPage = 0;
     }
 
     private void Start()
     {
-        var lang = Variables.SaveData.CurrentLang;
-
         var buttonImage = exitButton.GetComponent<Image>();
         if (buttonImage != null)
             buttonImage.alphaHitTestMinimumThreshold = 0.1f;

@@ -81,9 +81,27 @@ public static class StringTableIds
 
 public static class ResourcesPath
 {
-    public static readonly string[] HelpUiResouces =
+    public static readonly string[][] HelpUiResouces = new string[][]
     {
-        "StringTableKr",
-        "StringTableEn"
+        new string[]
+        {
+            "KR/tutorial1",
+            "KR/tutorial2",
+            "KR/tutorial3",
+            "KR/tutorial4",
+            "KR/tutorial5",
+            "KR/tutorial6",
+            "KR/tutorial7",
+        },
+        new string[]
+        {
+            "EN/tutorial1",
+            "EN/tutorial2",
+            "EN/tutorial3",
+            "EN/tutorial4",
+            "EN/tutorial5",
+            "EN/tutorial6",
+            "EN/tutorial7",
+        }
     };
 }
