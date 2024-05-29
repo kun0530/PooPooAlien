@@ -180,10 +180,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1.8177826
+  m_Radius: 0.6
   m_Height: 11.140333
   m_Direction: 1
-  m_Center: {x: -0.03622961, y: 1.7091073, z: 0}
+  m_Center: {x: -0.03622961, y: 1.7091073, z: -1.5}
 --- !u!114 &-2753811158267189209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,6 +212,18 @@ PrefabInstance:
     - target: {fileID: 714962827093481960, guid: 2c2e6a74e50dd774cb0852383278a86c, type: 3}
       propertyPath: m_Name
       value: StingRayPADefault
+      objectReference: {fileID: 0}
+    - target: {fileID: 7091741640965755614, guid: 2c2e6a74e50dd774cb0852383278a86c, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7091741640965755614, guid: 2c2e6a74e50dd774cb0852383278a86c, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7091741640965755614, guid: 2c2e6a74e50dd774cb0852383278a86c, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 7091741640965755614, guid: 2c2e6a74e50dd774cb0852383278a86c, type: 3}
       propertyPath: m_LocalPosition.x
