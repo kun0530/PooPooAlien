@@ -2862,12 +2862,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   backgrounds:
   - {fileID: 8949504367367942741, guid: 27cd591c112af4729881ceffeb6673e1, type: 3}
-  - {fileID: 8117652666245062467, guid: 148e78210e0ba430e836bbdbc73e87c1, type: 3}
   - {fileID: 445449793576634317, guid: a6946179c7db44866b243e9fed6495c4, type: 3}
+  - {fileID: 8117652666245062467, guid: 148e78210e0ba430e836bbdbc73e87c1, type: 3}
   - {fileID: 8927502458258401652, guid: d27b0ff719c204cbda90255fbab0f34e, type: 3}
-  - {fileID: 2522263315255124799, guid: 6e574acb353054a4399a99986e890a4b, type: 3}
   - {fileID: 7978667988745610674, guid: 105820c53824c4d0cb8ae0633ced4f31, type: 3}
-  - {fileID: 5484947823350053756, guid: 2667a7e99d5004f5194a4a8ee1f8188d, type: 3}
   - {fileID: 4608829314076407209, guid: bf4d414c225a241ddafe8ce9249af05e, type: 3}
 --- !u!1 &888288979
 GameObject:
@@ -7503,7 +7501,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 6319330971802346660, guid: fcf7a741257814e939ad409aac33107f, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 707073937068807242, guid: fcf7a741257814e939ad409aac33107f, type: 3}
       insertIndex: -1

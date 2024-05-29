@@ -10,8 +10,8 @@ public class Background : MonoBehaviour
     {
         if (backgrounds != null && backgrounds.Count > 0)
         {
-            var index = Random.Range(0, backgrounds.Count - 1);
-            var background = Instantiate(backgrounds[index], gameObject.transform);
+            var index = Mathf.Clamp(Variables.stageId, 0, backgrounds.Count);
+            Instantiate(backgrounds[index], gameObject.transform);
         }
     }
 }

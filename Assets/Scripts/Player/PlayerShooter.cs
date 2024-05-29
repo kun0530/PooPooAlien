@@ -9,8 +9,7 @@ public enum WeaponType
     None = -1,
     Focus,
     Spread,
-    Lazor,
-    Penet
+    Lazor
 }
 
 public class PlayerShooter : MonoBehaviour
@@ -85,7 +84,6 @@ public class PlayerShooter : MonoBehaviour
         weapons.Add(WeaponType.Focus, GetComponentInChildren<WeaponFocus>());
         weapons.Add(WeaponType.Spread, GetComponentInChildren<WeaponSpread>());
         weapons.Add(WeaponType.Lazor, GetComponentInChildren<WeaponLazor>());
-        weapons.Add(WeaponType.Penet, GetComponentInChildren<WeaponPenet>());
         CurrentWeaponType = WeaponType.Focus;
 
         WeaponLevel = 1;
@@ -158,10 +156,6 @@ public class PlayerShooter : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             ChangeOrUpgradeWeapon(WeaponType.Lazor);
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            ChangeOrUpgradeWeapon(WeaponType.Penet);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha5))
         {
