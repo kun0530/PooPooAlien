@@ -5072,11 +5072,6 @@ MonoBehaviour:
   - {fileID: 15143037}
   - {fileID: 24109866}
   - {fileID: 1113221455}
-  - {fileID: 190580271}
-  - {fileID: 1255762435}
-  - {fileID: 1120941273}
-  - {fileID: 1522688443}
-  - {fileID: 365593031}
   cameraPositions:
   - {fileID: 1111453495}
   - {fileID: 1379565501}
@@ -5084,11 +5079,6 @@ MonoBehaviour:
   - {fileID: 1931101917}
   - {fileID: 468921084}
   - {fileID: 1750281815}
-  - {fileID: 1472265227}
-  - {fileID: 1857082936}
-  - {fileID: 1380197102}
-  - {fileID: 1284404305}
-  - {fileID: 1344025587}
   stageStartButton: {fileID: 556893942}
   enhanceButton: {fileID: 834936779}
 --- !u!1 &1003556017 stripped
