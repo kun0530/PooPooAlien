@@ -10,7 +10,10 @@ public class WeaponLazor : Weapon
 
     private LineRenderer lazorLineRenderer;
 
-    public List<Material> laserMaterials;
+    public Material[] laserPhase01Materials;
+    public Material[] laserPhase02Materials;
+    public Material[] laserPhase03Materials;
+    private List<Material[]> laserMaterials = new List<Material[]>();
 
     protected override void Awake()
     {
@@ -26,6 +29,10 @@ public class WeaponLazor : Weapon
     protected override void Start()
     {
         base.Start();
+
+        laserMaterials.Add(laserPhase01Materials);
+        laserMaterials.Add(laserPhase02Materials);
+        laserMaterials.Add(laserPhase03Materials);
     }
 
     protected override void Update()
@@ -45,7 +52,7 @@ public class WeaponLazor : Weapon
             isHitted = false;
             hitPoint = firePosition.position + firePosition.forward * fireDistance;
         }
-        lazorLineRenderer.material = laserMaterials[playerShooter.WeaponLevel - 1];
+        lazorLineRenderer.materials = laserMaterials[playerShooter.WeaponLevel - 1];
         lazorLineRenderer.SetPosition(0, firePosition.position);
         lazorLineRenderer.SetPosition(1, hitPoint);
 

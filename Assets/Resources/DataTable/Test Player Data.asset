@@ -23,8 +23,8 @@ MonoBehaviour:
   spreadSpeed: 10
   spreadScale: 1
   spreadInterval: 1
-  lazorAttack: 10000
-  lazorInterval: 0.01
+  lazorAttack: 0
+  lazorInterval: 1
   penetAttack: 0
   penetScale: 10
   penetInterval: 0.1
