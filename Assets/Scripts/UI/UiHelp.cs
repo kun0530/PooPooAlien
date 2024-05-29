@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class UiHelp : MonoBehaviour
 {
-    public List<GameObject> helpImages;
+    public List<Image> helpImages;
     public Button exitButton;
     private int currentPage;
     private int CurrentPage
@@ -25,6 +25,8 @@ public class UiHelp : MonoBehaviour
 
     private void Start()
     {
+        var lang = Variables.SaveData.CurrentLang;
+
         var buttonImage = exitButton.GetComponent<Image>();
         if (buttonImage != null)
             buttonImage.alphaHitTestMinimumThreshold = 0.1f;
@@ -52,12 +54,17 @@ public class UiHelp : MonoBehaviour
         {
             if (i == num)
             {
-                helpImages[i].SetActive(true);
+                helpImages[i].gameObject.SetActive(true);
             }
             else
             {
-                helpImages[i].SetActive(false);
+                helpImages[i].gameObject.SetActive(false);
             }
         }
+
+        exitButton.gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(helpImages[num].rectTransform.rect.xMax, helpImages[num].rectTransform.rect.yMax);
+        var imageSize = Utils.CalculateImageSize(helpImages[num]);
+        var buttonImageSize = Utils.CalculateImageSize(exitButton.GetComponent<Image>());
+        exitButton.gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2((imageSize.width - buttonImageSize.width) / 2f, (imageSize.height - buttonImageSize.height) / 2f);
     }
 }

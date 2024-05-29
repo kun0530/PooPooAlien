@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using System.Text;
+using UnityEngine;
+using UnityEngine.UI;
 
 public static class Utils
 {
@@ -77,5 +79,32 @@ public static class Utils
             unitID++;
         }
         return sb.ToString();            
+    }
+
+    public static (float width, float height) CalculateImageSize(Image targetImage)
+    {
+        float spriteWidth = targetImage.sprite.rect.width;
+        float spriteHeight = targetImage.sprite.rect.height;
+        float spriteAspect = spriteWidth / spriteHeight;
+
+        float rectWidth = targetImage.rectTransform.rect.width;
+        float rectHeight = targetImage.rectTransform.rect.height;
+        float rectAspect = rectWidth / rectHeight;
+
+        float width;
+        float height;
+
+        if (rectAspect > spriteAspect)
+        {
+            height = rectHeight;
+            width = height * spriteAspect;
+        }
+        else
+        {
+            width = rectWidth;
+            height = width / spriteAspect;
+        }
+
+        return (width, height);
     }
 }

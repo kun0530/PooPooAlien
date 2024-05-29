@@ -78,3 +78,12 @@ public static class StringTableIds
     public static readonly string Gameover_BackToMain_Text = "Gameover_BackToMain_Text";
     public static readonly string Gameover_Retry_Text = "Gameover_Retry_Text";
 }
+
+public static class ResourcesPath
+{
+    public static readonly string[] HelpUiResouces =
+    {
+        "StringTableKr",
+        "StringTableEn"
+    };
+}
