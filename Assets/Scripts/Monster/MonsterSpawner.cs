@@ -9,6 +9,7 @@ public class MonsterSpawner : MonoBehaviour
     public List<Monster> monsterPrefabs;
     private Dictionary<int, IObjectPool<Monster>> poolEnemies = new Dictionary<int, IObjectPool<Monster>>();
     // private IObjectPool<Enemy> poolEnemy;
+    public Transform monsterPool;
     private List<List<int>> monsterSpawnGroups;
     private int currentMosterSpawnGroupIndex = 0;
     private MonsterTable monsterTable;
@@ -32,7 +33,7 @@ public class MonsterSpawner : MonoBehaviour
 
             IObjectPool<Monster> poolEnemy = new ObjectPool<Monster>(
                 () => {
-                    var monster = Instantiate(monsterPrefabs[index]);
+                    var monster = Instantiate(monsterPrefabs[index], monsterPool);
                     monster.pool = poolEnemies[index];
                     return monster;
                 },

@@ -13,8 +13,8 @@ Stage_Start_Text,출격
 Stage_Enhance_Text,강화
 Setting_Title_Text,설정
 Setting_Lang_Text,언어
-Setting_BGM_Text,BGM
-Setting_VFX_Text,VFX
+Setting_BGM_Text,배경음
+Setting_VFX_Text,효과음
 Setting_BackToTitle_Text,타이틀로 돌아가기
 Setting_Quit_Text,게임 종료
 Pause_Title_Text,일시정지

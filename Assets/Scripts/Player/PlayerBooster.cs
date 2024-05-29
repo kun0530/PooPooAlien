@@ -17,6 +17,7 @@ public class PlayerBooster : MonoBehaviour
     public GameObject boosterCollider;
 
     public ParticleSystem boosterEffect;
+    public ParticleSystem moveEffect;
 
     private bool isBoosting;
     public bool IsBoosting {
@@ -28,9 +29,15 @@ public class PlayerBooster : MonoBehaviour
 
             isBoosting = value;
             if (isBoosting)
+            {
                 boosterEffect.Play();
+                moveEffect.Stop();
+            }
             else
+            {
                 boosterEffect.Stop();
+                moveEffect.Play();
+            }
         }
     }
 

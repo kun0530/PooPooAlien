@@ -16,6 +16,7 @@ public class PlayerShooter : MonoBehaviour
 {
     public Bullet bulletPrefab;
     private IObjectPool<Bullet> poolBullet;
+    public Transform bulletPool;
 
     private Dictionary<WeaponType, Weapon> weapons = new Dictionary<WeaponType, Weapon>();
     private WeaponType currentWeaponType;
@@ -111,7 +112,7 @@ public class PlayerShooter : MonoBehaviour
 
     private Bullet CreatePooledItem()
     {
-        var bullet = Instantiate(bulletPrefab);
+        var bullet = Instantiate(bulletPrefab, bulletPool);
         bullet.pool = poolBullet;
         return bullet;
     }
