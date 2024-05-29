@@ -705,7 +705,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6142335984653819936, guid: 86489ef2ecb804c42bfc7c5529bb00f3, type: 3}
       propertyPath: m_fontSize
-      value: 14
+      value: 13.2
       objectReference: {fileID: 0}
     - target: {fileID: 6142335984653819936, guid: 86489ef2ecb804c42bfc7c5529bb00f3, type: 3}
       propertyPath: m_margin.x
@@ -725,7 +725,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6142335984653819936, guid: 86489ef2ecb804c42bfc7c5529bb00f3, type: 3}
       propertyPath: m_fontSizeMin
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6142335984653819936, guid: 86489ef2ecb804c42bfc7c5529bb00f3, type: 3}
       propertyPath: m_fontSizeBase
@@ -749,7 +749,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6142335984653819936, guid: 86489ef2ecb804c42bfc7c5529bb00f3, type: 3}
       propertyPath: m_enableWordWrapping
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6142335984653819936, guid: 86489ef2ecb804c42bfc7c5529bb00f3, type: 3}
       propertyPath: m_HorizontalAlignment
