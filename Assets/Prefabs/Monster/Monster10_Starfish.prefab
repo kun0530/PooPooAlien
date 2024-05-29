@@ -399,6 +399,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cute_Starfish_A
       objectReference: {fileID: 0}
+    - target: {fileID: 3292254978819569998, guid: 73d45ae50f340df459a766c03065bd25, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
