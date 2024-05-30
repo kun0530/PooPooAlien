@@ -15,13 +15,19 @@ public class MainMenuScroller : MonoBehaviour
     }
     void Update()
     {
-        transform.position += Vector3.down * Time.deltaTime * speed;
+        // transform.position += Vector3.down * Time.deltaTime * speed;
 
-        if (transform.position.y < - 19) {
-            this.transform.position = new Vector3(this.transform.position.x, 19f, this.transform.position.z);
+        // if (transform.position.y < - 19) {
+        //     this.transform.position = new Vector3(this.transform.position.x, 19f, this.transform.position.z);
+
+        // }
+
+        transform.localPosition += Vector3.down * Time.deltaTime * speed;
+
+        if (transform.localPosition.y < - 19) {
+            this.transform.localPosition = new Vector3(this.transform.localPosition.x, 19f, this.transform.localPosition.z);
 
         }
-
     }
 
 }

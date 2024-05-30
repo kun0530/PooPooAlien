@@ -13,10 +13,8 @@ public class ScrollingItems : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //bottom left screen point
-        max = backgroundCamera.ViewportToWorldPoint(new Vector2(0, 0));
-        //top right screen point 
-        min = backgroundCamera.ViewportToWorldPoint(new Vector2(1, 1));
+        max = backgroundCamera.ViewportToWorldPoint(new Vector2(0, 0)); //bottom left screen point
+        min = backgroundCamera.ViewportToWorldPoint(new Vector2(1, 1)); //top right screen point
 
 
         max.y = max.y - GetComponent<SpriteRenderer>().sprite.bounds.extents.y;
@@ -24,22 +22,15 @@ public class ScrollingItems : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void Update()
-    {
+    {          
+        Vector3 position = transform.localPosition;
+        position = new Vector3(position.x, position.y + speed * Time.deltaTime, position.z);
+        transform.localPosition = position;
 
-        //get the position of the item
-        Vector3 position = transform.position;              
-        //change in the position of the item 
-        position = new Vector3(position.x,position.y + speed * Time.deltaTime, transform.position.z);
-        //update the position
-        transform.position = position;
-
-
-        //if items go beyond the screen reset them here
-        if (transform.position.y < max.y) {
-            transform.position = new Vector2(transform.position.x,
-                min.y );
+        if (transform.localPosition.y < max.y)
+        {
+            transform.localPosition = new Vector3(transform.localPosition.x, min.y, transform.localPosition.z);
             //Random.RandomRange(min.x, max.x)
         }
     }
