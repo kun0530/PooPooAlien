@@ -7470,6 +7470,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 1891267022542505070, guid: fcf7a741257814e939ad409aac33107f, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 3272387977885075592, guid: fcf7a741257814e939ad409aac33107f, type: 3}
       propertyPath: joyStick
       value: 
@@ -7598,6 +7602,10 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1556322662}
+    - target: {fileID: 7732577093111276822, guid: fcf7a741257814e939ad409aac33107f, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 8474065015133526795, guid: fcf7a741257814e939ad409aac33107f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

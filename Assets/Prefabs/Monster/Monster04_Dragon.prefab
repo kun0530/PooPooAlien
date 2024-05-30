@@ -197,6 +197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
+  monsterRender: {fileID: 7073192911371773337}
   hitEffect: {fileID: 5009595180626851989}
   deathEffect: {fileID: 6699776371244397422}
   hitSound: {fileID: 8300000, guid: 0700a739d0e9d9942889d68742070a97, type: 3}
@@ -275,6 +276,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2589665262135986053, guid: 3b619b1e2c720554c9d7ecd363762ce9, type: 3}
   m_PrefabInstance: {fileID: 635119901118713031}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7073192911371773337 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7708299256562870622, guid: 3b619b1e2c720554c9d7ecd363762ce9, type: 3}
+  m_PrefabInstance: {fileID: 635119901118713031}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1954786551724534236
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -283,6 +289,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 699252260358216495}
     m_Modifications:
+    - target: {fileID: 5471900709812018296, guid: ff48ed7e697a5ed4187c382b45f9d9c9, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6819967459622506825, guid: ff48ed7e697a5ed4187c382b45f9d9c9, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8324787098187649754, guid: ff48ed7e697a5ed4187c382b45f9d9c9, type: 3}
       propertyPath: m_Name
       value: CFX_Hit_A Directional Red
@@ -293,19 +307,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8890713718279887418, guid: ff48ed7e697a5ed4187c382b45f9d9c9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8890713718279887418, guid: ff48ed7e697a5ed4187c382b45f9d9c9, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8890713718279887418, guid: ff48ed7e697a5ed4187c382b45f9d9c9, type: 3}
-      propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8890713718279887418, guid: ff48ed7e697a5ed4187c382b45f9d9c9, type: 3}
-      propertyPath: m_LocalRotation.x
+      propertyPath: m_LocalPosition.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8890713718279887418, guid: ff48ed7e697a5ed4187c382b45f9d9c9, type: 3}
+      propertyPath: m_LocalRotation.w
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8890713718279887418, guid: ff48ed7e697a5ed4187c382b45f9d9c9, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8890713718279887418, guid: ff48ed7e697a5ed4187c382b45f9d9c9, type: 3}
       propertyPath: m_LocalRotation.y
@@ -317,7 +331,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8890713718279887418, guid: ff48ed7e697a5ed4187c382b45f9d9c9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 8890713718279887418, guid: ff48ed7e697a5ed4187c382b45f9d9c9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -354,17 +368,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: CFX_Hit_A Red
       objectReference: {fileID: 0}
+    - target: {fileID: 7826324259179956620, guid: 7113346407db95f4680cab0d913838ce, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9158993502884106081, guid: 7113346407db95f4680cab0d913838ce, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9158993502884106081, guid: 7113346407db95f4680cab0d913838ce, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9158993502884106081, guid: 7113346407db95f4680cab0d913838ce, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 9158993502884106081, guid: 7113346407db95f4680cab0d913838ce, type: 3}
       propertyPath: m_LocalRotation.w
@@ -392,6 +410,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9158993502884106081, guid: 7113346407db95f4680cab0d913838ce, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9212034317224828028, guid: 7113346407db95f4680cab0d913838ce, type: 3}
+      propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -197,6 +197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
+  monsterRender: {fileID: 6496600134907466420}
   hitEffect: {fileID: 5009595180626851989}
   deathEffect: {fileID: 6699776371244397422}
   hitSound: {fileID: 8300000, guid: 0700a739d0e9d9942889d68742070a97, type: 3}
@@ -209,6 +210,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 699252260358216495}
     m_Modifications:
+    - target: {fileID: 5471900709812018296, guid: ff48ed7e697a5ed4187c382b45f9d9c9, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6819967459622506825, guid: ff48ed7e697a5ed4187c382b45f9d9c9, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8324787098187649754, guid: ff48ed7e697a5ed4187c382b45f9d9c9, type: 3}
       propertyPath: m_Name
       value: CFX_Hit_A Directional Red
@@ -223,15 +232,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8890713718279887418, guid: ff48ed7e697a5ed4187c382b45f9d9c9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8890713718279887418, guid: ff48ed7e697a5ed4187c382b45f9d9c9, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8890713718279887418, guid: ff48ed7e697a5ed4187c382b45f9d9c9, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8890713718279887418, guid: ff48ed7e697a5ed4187c382b45f9d9c9, type: 3}
       propertyPath: m_LocalRotation.y
@@ -243,7 +252,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8890713718279887418, guid: ff48ed7e697a5ed4187c382b45f9d9c9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 8890713718279887418, guid: ff48ed7e697a5ed4187c382b45f9d9c9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -280,6 +289,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CFX_Hit_A Red
       objectReference: {fileID: 0}
+    - target: {fileID: 7826324259179956620, guid: 7113346407db95f4680cab0d913838ce, type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9158993502884106081, guid: 7113346407db95f4680cab0d913838ce, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -290,7 +303,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9158993502884106081, guid: 7113346407db95f4680cab0d913838ce, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 9158993502884106081, guid: 7113346407db95f4680cab0d913838ce, type: 3}
       propertyPath: m_LocalRotation.w
@@ -318,6 +331,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9158993502884106081, guid: 7113346407db95f4680cab0d913838ce, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9212034317224828028, guid: 7113346407db95f4680cab0d913838ce, type: 3}
+      propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -395,5 +412,10 @@ PrefabInstance:
 --- !u!4 &1015559931633039229 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5858079806077774452, guid: 46c43790afe3a514f9d65b826d802a59, type: 3}
+  m_PrefabInstance: {fileID: 6871343953103084809}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6496600134907466420 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 392769251575254973, guid: 46c43790afe3a514f9d65b826d802a59, type: 3}
   m_PrefabInstance: {fileID: 6871343953103084809}
   m_PrefabAsset: {fileID: 0}

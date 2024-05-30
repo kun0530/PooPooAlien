@@ -23,7 +23,8 @@ public class Monster : LivingEntity
             hSpeed = data.HorizontalSpd;
             isBounce = data.IsBounce;
             var material = data.GetMaterial();
-            if (material != null)
+            var skinRenderer = monsterRender.GetComponentInChildren<SkinnedMeshRenderer>();
+            if (material != null && skinRenderer != null)
                 skinRenderer.material = material;
             direction = new Vector3(hSpeed, 0, -vSpeed);
         }
@@ -47,7 +48,7 @@ public class Monster : LivingEntity
 
     private bool isBounce;
 
-    private SkinnedMeshRenderer skinRenderer;
+    public GameObject monsterRender;
 
     public ParticleSystem hitEffect;
     public ParticleSystem deathEffect;
@@ -58,14 +59,13 @@ public class Monster : LivingEntity
 
     private void Awake()
     {
-        skinRenderer = GetComponentInChildren<SkinnedMeshRenderer>();
         audioPlayer = GetComponent<AudioSource>();
     }
 
     protected override void OnEnable()
     {
         base.OnEnable();
-        skinRenderer.enabled = true;
+        monsterRender.SetActive(true);
         isDamageAble = false;
 
         gameObject.layer = LayerMask.NameToLayer("Monster");
@@ -141,7 +141,7 @@ public class Monster : LivingEntity
 
         gameObject.layer = LayerMask.NameToLayer("DeadMonster");
 
-        skinRenderer.enabled = false;
+        monsterRender.SetActive(false);
         hitEffect?.Stop();
         deathEffect?.Play();
 
