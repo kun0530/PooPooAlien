@@ -15,6 +15,8 @@ public class WeaponLazor : Weapon
     public Material[] laserPhase03Materials;
     private List<Material[]> laserMaterials = new List<Material[]>();
 
+    private Vector3 hitPointOffset = new Vector3(0f, 0f, -0.3f);
+
     protected override void Awake()
     {
         lazorLineRenderer = GetComponent<LineRenderer>();
@@ -45,7 +47,7 @@ public class WeaponLazor : Weapon
         if (Physics.Raycast(ray, out hitInfo, fireDistance, layerMask))
         {
             isHitted = true;
-            hitPoint = hitInfo.point;
+            hitPoint = hitInfo.point + hitPointOffset;
         }
         else
         {
@@ -66,7 +68,7 @@ public class WeaponLazor : Weapon
 
         var monster = hitInfo.collider.GetComponent<Monster>();
         if (monster != null)
-            monster.OnDamage(playerShooter.FinalAttack + weaponAttack);
+            monster.OnDamage(playerShooter.FinalAttack + weaponAttack + weaponPhaseAttack);
     }
 
     public override void ApplyTestData()
