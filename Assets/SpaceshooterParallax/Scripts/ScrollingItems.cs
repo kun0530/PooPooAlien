@@ -19,7 +19,6 @@ public class ScrollingItems : MonoBehaviour
 
         max.y = max.y - GetComponent<SpriteRenderer>().sprite.bounds.extents.y;
         min.y = min.y + GetComponent<SpriteRenderer>().sprite.bounds.extents.y;
-
     }
 
     void Update()
@@ -30,7 +29,7 @@ public class ScrollingItems : MonoBehaviour
 
         if (transform.localPosition.y < max.y)
         {
-            transform.localPosition = new Vector3(transform.localPosition.x, min.y, transform.localPosition.z);
+            transform.localPosition = new Vector3(transform.localPosition.x, min.y * 2, transform.localPosition.z);
             //Random.RandomRange(min.x, max.x)
         }
     }
