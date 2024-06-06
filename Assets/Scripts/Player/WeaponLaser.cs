@@ -17,13 +17,11 @@ public class WeaponLaser : Weapon
 
     private Vector3 hitPointOffset = new Vector3(0f, 0f, -0.3f);
 
-    protected override void Awake()
+    private void Awake()
     {
         laserLineRenderer = GetComponent<LineRenderer>();
         laserLineRenderer.positionCount = 2;
         isHitted = false;
-
-        base.Awake();
 
         weaponType = WeaponType.Laser;
         weaponAttack = Variables.CalculateCurrentSaveStat(PlayerStat.LazorAttack);

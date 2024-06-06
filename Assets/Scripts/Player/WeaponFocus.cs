@@ -8,17 +8,10 @@ public class WeaponFocus : Weapon
     public List<Transform> firePositions;
     public List<Transform> fireDirections;
 
-    protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
-
         weaponType = WeaponType.Focus;
         weaponAttack = Variables.CalculateCurrentSaveStat(PlayerStat.FocusAttack);
-    }
-
-    protected override void Start()
-    {
-        base.Start();
     }
 
     protected override void Fire()

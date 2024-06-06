@@ -15,16 +15,11 @@ public abstract class Weapon : MonoBehaviour
 
     protected float nextFireTime;
 
-    protected virtual void Awake()
-    {
-    }
-
     protected virtual void Start()
     {
         playerShooter = GetComponentInParent<PlayerShooter>();
         UpdateWeaponPhaseData();
 
-        ApplyTestData();
         nextFireTime = Time.time + weaponPhaseData.Interval;
     }
 

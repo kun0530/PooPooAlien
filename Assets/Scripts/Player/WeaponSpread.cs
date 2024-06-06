@@ -10,10 +10,8 @@ public class WeaponSpread : Weapon
     public List<Transform> fireDirectionsLevel3;
     private Dictionary<int, List<Transform>> fireDirections = new Dictionary<int, List<Transform>>();
 
-    protected override void Awake()
+    private void Awake()
     {
-        base.Awake();
-
         weaponType = WeaponType.Spread;
         weaponAttack = Variables.CalculateCurrentSaveStat(PlayerStat.SpreadAttack);
     }
