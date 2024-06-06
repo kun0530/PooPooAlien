@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponLazor : Weapon
+public class WeaponLaser : Weapon
 {
     public Transform firePosition;
     private RaycastHit hitInfo;
     private bool isHitted;
 
-    private LineRenderer lazorLineRenderer;
+    private LineRenderer laserLineRenderer;
 
     public Material[] laserPhase01Materials;
     public Material[] laserPhase02Materials;
@@ -19,12 +19,13 @@ public class WeaponLazor : Weapon
 
     protected override void Awake()
     {
-        lazorLineRenderer = GetComponent<LineRenderer>();
-        lazorLineRenderer.positionCount = 2;
+        laserLineRenderer = GetComponent<LineRenderer>();
+        laserLineRenderer.positionCount = 2;
         isHitted = false;
 
         base.Awake();
 
+        weaponType = WeaponType.Laser;
         weaponAttack = Variables.CalculateCurrentSaveStat(PlayerStat.LazorAttack);
     }
 
@@ -54,9 +55,9 @@ public class WeaponLazor : Weapon
             isHitted = false;
             hitPoint = firePosition.position + firePosition.forward * fireDistance;
         }
-        lazorLineRenderer.materials = laserMaterials[playerShooter.WeaponLevel - 1];
-        lazorLineRenderer.SetPosition(0, firePosition.position);
-        lazorLineRenderer.SetPosition(1, hitPoint);
+        laserLineRenderer.materials = laserMaterials[playerShooter.WeaponPhase - 1];
+        laserLineRenderer.SetPosition(0, firePosition.position);
+        laserLineRenderer.SetPosition(1, hitPoint);
 
         base.Update();
     }
@@ -68,7 +69,7 @@ public class WeaponLazor : Weapon
 
         var monster = hitInfo.collider.GetComponent<Monster>();
         if (monster != null)
-            monster.OnDamage(playerShooter.FinalAttack + weaponAttack + weaponPhaseAttack);
+            monster.OnDamage(playerShooter.FinalAttack + weaponAttack + weaponPhaseData.Damage);
     }
 
     public override void ApplyTestData()
@@ -77,8 +78,8 @@ public class WeaponLazor : Weapon
             return;
 
         weaponAttack = playerShooter.testPlayerData.lazorAttack;
-        weaponInterval = playerShooter.testPlayerData.lazorInterval;
+        weaponPhaseData.Interval = playerShooter.testPlayerData.lazorInterval;
 
-        weaponPhaseAttack = 0f;
+        weaponPhaseData.Damage = 0f;
     }
 }

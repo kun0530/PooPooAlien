@@ -109,7 +109,7 @@ public class Monster : LivingEntity
         {
             collider.GetComponent<LivingEntity>().OnDamage(atk);
             var playerShooter = collider.GetComponent<PlayerShooter>();
-            playerShooter.WeaponLevel--;
+            playerShooter.WeaponPhase--;
             playerShooter.PowerUpCount = 0;
         }
         else if (collider.CompareTag("Wall") && pool != null)

@@ -14,6 +14,7 @@ public class WeaponSpread : Weapon
     {
         base.Awake();
 
+        weaponType = WeaponType.Spread;
         weaponAttack = Variables.CalculateCurrentSaveStat(PlayerStat.SpreadAttack);
     }
 
@@ -28,16 +29,16 @@ public class WeaponSpread : Weapon
 
     protected override void Fire()
     {
-        var fireDirs = fireDirections[playerShooter.WeaponLevel];
+        var fireDirs = fireDirections[playerShooter.WeaponPhase];
 
         foreach (var dir in fireDirs)
         {
             var newBullet = playerShooter.CreateBullet();
-            newBullet.transform.localScale = new Vector3(weaponScale, weaponScale, weaponScale);
-            newBullet.transform.position = firePosition.position;
+            newBullet.transform.localScale = new Vector3(weaponPhaseData.Scale, weaponPhaseData.Scale, weaponPhaseData.Scale);
+            newBullet.transform.position = firePosition.transform.position;
             newBullet.transform.LookAt(dir.position);
-            newBullet.atk = playerShooter.FinalAttack + weaponAttack + weaponPhaseAttack;
-            newBullet.speed = weaponSpeed;
+            newBullet.atk = playerShooter.FinalAttack + weaponAttack + weaponPhaseData.Damage;
+            newBullet.speed = weaponPhaseData.Speed;
         }
     }
 
@@ -47,10 +48,10 @@ public class WeaponSpread : Weapon
             return;
 
         weaponAttack = playerShooter.testPlayerData.spreadAttack;
-        weaponSpeed = playerShooter.testPlayerData.spreadSpeed;
-        weaponScale = playerShooter.testPlayerData.spreadScale;
-        weaponInterval = playerShooter.testPlayerData.spreadInterval;
+        weaponPhaseData.Speed = playerShooter.testPlayerData.spreadSpeed;
+        weaponPhaseData.Scale = playerShooter.testPlayerData.spreadScale;
+        weaponPhaseData.Interval = playerShooter.testPlayerData.spreadInterval;
 
-        weaponPhaseAttack = 0f;
+        weaponPhaseData.Damage = 0f;
     }
 }

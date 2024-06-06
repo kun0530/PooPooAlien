@@ -9,7 +9,7 @@ public enum WeaponType
     None = -1,
     Focus,
     Spread,
-    Lazor
+    Laser
 }
 
 public class PlayerShooter : MonoBehaviour
@@ -46,14 +46,14 @@ public class PlayerShooter : MonoBehaviour
             }
         }
     }
-    private int weaponLevel;
-    public int WeaponLevel{
-        get { return weaponLevel; }
+    private int weaponPhase;
+    public int WeaponPhase{
+        get { return weaponPhase; }
         set {
-            weaponLevel = Mathf.Clamp(value, 1, 3);
+            weaponPhase = Mathf.Clamp(value, 1, 3);
             foreach (var weapon in weapons)
             {
-                weapon.Value.ChangeWeaponPhase(weapon.Key);
+                weapon.Value.UpdateWeaponPhaseData();
             }
         }
     }
@@ -78,16 +78,16 @@ public class PlayerShooter : MonoBehaviour
         PowerUpAttack = Variables.CalculateCurrentSaveStat(PlayerStat.PowerUpDamage);
         powerUpCount = 0;
         FinalAttack = BasicAttack;
+
+        WeaponPhase = 1;
     }
 
     private void Start()
     {
         weapons.Add(WeaponType.Focus, GetComponentInChildren<WeaponFocus>());
         weapons.Add(WeaponType.Spread, GetComponentInChildren<WeaponSpread>());
-        weapons.Add(WeaponType.Lazor, GetComponentInChildren<WeaponLazor>());
+        weapons.Add(WeaponType.Laser, GetComponentInChildren<WeaponLaser>());
         CurrentWeaponType = WeaponType.Focus;
-
-        WeaponLevel = 1;
 
         poolBullet = new ObjectPool<Bullet>(
             CreatePooledItem,
@@ -136,7 +136,7 @@ public class PlayerShooter : MonoBehaviour
     {
         if (CurrentWeaponType == type)
         {
-            WeaponLevel++;
+            WeaponPhase++;
             return;
         }
         
@@ -156,7 +156,7 @@ public class PlayerShooter : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            ChangeOrUpgradeWeapon(WeaponType.Lazor);
+            ChangeOrUpgradeWeapon(WeaponType.Laser);
         }
         else if (Input.GetKeyDown(KeyCode.Alpha5))
         {

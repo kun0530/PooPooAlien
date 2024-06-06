@@ -8,23 +8,24 @@ public abstract class Weapon : MonoBehaviour
 {
     protected PlayerShooter playerShooter;
 
+    protected WeaponType weaponType;
+
     protected float weaponAttack;
-    protected float weaponPhaseAttack;
-    protected float weaponScale;
-    protected float weaponSpeed;
-    protected float weaponInterval;
+    protected ProjectileData weaponPhaseData;
 
     protected float nextFireTime;
 
     protected virtual void Awake()
     {
-        playerShooter = GetComponentInParent<PlayerShooter>();
     }
 
     protected virtual void Start()
     {
+        playerShooter = GetComponentInParent<PlayerShooter>();
+        UpdateWeaponPhaseData();
+
         ApplyTestData();
-        nextFireTime = Time.time + weaponInterval;
+        nextFireTime = Time.time + weaponPhaseData.Interval;
     }
 
     protected virtual void Update()
@@ -32,17 +33,13 @@ public abstract class Weapon : MonoBehaviour
         if (nextFireTime < Time.time)
         {
             Fire();
-            nextFireTime = Time.time + weaponInterval;
+            nextFireTime = Time.time + weaponPhaseData.Interval;
         }
     }
 
-    public void ChangeWeaponPhase(WeaponType type)
+    public void UpdateWeaponPhaseData()
     {
-        var data = DataTableManager.Get<ProjectileTable>(DataTableIds.Projectile).Get(type, playerShooter.WeaponLevel);
-        weaponPhaseAttack = data.Damage;
-        weaponScale = data.Scale;
-        weaponSpeed = data.Speed;
-        weaponInterval = data.Interval;
+        weaponPhaseData = DataTableManager.Get<ProjectileTable>(DataTableIds.Projectile).Get(weaponType, playerShooter.WeaponPhase);
 
         ApplyTestData();
     }
