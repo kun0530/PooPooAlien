@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using Newtonsoft.Json;
+using Unity.VisualScripting;
 
 public static class SaveLoadSystem
 {
@@ -47,11 +48,13 @@ public static class SaveLoadSystem
             return null;
         }
 
+        Debug.Log("Load2");
         SaveData data = null;
         using (var reader = new JsonTextReader(new StreamReader(path)))
         {
             var serializer = new JsonSerializer();
             serializer.TypeNameHandling = TypeNameHandling.All;
+            serializer.Converters.Add(new SaveDataConverter());
             data = serializer.Deserialize<SaveData>(reader);
         }
 

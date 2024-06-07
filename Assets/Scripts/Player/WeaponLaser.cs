@@ -24,7 +24,7 @@ public class WeaponLaser : Weapon
         isHitted = false;
 
         weaponType = WeaponType.Laser;
-        weaponAttack = Variables.CalculateCurrentSaveStat(PlayerStat.LazorAttack);
+        weaponAttack = Variables.CalculateCurrentSaveStat(PlayerStat.LaserAttack);
     }
 
     protected override void Start()

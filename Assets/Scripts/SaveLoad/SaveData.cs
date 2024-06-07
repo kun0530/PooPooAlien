@@ -39,16 +39,16 @@ public class SaveDataV1 : SaveData
         }
     }
 
-    private Dictionary<int, int> stageClearData;
-    public Dictionary<int, int> StageClearData{
+    private List<int> stageClearData;
+    public List<int> StageClearData{
         get
         {
             if (stageClearData == null)
             {
-                stageClearData = new Dictionary<int, int>();
+                stageClearData = new List<int>();
                 for (int i = 0; i <= 10; i++)
                 {
-                    stageClearData.Add(i, -1);
+                    stageClearData.Add(-1);
                 }
             }
             return stageClearData;

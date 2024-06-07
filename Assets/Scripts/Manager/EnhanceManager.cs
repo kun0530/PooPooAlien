@@ -99,7 +99,7 @@ public class EnhanceManager : MonoBehaviour
         if (SelectedEnhanceData == null)
             return;
         
-        int currentLevel = Variables.SaveData.EnhanceStatData[(PlayerStat)SelectedEnhanceData.Stat];
+        int currentLevel = Variables.SaveData.EnhanceStatData[SelectedEnhanceData.GetStat()];
         float requiredGold = SelectedEnhanceData.RequiredGold + SelectedEnhanceData.RequiredGoldIncrease * (currentLevel - 1);
 
         Logger.Log($"현재 레벨: {currentLevel}");
@@ -118,7 +118,7 @@ public class EnhanceManager : MonoBehaviour
         }
 
         Variables.SaveData.Gold -= requiredGold;
-        currentLevel = ++Variables.SaveData.EnhanceStatData[(PlayerStat)SelectedEnhanceData.Stat];
+        currentLevel = ++Variables.SaveData.EnhanceStatData[SelectedEnhanceData.GetStat()];
         Logger.Log($"강화: {currentLevel}");
         Logger.Log($"남은 금액: {Utils.NumberToString(Variables.SaveData.Gold)}");
         goldText.TargetNum = Variables.SaveData.Gold;
@@ -146,10 +146,10 @@ public class EnhanceManager : MonoBehaviour
         selectStatText.gameObject.SetActive(false);
         enhanceInfo.SetActive(true);
 
-        var currentLevel = Variables.SaveData.EnhanceStatData[(PlayerStat)SelectedEnhanceData.Stat];
+        var currentLevel = Variables.SaveData.EnhanceStatData[SelectedEnhanceData.GetStat()];
         var maxLevel = SelectedEnhanceData.MaxLevel;
-        var currentStat = Variables.CalculateCurrentSaveStat((PlayerStat)SelectedEnhanceData.Stat);
-        var nextStat = Variables.CalculateStat((PlayerStat)SelectedEnhanceData.Stat, currentLevel + 1);
+        var currentStat = Variables.CalculateCurrentSaveStat(SelectedEnhanceData.GetStat());
+        var nextStat = Variables.CalculateStat(SelectedEnhanceData.GetStat(), currentLevel + 1);
         float requiredGold = SelectedEnhanceData.RequiredGold + SelectedEnhanceData.RequiredGoldIncrease * (currentLevel - 1);
 
         selectedStatIcon.sprite = SelectedEnhanceData.GetIcon();

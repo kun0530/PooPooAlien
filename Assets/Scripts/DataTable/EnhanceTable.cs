@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
@@ -7,13 +8,13 @@ using UnityEngine;
 
 public enum PlayerStat
 {
+    None = -1,
     MaxHP,
     StartHP,
     BasicAttack,
     FocusAttack,
     SpreadAttack,
-    LazorAttack,
-    PenetAttack,
+    LaserAttack,
     PowerUpDamage,
     BoosterSpeed,
     BoosterSize,
@@ -24,7 +25,7 @@ public class EnhanceData
 {
     public int Id { get; set; }
     public string Name { get; set; }
-    public int Stat { get; set; }
+    public string Stat { get; set;}
     public int MaxLevel { get; set; }
     public float BasicStat { get; set; }
     public float StatIncrease { get; set; }
@@ -32,6 +33,18 @@ public class EnhanceData
     public float RequiredGoldIncrease { get; set; }
     public string Sprite { get; set; }
     public string Desc { get; set; }
+
+    public PlayerStat GetStat()
+    {
+        if (Enum.TryParse(typeof(PlayerStat), Stat, true, out object result))
+        {
+            return (PlayerStat)result;
+        }
+        else
+        {
+            return PlayerStat.None;
+        }
+    }
 
     public Sprite GetIcon()
     {
@@ -50,7 +63,7 @@ public class EnhanceData
 
     public override string ToString()
     {
-        return $"{Id}: {Name} / {Stat} / {MaxLevel} / {StatIncrease} / {RequiredGold} / {RequiredGoldIncrease}";
+        return $"{Id}: {Name} / {GetStat()} / {MaxLevel} / {StatIncrease} / {RequiredGold} / {RequiredGoldIncrease}";
     }
 }
 
@@ -78,7 +91,7 @@ public class EnhanceTable : DataTable
             var records = csvReader.GetRecords<EnhanceData>();
             foreach (var record in records)
             {
-                table.Add((PlayerStat)record.Stat, record);
+                table.Add(record.GetStat(), record);
             }
         }
     }

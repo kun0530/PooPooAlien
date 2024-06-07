@@ -44,9 +44,9 @@ SpreadPjtEnhance_Name,산탄형 투사체
 SpreadPjtEnhance_Desc,산탄형 투사체의 공격력이 증가합니다.
 LazorPjtEnhance_Name,레이저형 투사체
 LazorPjtEnhance_Desc,레이저형 투사체의 공격력이 증가합니다.
-PenetPjtEnhance_Name,X
-PenetPjtEnhance_Desc,X
-PowerUpEnhance_Name," 파워업 증폭"
+PenetPjtEnhance_Name,관통형 투사체
+PenetPjtEnhance_Desc,관통형 투사체의 공격력이 증가합니다.
+PowerUpEnhance_Name,파워업 증폭
 PowerUpEnhance_Desc,파워업 아이템으로 상승하는 공격력이 증가합니다.
 BoosterSpdEnhance_Name,부스터 속도
 BoosterSpdEnhance_Desc,부스터 아이템을 획득 했을 때 앞으로 달려나가는 속도가 증가합니다.
