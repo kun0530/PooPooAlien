@@ -214,6 +214,14 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5471900709812018296, guid: ff48ed7e697a5ed4187c382b45f9d9c9, type: 3}
+      propertyPath: InitialModule.startSizeY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5471900709812018296, guid: ff48ed7e697a5ed4187c382b45f9d9c9, type: 3}
+      propertyPath: InitialModule.startSizeZ.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6819967459622506825, guid: ff48ed7e697a5ed4187c382b45f9d9c9, type: 3}
       propertyPath: playOnAwake
       value: 0
@@ -292,6 +300,14 @@ PrefabInstance:
     - target: {fileID: 7826324259179956620, guid: 7113346407db95f4680cab0d913838ce, type: 3}
       propertyPath: playOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7826324259179956620, guid: 7113346407db95f4680cab0d913838ce, type: 3}
+      propertyPath: InitialModule.startSizeY.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7826324259179956620, guid: 7113346407db95f4680cab0d913838ce, type: 3}
+      propertyPath: InitialModule.startSizeZ.minMaxState
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 9158993502884106081, guid: 7113346407db95f4680cab0d913838ce, type: 3}
       propertyPath: m_LocalPosition.x
